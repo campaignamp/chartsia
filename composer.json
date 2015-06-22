@@ -1,0 +1,30 @@
+{
+    "name" : "outspaced/google-chart-maker",
+    "description" : "A module for generating Google Charts",
+    "type" : "module",
+    "authors" : [{
+            "name" : "Alex Brims",
+            "email" : "alex.brims@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "google",
+        "charts",
+        "google-charts"
+    ],
+    "homepage" : "https://github.com/outspaced/google-chart-maker",
+    "license" : [
+        "proprietary"
+    ],
+    "require" : {
+        "php" : ">=5.4",
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Outspaced\\GoogleChartMaker" : ""
+        }
+    },
+    "target-dir" : "Outspaced/GoogleChartMaker",
+    "extra" : {
+    }
+}
