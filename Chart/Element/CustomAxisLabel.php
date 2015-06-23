@@ -18,13 +18,14 @@ class CustomAxisLabel implements ElementInterface
     protected $key = 'chxl';
     
     /**
+     * Adds a value, so should probably be called addElement
      * 
      * @param  string $value
      * @return self
      */
     public function add($value)
     {
-        $this->$data[] = $value;
+        $this->data[] = $value;
         return $this;
     }
     
