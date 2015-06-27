@@ -15,6 +15,7 @@ abstract class BaseChart
 
     protected $width;
     
+    protected $type;
     
     /**
      * 
@@ -49,5 +50,21 @@ abstract class BaseChart
         $this->width = $width;
         
         return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return array
+     */
+    public function getElements()
+    {
+        return $this->elements;
     }
 }

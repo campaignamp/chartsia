@@ -31,6 +31,14 @@ class CustomAxisLabel implements ElementInterface
     
     public function render()
     {
-        return implode('|', $this->$data);
+        return implode('|', $this->data);
+    }
+    
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
     }
 }
