@@ -10,6 +10,11 @@ abstract class BaseChart
 	 * @var array
 	 */
     protected $elements = [];
+
+	/**
+	 * @var array
+	 */
+    protected $dataSets = [];
     
     protected $height;
 
@@ -24,6 +29,17 @@ abstract class BaseChart
     public function addElement(Element\ElementInterface $element)
     {
         $this->elements[] = $element;
+        return $this;
+    }
+    
+    /**
+     * @param  \Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet
+     * @return self
+     */
+    public function addDataSet(\Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet)
+    {
+        $this->dataSets[] = $dataSet;
+        
         return $this;
     }
 
