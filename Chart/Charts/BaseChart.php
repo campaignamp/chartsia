@@ -18,7 +18,6 @@ abstract class BaseChart
     protected $type;
     
     /**
-     * 
      * @param  ElementInterface $element
      * @return self
      */
@@ -27,16 +26,20 @@ abstract class BaseChart
         $this->elements[] = $element;
         return $this;
     }
-    
-    public function render()
+
+    /**
+     * @param  array
+     * @return self
+     */
+    public function addData(array $data)
     {
-        return 'NOT RENDERING YET';
+        $this->data = $data;
+        return $this;
     }
     
     public function getData()
     {
-        // tmp
-        return $this;
+        return $this->data;
     }
     
     /**
@@ -50,6 +53,14 @@ abstract class BaseChart
         $this->width = $width;
         
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSize()
+    {
+        return [$this->height, $this->width];
     }
     
     /**

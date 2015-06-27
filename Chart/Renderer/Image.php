@@ -27,10 +27,15 @@ class Image
         // TYPE
         $url .= 'cht='. $chart->getType() .'&';
 
+        // SIZE
+        $url .= 'chs='. implode('x', $chart->getSize()) .'&';
+        
         // SOME ELEMENT
-        foreach($chart->getElements() as $chartElement) {
+        foreach ($chart->getElements() as $chartElement) {
             $url .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
         }
+
+        $url .= 'chd=t:'. implode(',', $chart->getData()) .'&';
         
         return $url;
     }
