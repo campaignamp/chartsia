@@ -43,21 +43,10 @@ abstract class BaseChart
         return $this;
     }
 
-    /**
-     * @param  array
-     * @return self
-     */
-    public function addData(array $data)
+    public function getDataSets()
     {
-        $this->data = $data;
-        return $this;
+        return $this->dataSets;
     }
-    
-    public function getData()
-    {
-        return $this->data;
-    }
-    
     /**
      * @param  int $height
      * @param  int $width

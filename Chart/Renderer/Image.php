@@ -16,10 +16,6 @@ class Image
     
     public function render(BaseChart $chart)
     {
-        $chartData = $chart->getData();
-        
-        dump($chartData);
-        
         $url = self::BASE_URL;
         
         // Now it needs to run through the data returned by getData() and form it into a URL
@@ -35,7 +31,32 @@ class Image
             $url .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
         }
 
-        $url .= 'chd=t:'. implode(',', $chart->getData()) .'&';
+        // DATA SETS
+        // So there's several elements that might rely on a dataset
+        // Start with a loop then refactor
+        $data = [];
+        $lineColors = [];
+        
+        
+        foreach ($chart->getDataSets() as $dataSet) {
+
+            $data[] = implode(',', $dataSet->getData());
+            
+            // OK so how to handle the chart-specific elements?
+            if ($dataSet->getColor()) {
+                $lineColors[] = $dataSet->getColor()->getColor();
+            }
+        }
+
+        dump($lineColors);
+        
+        dump($data);
+        
+        $url .= 'chd=t:'. implode('|', $data) .'&';
+
+        if ($lineColors) {
+            $url .= 'chco='. implode(',', $lineColors) .'&';
+        }
         
         return $url;
     }

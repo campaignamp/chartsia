@@ -8,6 +8,11 @@ class DataSet
      * @var array
      */
     protected $data = [];
+
+    /**
+     * @var \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
+     */
+    protected $color;
     
     /**
      * Overwrites the data to value in $data
@@ -43,5 +48,26 @@ class DataSet
         $this->data[] = $data;
         
         return $this;
+    }
+    
+    /**
+     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color
+     * @return self
+     */
+    public function setColor(\Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color)
+    {
+        $this->color = $color;
+        
+        return $this;
+    }
+    
+    /**
+     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
+     */
+    public function getColor() 
+    {
+        // If no color has been set then this returns null - should it return an empty color?
+        
+        return $this->color;
     }
 }
