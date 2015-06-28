@@ -15,6 +15,13 @@ abstract class BaseChart
 	 * @var array
 	 */
     protected $dataSets = [];
+
+	/**
+	 * I think that this will actually be replaced with a Config object that contains title
+	 * 
+	 * @var Title
+	 */
+    protected $title;
     
     protected $height;
 
@@ -47,6 +54,26 @@ abstract class BaseChart
     {
         return $this->dataSets;
     }
+
+    /**
+     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Title $title
+     * @return self
+     */
+    public function setTitle(\Outspaced\GoogleChartMakerBundle\Chart\Config\Title $title)
+    {
+        $this->title = $title;
+        
+        return $this;
+    }    
+    
+    /**
+     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }    
+    
     /**
      * @param  int $height
      * @param  int $width

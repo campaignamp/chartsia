@@ -25,7 +25,16 @@ class Image
 
         // SIZE
         $url .= 'chs='. implode('x', $chart->getSize()) .'&';
-        
+
+        // TITLE
+        if ($title = $chart->getTitle()) {
+            $url .= 'chtt='. urlencode($title->getTitle()) .'&';
+            
+            if ($title->getColor()) {
+                $url .= 'chts='. $title->getColor()->getColor() .'&';
+            }
+        }
+            
         // SOME ELEMENT
         foreach ($chart->getElements() as $chartElement) {
             $url .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
@@ -37,7 +46,6 @@ class Image
         $data = [];
         $lineColors = [];
         
-        
         foreach ($chart->getDataSets() as $dataSet) {
 
             $data[] = implode(',', $dataSet->getData());
@@ -47,10 +55,6 @@ class Image
                 $lineColors[] = $dataSet->getColor()->getColor();
             }
         }
-
-        dump($lineColors);
-        
-        dump($data);
         
         $url .= 'chd=t:'. implode('|', $data) .'&';
 
