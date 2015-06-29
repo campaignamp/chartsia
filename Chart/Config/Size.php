@@ -19,6 +19,10 @@ class Size
      */
     protected $width;
 
+    /**
+     * @param int $height
+     * @param int $width
+     */
     public function __construct($height=NULL, $width=NULL)
     {
         if ($height) {
