@@ -10,7 +10,13 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
 class Config
 {
     /**
-     * @var unknown
+     * @var int
      */
-    protected $title;
+    protected $height;
+
+    /**
+     * @var int
+     */
+    protected $width;
+    
 }
