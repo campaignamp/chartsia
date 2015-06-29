@@ -26,6 +26,11 @@ class Image
         // SIZE
         $url .= 'chs='. implode('x', $chart->getSize()->getDimensions()) .'&';
 
+        // MARGINS
+        if ($chart->getMargin()) {
+            $url .= 'chma='. implode(',', $chart->getMargin()->getDimensions()) .'&';
+        }
+
         // TITLE
         if ($title = $chart->getTitle()) {
             $url .= 'chtt='. urlencode($title->getTitle()) .'&';

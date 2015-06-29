@@ -91,6 +91,25 @@ abstract class BaseChart
     }
 
     /**
+     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Margin $margin
+     * @return self
+     */
+    public function setMargin(\Outspaced\GoogleChartMakerBundle\Chart\Config\Margin $margin)
+    {
+        $this->margin = $margin;
+
+        return $this;
+    }
+
+    /**
+     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Margin
+     */
+    public function getMargin()
+    {
+        return $this->margin;
+    }
+
+    /**
      * @return string
      */
     public function getType()
