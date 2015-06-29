@@ -72,4 +72,13 @@ class Size
         return $this->width;
     }
 
+    /**
+     * Helper method for getting both properties at once
+     * @return array
+     */
+    public function getDimensions()
+    {
+        return [$this->height, $this->width];
+    }
+
 }

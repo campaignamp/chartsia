@@ -24,7 +24,7 @@ class Image
         $url .= 'cht='. $chart->getType() .'&';
 
         // SIZE
-        $url .= 'chs='. implode('x', $chart->getSize()) .'&';
+        $url .= 'chs='. implode('x', $chart->getSize()->getDimensions()) .'&';
 
         // TITLE
         if ($title = $chart->getTitle()) {

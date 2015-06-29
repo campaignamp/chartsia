@@ -26,7 +26,6 @@ abstract class BaseChart
      */
     protected $size;
 
-
     /**
      * @param  ElementInterface $element
      * @return self
@@ -73,24 +72,22 @@ abstract class BaseChart
     }
 
     /**
-     * @param  int $height
-     * @param  int $width
+     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Size $size
      * @return self
      */
-    public function setSize($height, $width)
+    public function setSize(\Outspaced\GoogleChartMakerBundle\Chart\Config\Size $size)
     {
-        $this->height = $height;
-        $this->width = $width;
+        $this->size = $size;
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Size
      */
     public function getSize()
     {
-        return [$this->height, $this->width];
+        return $this->size;
     }
 
     /**
