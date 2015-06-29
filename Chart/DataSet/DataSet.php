@@ -4,6 +4,8 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\DataSet;
 
 class DataSet
 {
+    use \Outspaced\GoogleChartMakerBundle\Chart\Traits\ColorTrait;
+    
     /**
      * @var array
      */
@@ -48,26 +50,5 @@ class DataSet
         $this->data[] = $data;
         
         return $this;
-    }
-    
-    /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color
-     * @return self
-     */
-    public function setColor(\Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color)
-    {
-        $this->color = $color;
-        
-        return $this;
-    }
-    
-    /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
-     */
-    public function getColor() 
-    {
-        // If no color has been set then this returns null - should it return an empty color?
-        
-        return $this->color;
     }
 }

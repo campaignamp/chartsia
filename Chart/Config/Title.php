@@ -9,6 +9,8 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
  */
 class Title
 {
+    use \Outspaced\GoogleChartMakerBundle\Chart\Traits\ColorTrait;
+    
     /**
      * @var string
      */
@@ -47,27 +49,6 @@ class Title
     {
         return $this->title;
     }    
-    
-    /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color
-     * @return self
-     */
-    public function setColor(\Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color)
-    {
-        $this->color = $color;
-        
-        return $this;
-    }
-    
-    /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
-     */
-    public function getColor() 
-    {
-        // If no color has been set then this returns null - should it return an empty color?
-        
-        return $this->color;
-    }
     
     /**
      * Not implementing the other properties for now
