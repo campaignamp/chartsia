@@ -4,31 +4,29 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
 
 use Outspaced\GoogleChartMakerBundle\Chart\Element;
 
-abstract class BaseChart 
+abstract class BaseChart
 {
-	/**
-	 * @var array
-	 */
+    /**
+     * @var array
+     */
     protected $elements = [];
 
-	/**
-	 * @var array
-	 */
+    /**
+     * @var array
+     */
     protected $dataSets = [];
 
-	/**
-	 * I think that this will actually be replaced with a Config object that contains title
-	 * 
-	 * @var Title
-	 */
+    /**
+     * @var Title
+     */
     protected $title;
-    
-    protected $height;
 
-    protected $width;
-    
-    protected $type;
-    
+    /**
+     * @var Size
+     */
+    protected $size;
+
+
     /**
      * @param  ElementInterface $element
      * @return self
@@ -38,7 +36,7 @@ abstract class BaseChart
         $this->elements[] = $element;
         return $this;
     }
-    
+
     /**
      * @param  \Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet
      * @return self
@@ -46,7 +44,7 @@ abstract class BaseChart
     public function addDataSet(\Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet)
     {
         $this->dataSets[] = $dataSet;
-        
+
         return $this;
     }
 
@@ -62,18 +60,18 @@ abstract class BaseChart
     public function setTitle(\Outspaced\GoogleChartMakerBundle\Chart\Config\Title $title)
     {
         $this->title = $title;
-        
+
         return $this;
-    }    
-    
+    }
+
     /**
      * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Title
      */
     public function getTitle()
     {
         return $this->title;
-    }    
-    
+    }
+
     /**
      * @param  int $height
      * @param  int $width
@@ -83,7 +81,7 @@ abstract class BaseChart
     {
         $this->height = $height;
         $this->width = $width;
-        
+
         return $this;
     }
 
@@ -94,7 +92,7 @@ abstract class BaseChart
     {
         return [$this->height, $this->width];
     }
-    
+
     /**
      * @return string
      */
