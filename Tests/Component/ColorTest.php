@@ -9,7 +9,7 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     public function testConstructWithColor()
     {
         $color = new Color('FF0000');
-        
+
         $this->assertEquals($color->getColor(), 'FF0000');
     }
 
@@ -17,8 +17,8 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     {
         $color = new Color();
         $color->setColor('FF0000');
-        
+
         $this->assertEquals($color->getColor(), 'FF0000');
     }
-    
+
 }
