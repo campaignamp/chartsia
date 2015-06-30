@@ -27,6 +27,11 @@ abstract class BaseChart
     protected $size;
 
     /**
+     * @var Margin
+     */
+    protected $margin;
+
+    /**
      * @param  ElementInterface $element
      * @return self
      */
