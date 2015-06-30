@@ -31,6 +31,12 @@ class Image
             $url .= 'chma='. implode(',', $chart->getMargin()->getDimensions()) .'&';
         }
 
+        // LEGEND
+        if ($chartLegend = $chart->getLegend()) {
+            //chdlp=<opt_position>|<opt_label_order>
+            $url .= 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
+        }
+
         // TITLE
         if ($title = $chart->getTitle()) {
             $url .= 'chtt='. urlencode($title->getTitle()) .'&';
@@ -50,6 +56,7 @@ class Image
         // Start with a loop then refactor
         $data = [];
         $lineColors = [];
+        $legendLabels = [];
 
         foreach ($chart->getDataSets() as $dataSet) {
 
@@ -59,12 +66,23 @@ class Image
             if ($dataSet->getColor()) {
                 $lineColors[] = $dataSet->getColor()->getColor();
             }
+
+            if ($legend = $dataSet->getLegend()) {
+                $legendLabels[] = urlencode($legend->getLabel());
+            }
         }
 
+        // Dataset data
         $url .= 'chd=t:'. implode('|', $data) .'&';
 
+        // Dataset colors
         if ($lineColors) {
             $url .= 'chco='. implode(',', $lineColors) .'&';
+        }
+
+        // Legend stuff
+        if ($legendLabels) {
+            $url .= 'chdl='. implode('|', $legendLabels) .'&';
         }
 
         return $url;

@@ -3,6 +3,7 @@
 namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
 
 use Outspaced\GoogleChartMakerBundle\Chart\Element;
+use Outspaced\GoogleChartMakerBundle\Chart\Config;
 
 abstract class BaseChart
 {
@@ -30,6 +31,11 @@ abstract class BaseChart
      * @var Margin
      */
     protected $margin;
+
+    /**
+     * @var Legend
+     */
+    protected $legend;
 
     /**
      * @param  ElementInterface $element
@@ -113,6 +119,26 @@ abstract class BaseChart
     {
         return $this->margin;
     }
+
+    /**
+     * @param  Legend  $legend
+     * @return self
+     */
+    public function setLegend(Config\Legend $legend)
+    {
+        $this->legend = $legend;
+
+        return $this;
+    }
+
+    /**
+     * @return Legend
+     */
+    public function getLegend()
+    {
+        return $this->legend;
+    }
+
 
     /**
      * @return string

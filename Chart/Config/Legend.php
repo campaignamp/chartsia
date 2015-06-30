@@ -2,11 +2,15 @@
 
 namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
 
+use Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
+
 /**
  * @author Alex Brims <alex.brims@gmail.com>
  */
 class Legend
 {
+    // @todo chdlp=<opt_position>|<opt_label_order>
+
     /**
      * @var string
      */
