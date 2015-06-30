@@ -30,4 +30,29 @@ class SizeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($size->getDimensions(), [300, 500]);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testConstructWithNonIntSize()
+    {
+        $size = new Size('a', 'b');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetNonIntHeight()
+    {
+        $size = new Size();
+        $size->setHeight(45.6);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetNonIntWidth()
+    {
+        $size = new Size();
+        $size->setWidth(NULL);
+    }
 }

@@ -40,6 +40,10 @@ class Size
      */
     public function setHeight($height)
     {
+        if ( ! is_int($height)) {
+            throw new \InvalidArgumentException('Size height must be an int');
+        }
+
         $this->height = $height;
 
         return $this;
@@ -59,6 +63,10 @@ class Size
      */
     public function setWidth($width)
     {
+        if ( ! is_int($width)) {
+            throw new \InvalidArgumentException('Size width must be an int');
+        }
+
         $this->width = $width;
 
         return $this;
@@ -80,5 +88,4 @@ class Size
     {
         return [$this->height, $this->width];
     }
-
 }
