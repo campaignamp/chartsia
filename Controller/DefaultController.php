@@ -74,9 +74,6 @@ class DefaultController extends Controller
          *
          */
 
-//         $renderedChart = $chart->render();
-//         dump($renderedChart);
-
         $renderer = new \Outspaced\GoogleChartMakerBundle\Chart\Renderer\Image($chart);
 
         $renderedChart = $renderer->render($chart);
