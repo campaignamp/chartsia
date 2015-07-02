@@ -9,7 +9,7 @@ use Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
  */
 class Legend
 {
-    // @todo chdlp=<opt_position>|<opt_label_order>
+    // key for next piece is chdlp=<opt_position>|<opt_label_order>
 
     /**
      * @var string
