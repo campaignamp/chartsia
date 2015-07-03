@@ -59,6 +59,15 @@ class MarginTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($margin->getDimensions(), [10, 20, 30, 40, 50, 60]);
     }
 
+    public function testGetAllValuesWithLegendWidthButNoLegendHeight()
+    {
+        $margin = new Margin(10, 20, 30, 40);
+        $margin->setLegendWidth(60);
+
+        $this->assertEquals($margin->getDimensions(), [10, 20, 30, 40, NULL, 60]);
+    }
+
+
     /**
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLegendHeight
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLegendHeight
