@@ -3,6 +3,7 @@
 namespace Outspaced\GoogleChartMakerBundle\Chart\Renderer;
 
 use Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart;
+use Outspaced\GoogleChartMakerBundle\Chart\Config;
 
 /**
  * This library has been deprecated by Google, although the API is still available
@@ -72,7 +73,7 @@ class Image
 
     // Still not sure of best way to actually handle this - to reliably type hint, I
     // need to be sure that getLegend() will always return a legend
-    protected function renderChartLegend($chartLegend=NULL)
+    protected function renderChartLegend(Config\Legend $chartLegend=NULL)
     {
         if ($chartLegend !== NULL) {
             //chdlp=<opt_position>|<opt_label_order>
@@ -93,7 +94,9 @@ class Image
             $url .= $this->renderMargins($chart->getMargin()->getDimensions());
         }
 
-        $url .= $this->renderChartLegend($chart->getLegend());
+        if ($chart->getLegend()) {
+            $url .= $this->renderChartLegend($chart->getLegend());
+        }
 
         // TITLE
         if ($title = $chart->getTitle()) {
