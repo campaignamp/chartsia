@@ -6,6 +6,11 @@ use \Outspaced\GoogleChartMakerBundle\Chart\Config\Margin;
 
 class MarginTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        $this->margin = new Margin(10, 20, 30, 40);
+    }
+
     /**
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::__construct
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLeft
@@ -52,19 +57,17 @@ class MarginTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAllValuesWithOptionalValues()
     {
-        $margin = new Margin(10, 20, 30, 40);
-        $margin->setLegendHeight(50);
-        $margin->setLegendWidth(60);
+        $this->margin->setLegendHeight(50);
+        $this->margin->setLegendWidth(60);
 
-        $this->assertEquals($margin->getDimensions(), [10, 20, 30, 40, 50, 60]);
+        $this->assertEquals($this->margin->getDimensions(), [10, 20, 30, 40, 50, 60]);
     }
 
     public function testGetAllValuesWithLegendWidthButNoLegendHeight()
     {
-        $margin = new Margin(10, 30, 30, 50);
-        $margin->setLegendWidth(75);
+        $this->margin->setLegendWidth(75);
 
-        $this->assertEquals($margin->getDimensions(), [10, 30, 30, 50, NULL, 75]);
+        $this->assertEquals($this->margin->getDimensions(), [10, 20, 30, 40, NULL, 75]);
     }
 
 
