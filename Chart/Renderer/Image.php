@@ -34,16 +34,16 @@ class Image
 
     protected function renderMargins(array $margins=[])
     {
-        if (empty($margins)) {
-            return '';
-        } else {
+        if ( ! empty($margins)) {
             return 'chma='.implode(',', $margins).'&';
         }
+
+        return '';
     }
 
     protected function renderLegendLabels(array $legendLabels=[])
     {
-        if ($legendLabels) {
+        if ( ! empty($legendLabels)) {
             return 'chdl='. implode('|', $legendLabels) .'&';
         }
 
@@ -52,7 +52,7 @@ class Image
 
     protected function renderLineColors(array $lineColors=[])
     {
-        if ($lineColors) {
+        if ( ! empty($lineColors)) {
             return 'chco='. implode(',', $lineColors) .'&';
         }
 
