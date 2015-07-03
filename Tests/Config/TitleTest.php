@@ -15,8 +15,6 @@ class TitleTest extends \PHPUnit_Framework_TestCase
     protected $object;
 
     /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
      */
     protected function setUp()
     {
@@ -24,23 +22,11 @@ class TitleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Title::setTitle
-     * @todo   Implement testSetTitle().
      */
     public function testSetTitle()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->object->setTitle('Hello. Is it me you\'re looking for?');
     }
 
     /**
@@ -49,10 +35,8 @@ class TitleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTitle()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->object->setTitle('Hello. Is it me you\'re looking for?');
+        $this->assertEquals('Hello. Is it me you\'re looking for?', $this->object->getTitle());
     }
 
     /**
@@ -61,10 +45,8 @@ class TitleTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetColor()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $color = new \Outspaced\GoogleChartMakerBundle\Chart\Component\Color();
+        $this->object->setColor($color);
     }
 
     /**
@@ -73,9 +55,9 @@ class TitleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetColor()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $color = new \Outspaced\GoogleChartMakerBundle\Chart\Component\Color();
+        $this->object->setColor($color);
+
+        $this->assertInstanceOf('\Outspaced\GoogleChartMakerBundle\Chart\Component\Color', $this->object->getColor());
     }
 }
