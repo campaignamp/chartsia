@@ -17,12 +17,12 @@ class MarginTest extends \PHPUnit_Framework_TestCase
 
     public function testSetValues()
     {
-        $margin = new Margin(10, 20, 30, 40);
+        $margin = new Margin();
 
-        $margin->getLeft(10);
-        $margin->getRight(20);
-        $margin->getTop(30);
-        $margin->getBottom(40);
+        $margin->setLeft(10);
+        $margin->setRight(20);
+        $margin->setTop(30);
+        $margin->setBottom(40);
 
         $this->assertEquals($margin->getLeft(), 10);
         $this->assertEquals($margin->getRight(), 20);

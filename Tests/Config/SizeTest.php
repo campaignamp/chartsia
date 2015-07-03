@@ -35,7 +35,7 @@ class SizeTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructWithNonIntSize()
     {
-        $size = new Size('a', 'b');
+        new Size('a', 'b');
     }
 
     /**

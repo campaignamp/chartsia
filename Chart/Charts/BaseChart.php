@@ -24,22 +24,22 @@ abstract class BaseChart
     protected $dataSets = [];
 
     /**
-     * @var Title
+     * @var Config\Title
      */
     protected $title;
 
     /**
-     * @var Size
+     * @var Config\Size
      */
     protected $size;
 
     /**
-     * @var Margin
+     * @var Config\Margin
      */
     protected $margin;
 
     /**
-     * @var Legend
+     * @var Config\Legend
      */
     protected $legend;
 

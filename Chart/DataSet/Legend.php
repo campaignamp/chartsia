@@ -18,7 +18,7 @@ class Legend
     public function __construct($legend=NULL)
     {
         if ($legend !== NULL) {
-            return $this->setLabel($legend);
+            $this->setLabel($legend);
         }
     }
 

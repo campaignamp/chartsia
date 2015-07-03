@@ -15,7 +15,7 @@ class Color
     public function __construct($color=NULL)
     {
         if ($color !== NULL) {
-            return $this->setColor($color);
+            $this->setColor($color);
         }
     }
 
