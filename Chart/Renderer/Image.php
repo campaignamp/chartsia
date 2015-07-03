@@ -9,41 +9,95 @@ use Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart;
  */
 class Image
 {
-	/**
-	 * @var string
-	 */
-	const BASE_URL = 'http://chart.googleapis.com/chart?';
+    /**
+     * @var string
+     */
+    const BASE_URL = 'http://chart.googleapis.com/chart?';
+
+    protected function renderType($type=NULL)
+    {
+        if ($type === NULL) {
+            return '';
+        } else {
+            return 'cht='. $type .'&';
+        }
+    }
+
+    protected function renderSize(array $size=[])
+    {
+        if (empty($size)) {
+            return '';
+        } else {
+            return 'chs='.implode('x', $size).'&';
+        }
+    }
+
+    protected function renderMargins(array $margins=[])
+    {
+        if (empty($margins)) {
+            return '';
+        } else {
+            return 'chma='.implode(',', $margins).'&';
+        }
+    }
+
+    protected function renderLegendLabels(array $legendLabels=[])
+    {
+        if ($legendLabels) {
+            return 'chdl='. implode('|', $legendLabels) .'&';
+        }
+
+        return '';
+    }
+
+    protected function renderLineColors(array $lineColors=[])
+    {
+        if ($lineColors) {
+            return 'chco='. implode(',', $lineColors) .'&';
+        }
+
+        return '';
+    }
+
+    protected function renderTitle($title, $color='')
+    {
+        $url = 'chtt='. urlencode($title) .'&';
+
+        if ( ! empty($color)) {
+            $url .= 'chts='. $color .'&';
+        }
+
+        return $url;
+    }
+
+    // Still not sure of best way to actually handle this - to reliably type hint, I
+    // need to be sure that getLegend() will always return a legend
+    protected function renderChartLegend($chartLegend=NULL)
+    {
+        if ($chartLegend !== NULL) {
+            //chdlp=<opt_position>|<opt_label_order>
+            return 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
+        }
+
+        return '';
+    }
 
     public function render(BaseChart $chart)
     {
         $url = self::BASE_URL;
 
-        // Now it needs to run through the data returned by getData() and form it into a URL
+        $url .= $this->renderType($chart->getType());
+        $url .= $this->renderSize($chart->getSize()->getDimensions());
 
-        // TYPE
-        $url .= 'cht='. $chart->getType() .'&';
-
-        // SIZE
-        $url .= 'chs='. implode('x', $chart->getSize()->getDimensions()) .'&';
-
-        // MARGINS
         if ($chart->getMargin()) {
-            $url .= 'chma='. implode(',', $chart->getMargin()->getDimensions()) .'&';
+            $url .= $this->renderMargins($chart->getMargin()->getDimensions());
         }
 
-        // LEGEND
-        if ($chartLegend = $chart->getLegend()) {
-            //chdlp=<opt_position>|<opt_label_order>
-            $url .= 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
-        }
+        $url .= $this->renderChartLegend($chart->getLegend());
 
         // TITLE
         if ($title = $chart->getTitle()) {
-            $url .= 'chtt='. urlencode($title->getTitle()) .'&';
-
-            if ($title->getColor()) {
-                $url .= 'chts='. $title->getColor()->getColor() .'&';
-            }
+            $url .= $this->renderTitle($title->getTitle(), $title->getColor()->getColor());
         }
 
         // SOME ELEMENT
@@ -75,15 +129,8 @@ class Image
         // Dataset data
         $url .= 'chd=t:'. implode('|', $data) .'&';
 
-        // Dataset colors
-        if ($lineColors) {
-            $url .= 'chco='. implode(',', $lineColors) .'&';
-        }
-
-        // Legend stuff
-        if ($legendLabels) {
-            $url .= 'chdl='. implode('|', $legendLabels) .'&';
-        }
+        $url .= $this->renderLineColors($lineColors);
+        $url .= $this->renderLegendLabels($legendLabels);
 
         return $url;
     }
