@@ -61,10 +61,10 @@ class MarginTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAllValuesWithLegendWidthButNoLegendHeight()
     {
-        $margin = new Margin(10, 20, 30, 40);
-        $margin->setLegendWidth(60);
+        $margin = new Margin(10, 30, 30, 50);
+        $margin->setLegendWidth(75);
 
-        $this->assertEquals($margin->getDimensions(), [10, 20, 30, 40, NULL, 60]);
+        $this->assertEquals($margin->getDimensions(), [10, 30, 30, 50, NULL, 75]);
     }
 
 
