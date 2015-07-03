@@ -58,4 +58,26 @@ class MarginTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($margin->getDimensions(), [10, 20, 30, 40, 50, 60]);
     }
+
+    /**
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLegendHeight
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLegendHeight
+     */
+    public function testGetLegendHeight()
+    {
+        $margin = new Margin();
+        $margin->setLegendHeight(50);
+        $this->assertEquals(50, $margin->getLegendHeight());
+    }
+
+    /**
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLegendWidth
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLegendWidth
+     */
+    public function testGetLegendWidth()
+    {
+        $margin = new Margin();
+        $margin->setLegendWidth(50);
+        $this->assertEquals(50, $margin->getLegendWidth());
+    }
 }
