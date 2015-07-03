@@ -14,15 +14,12 @@ class Legend
 
     /**
      * @param  string $legend [optional]
-     * @return self
      */
     public function __construct($legend=NULL)
     {
-        if ( ! is_null($legend)) {
+        if ($legend !== NULL) {
             return $this->setLabel($legend);
         }
-
-        return $this;
     }
 
     /**

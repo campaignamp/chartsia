@@ -59,11 +59,6 @@ class DefaultController extends Controller
             ->setColor(new Component\Color('0000FF'))
             ->setLegend(new DataSet\Legend('Set 2'));
 
-        /*
-        // Start off with an array, consider class afterwards
-        $chart->addData([10, 50, 60, 90, 150, 20]);
-        */
-
         $chart->addDataSet($dataSet)
             ->addDataSet($dataSet2);
 
@@ -71,10 +66,9 @@ class DefaultController extends Controller
          * UP NEXT
          *
          * Need to make the rendering happen from a dataset
-         *
          */
 
-        $renderer = new \Outspaced\GoogleChartMakerBundle\Chart\Renderer\Image($chart);
+        $renderer = new \Outspaced\GoogleChartMakerBundle\Chart\Renderer\Image();
 
         $renderedChart = $renderer->render($chart);
 

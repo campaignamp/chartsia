@@ -25,11 +25,11 @@ class Size
      */
     public function __construct($height=NULL, $width=NULL)
     {
-        if ($height) {
+        if ($height !== NULL) {
             $this->setHeight($height);
         }
 
-        if ($width) {
+        if ($width !== NULL) {
             $this->setWidth($width);
         }
     }

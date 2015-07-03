@@ -8,18 +8,15 @@ class Color
      * @var string
      */
     protected $color;
-    
+
     /**
      * @param string $color - requires HTML-friendly code
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
      */
     public function __construct($color=NULL)
     {
-        if ($color) {
+        if ($color !== NULL) {
             return $this->setColor($color);
         }
-        
-        return $this;
     }
 
     /**
@@ -29,7 +26,7 @@ class Color
     public function setColor($color)
     {
         $this->color = $color;
-        
+
         return $this;
     }
 

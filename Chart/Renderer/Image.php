@@ -5,7 +5,7 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Renderer;
 use Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart;
 
 /**
- * @deprecated by Google, although the API is still available
+ * This library has been deprecated by Google, although the API is still available
  */
 class Image
 {

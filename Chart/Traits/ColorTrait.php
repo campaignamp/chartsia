@@ -2,13 +2,20 @@
 
 namespace Outspaced\GoogleChartMakerBundle\Chart\Traits;
 
+use Outspaced\GoogleChartMakerBundle\Chart\Component;
+
 trait ColorTrait
 {
     /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color
+     * @var Component\Color
+     */
+    protected $color;
+
+    /**
+     * @param  Component\Color $color
      * @return self
      */
-    public function setColor(\Outspaced\GoogleChartMakerBundle\Chart\Component\Color $color)
+    public function setColor(Component\Color $color)
     {
         $this->color = $color;
 
@@ -16,7 +23,7 @@ trait ColorTrait
     }
 
     /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
+     * @return Component\Color
      */
     public function getColor()
     {

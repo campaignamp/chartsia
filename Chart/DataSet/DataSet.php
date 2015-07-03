@@ -15,11 +15,6 @@ class DataSet
     protected $data = [];
 
     /**
-     * @var Color
-     */
-    protected $color;
-
-    /**
      * @var Legend
      */
     protected $legend;

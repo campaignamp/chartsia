@@ -4,9 +4,15 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
 
 use Outspaced\GoogleChartMakerBundle\Chart\Element;
 use Outspaced\GoogleChartMakerBundle\Chart\Config;
+use Outspaced\GoogleChartMakerBundle\Chart\DataSet;
 
 abstract class BaseChart
 {
+    /**
+     * @var string
+     */
+    protected $type;
+
     /**
      * @var array
      */
@@ -48,10 +54,10 @@ abstract class BaseChart
     }
 
     /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet
+     * @param  DataSet\DataSet $dataSet
      * @return self
      */
-    public function addDataSet(\Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet $dataSet)
+    public function addDataSet(DataSet\DataSet $dataSet)
     {
         $this->dataSets[] = $dataSet;
 
@@ -64,10 +70,10 @@ abstract class BaseChart
     }
 
     /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Title $title
+     * @param  Config\Title $title
      * @return self
      */
-    public function setTitle(\Outspaced\GoogleChartMakerBundle\Chart\Config\Title $title)
+    public function setTitle(Config\Title $title)
     {
         $this->title = $title;
 
@@ -75,7 +81,7 @@ abstract class BaseChart
     }
 
     /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Title
+     * @return Config\Title
      */
     public function getTitle()
     {
@@ -83,10 +89,10 @@ abstract class BaseChart
     }
 
     /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Size $size
+     * @param  Config\Size $size
      * @return self
      */
-    public function setSize(\Outspaced\GoogleChartMakerBundle\Chart\Config\Size $size)
+    public function setSize(Config\Size $size)
     {
         $this->size = $size;
 
@@ -94,7 +100,7 @@ abstract class BaseChart
     }
 
     /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Size
+     * @return Config\Size
      */
     public function getSize()
     {
@@ -102,10 +108,10 @@ abstract class BaseChart
     }
 
     /**
-     * @param  \Outspaced\GoogleChartMakerBundle\Chart\Config\Margin $margin
+     * @param  Config\Margin $margin
      * @return self
      */
-    public function setMargin(\Outspaced\GoogleChartMakerBundle\Chart\Config\Margin $margin)
+    public function setMargin(Config\Margin $margin)
     {
         $this->margin = $margin;
 
@@ -113,7 +119,7 @@ abstract class BaseChart
     }
 
     /**
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Charts\Margin
+     * @return Config\Margin
      */
     public function getMargin()
     {
@@ -138,7 +144,6 @@ abstract class BaseChart
     {
         return $this->legend;
     }
-
 
     /**
      * @return string
