@@ -44,7 +44,7 @@ abstract class BaseChart
     protected $legend;
 
     /**
-     * @param  ElementInterface $element
+     * @param  Element\ElementInterface $element
      * @return self
      */
     public function addElement(Element\ElementInterface $element)
@@ -127,7 +127,7 @@ abstract class BaseChart
     }
 
     /**
-     * @param  Legend  $legend
+     * @param  Config\Legend  $legend
      * @return self
      */
     public function setLegend(Config\Legend $legend)
