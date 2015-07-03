@@ -8,8 +8,8 @@ use Outspaced\GoogleChartMakerBundle\Chart\Component;
 class LegendTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Config\Legend::setPostion
-     * @covers Config\Legend::getPostion
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setPosition
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getPosition
      */
     public function testSetPosition()
     {
@@ -19,8 +19,8 @@ class LegendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Config\Legend::setFontSize
-     * @covers Config\Legend::getFontSize
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setFontSize
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getFontSize
      */
     public function testSetFontSize()
     {
@@ -30,8 +30,8 @@ class LegendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Config\Legend::setSetColor
-     * @covers Config\Legend::getSetColor
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setColor
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getColor
      */
     public function testSetColor()
     {

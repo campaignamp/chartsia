@@ -7,11 +7,11 @@ use \Outspaced\GoogleChartMakerBundle\Chart\Config\Margin;
 class MarginTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Config\Margin::__construct
-     * @covers Config\Margin::getLeft
-     * @covers Config\Margin::getRight
-     * @covers Config\Margin::getTop
-     * @covers Config\Margin::getBottom
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::__construct
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLeft
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getRight
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getTop
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getBottom
      */
     public function testConstructWithMargin()
     {
@@ -23,11 +23,11 @@ class MarginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Config\Margin::__construct
-     * @covers Config\Margin::setLeft
-     * @covers Config\Margin::setRight
-     * @covers Config\Margin::setTop
-     * @covers Config\Margin::setBottom
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::__construct
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLeft
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setRight
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setTop
+     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setBottom
      */
     public function testSetValues()
     {
