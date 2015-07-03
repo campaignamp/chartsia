@@ -2,6 +2,8 @@
 
 namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
 
+use Outspaced\GoogleChartMakerBundle\Chart\Traits;
+
 /**
  * Title element, common to all charts
  *
@@ -9,7 +11,7 @@ namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
  */
 class Title
 {
-    use \Outspaced\GoogleChartMakerBundle\Chart\Traits\ColorTrait;
+    use Traits\ColorTrait;
 
     /**
      * @var string
