@@ -15,16 +15,16 @@ class Image
      */
     const BASE_URL = 'http://chart.googleapis.com/chart?';
 
-    protected function renderType($type=NULL)
+    protected function renderType($type = NULL)
     {
         if ($type === NULL) {
             return '';
         } else {
-            return 'cht='. $type .'&';
+            return 'cht='.$type.'&';
         }
     }
 
-    protected function renderSize(Config\Size $size=NULL)
+    protected function renderSize(Config\Size $size = NULL)
     {
         if ($size === NULL) {
             return '';
@@ -33,7 +33,7 @@ class Image
         }
     }
 
-    protected function renderMargin(Config\Margin $margin=NULL)
+    protected function renderMargin(Config\Margin $margin = NULL)
     {
         if ($margin !== NULL) {
             return 'chma='.implode(',', $margin->getDimensions()).'&';
@@ -42,34 +42,34 @@ class Image
         return '';
     }
 
-    protected function renderLegendLabels(array $legendLabels=[])
+    protected function renderLegendLabels(array $legendLabels = [])
     {
         if ( ! empty($legendLabels)) {
-            return 'chdl='. implode('|', $legendLabels) .'&';
+            return 'chdl='.implode('|', $legendLabels).'&';
         }
 
         return '';
     }
 
-    protected function renderLineColors(array $lineColors=[])
+    protected function renderLineColors(array $lineColors = [])
     {
         if ( ! empty($lineColors)) {
-            return 'chco='. implode(',', $lineColors) .'&';
+            return 'chco='.implode(',', $lineColors).'&';
         }
 
         return '';
     }
 
-    protected function renderTitle(Config\Title $title=NULL)
+    protected function renderTitle(Config\Title $title = NULL)
     {
         if ($title === NULL) {
             return '';
         }
 
-        $url = 'chtt='. urlencode($title->getTitle()) .'&';
+        $url = 'chtt='.urlencode($title->getTitle()).'&';
 
         if ($title->getColor() !== NULL) {
-            $url .= 'chts='. $title->getColor()->getColor() .'&';
+            $url .= 'chts='.$title->getColor()->getColor().'&';
         }
 
         return $url;
@@ -77,7 +77,7 @@ class Image
 
     // Still not sure of best way to actually handle this - to reliably type hint, I
     // need to be sure that getLegend() will always return a legend
-    protected function renderChartLegend(Config\Legend $chartLegend=NULL)
+    protected function renderChartLegend(Config\Legend $chartLegend = NULL)
     {
         if ($chartLegend !== NULL) {
             //chdlp=<opt_position>|<opt_label_order>
@@ -87,13 +87,13 @@ class Image
         return '';
     }
 
-    public function renderElements(array $elements=[])
+    public function renderElements(array $elements = [])
     {
         $urlData = '';
 
         // SOME ELEMENT
         foreach ($elements as $chartElement) {
-            $urlData .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
+            $urlData .= $chartElement->getKey().'='.$chartElement->render().'&';
         }
 
         return $urlData;
@@ -132,7 +132,7 @@ class Image
         }
 
         // Dataset data
-        $url .= 'chd=t:'. implode('|', $data) .'&';
+        $url .= 'chd=t:'.implode('|', $data).'&';
 
         $url .= $this->renderLineColors($lineColors);
         $url .= $this->renderLegendLabels($legendLabels);
