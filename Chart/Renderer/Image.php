@@ -24,19 +24,19 @@ class Image
         }
     }
 
-    protected function renderSize(array $size=[])
+    protected function renderSize(Config\Size $size=NULL)
     {
-        if (empty($size)) {
+        if ($size === NULL) {
             return '';
         } else {
-            return 'chs='.implode('x', $size).'&';
+            return 'chs='.implode('x', $size->getDimensions()).'&';
         }
     }
 
-    protected function renderMargins(array $margins=[])
+    protected function renderMargin(Config\Margin $margin=NULL)
     {
-        if ( ! empty($margins)) {
-            return 'chma='.implode(',', $margins).'&';
+        if ($margin !== NULL) {
+            return 'chma='.implode(',', $margin->getDimensions()).'&';
         }
 
         return '';
@@ -60,12 +60,16 @@ class Image
         return '';
     }
 
-    protected function renderTitle($title, $color='')
+    protected function renderTitle(Config\Title $title=NULL)
     {
-        $url = 'chtt='. urlencode($title) .'&';
+        if ($title === NULL) {
+            return '';
+        }
 
-        if ( ! empty($color)) {
-            $url .= 'chts='. $color .'&';
+        $url = 'chtt='. urlencode($title->getTitle()) .'&';
+
+        if ($title->getColor() !== NULL) {
+            $url .= 'chts='. $title->getColor()->getColor() .'&';
         }
 
         return $url;
@@ -83,30 +87,28 @@ class Image
         return '';
     }
 
+    public function renderElements(array $elements=[])
+    {
+        $urlData = '';
+
+        // SOME ELEMENT
+        foreach ($elements as $chartElement) {
+            $urlData .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
+        }
+
+        return $urlData;
+    }
+
     public function render(BaseChart $chart)
     {
         $url = self::BASE_URL;
 
         $url .= $this->renderType($chart->getType());
-        $url .= $this->renderSize($chart->getSize()->getDimensions());
-
-        if ($chart->getMargin()) {
-            $url .= $this->renderMargins($chart->getMargin()->getDimensions());
-        }
-
-        if ($chart->getLegend()) {
-            $url .= $this->renderChartLegend($chart->getLegend());
-        }
-
-        // TITLE
-        if ($title = $chart->getTitle()) {
-            $url .= $this->renderTitle($title->getTitle(), $title->getColor()->getColor());
-        }
-
-        // SOME ELEMENT
-        foreach ($chart->getElements() as $chartElement) {
-            $url .= $chartElement->getKey() . '=' . $chartElement->render() .'&';
-        }
+        $url .= $this->renderSize($chart->getSize());
+        $url .= $this->renderMargin($chart->getMargin());
+        $url .= $this->renderChartLegend($chart->getLegend());
+        $url .= $this->renderTitle($chart->getTitle());
+        $url .= $this->renderElements($chart->getElements());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset
