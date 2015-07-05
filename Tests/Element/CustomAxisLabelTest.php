@@ -7,7 +7,7 @@ namespace Outspaced\GoogleChartMakerBundle\Tests\Element;
 class CustomAxisLabelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel
+     * @var \Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel
      */
     protected $object;
 
@@ -29,7 +29,7 @@ class CustomAxisLabelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::add
+     * @covers \Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::add
      * @todo   Implement testAdd().
      */
     public function testAdd()
@@ -41,7 +41,7 @@ class CustomAxisLabelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::getKey
+     * @covers \Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::getKey
      * @todo   Implement testGetKey().
      */
     public function testGetKey()
