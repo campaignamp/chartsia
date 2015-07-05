@@ -10,6 +10,14 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
+    /**
+     * @return \Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet
+     */
+    protected function getObject()
+    {
+        return $this->object;
+    }
+
     protected function setUp()
     {
         $this->object = new \Outspaced\GoogleChartMakerBundle\Chart\DataSet\DataSet;

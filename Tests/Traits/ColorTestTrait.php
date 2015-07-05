@@ -6,11 +6,16 @@ use Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
 
 trait ColorTestTrait
 {
+    /**
+     * Trait extension approximation
+     */
+    use BaseTestTrait;
+
     public function testSetColor()
     {
         $color = new Color;
 
-        $returned = $this->object->setColor($color);
+        $returned = $this->getObject()->setColor($color);
 
         $this->assertInstanceOf(get_class($this->object), $returned);
     }
@@ -19,7 +24,7 @@ trait ColorTestTrait
     {
         $color = new Color;
 
-        $this->object->setColor($color);
+        $this->getObject()->setColor($color);
 
         $this->assertEquals($color, $this->object->getColor());
     }
@@ -29,6 +34,6 @@ trait ColorTestTrait
      */
     public function testSetColorWithNotAColor()
     {
-        $this->object->setColor('I am no object!');
+        $this->getObject()->setColor('I am no object!');
     }
 }
