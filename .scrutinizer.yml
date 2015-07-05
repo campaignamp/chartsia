@@ -2,4 +2,5 @@ tools:
     external_code_coverage: true
 filter:
     excluded_paths:
+        - 'vendor/*'
         - 'Tests/Traits/BaseTestTrait.php'
