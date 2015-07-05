@@ -41,18 +41,6 @@ class CustomAxisLabelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::render
-     * @todo   Implement testRender().
-     */
-    public function testRender()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
      * @covers Outspaced\GoogleChartMakerBundle\Chart\Element\CustomAxisLabel::getKey
      * @todo   Implement testGetKey().
      */
