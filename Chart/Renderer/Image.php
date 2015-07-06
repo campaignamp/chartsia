@@ -93,7 +93,7 @@ class Image
 
         // SOME ELEMENT
         foreach ($elements as $chartElement) {
-            $urlData .= $chartElement->getKey().'='.$chartElement->render().'&';
+//             $urlData .= $chartElement->getKey().'='.$chartElement->render().'&';
         }
 
         return $urlData;
