@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Outspaced\\GoogleChartMaker' => array($baseDir . '/'),
+    'Outspaced\\Chartsia' => array($baseDir . '/'),
 );
