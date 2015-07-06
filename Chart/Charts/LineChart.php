@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
+namespace Outspaced\ChartsiaBundle\Chart\Charts;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart;
+use Outspaced\ChartsiaBundle\Chart\Charts\BaseChart;
 
 class LineChart extends BaseChart
 {

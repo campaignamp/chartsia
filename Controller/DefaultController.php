@@ -5,12 +5,12 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Component;
+use Outspaced\ChartsiaBundle\Chart\Component;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Charts;
-use Outspaced\GoogleChartMakerBundle\Chart\Config;
-use Outspaced\GoogleChartMakerBundle\Chart\DataSet;
-use Outspaced\GoogleChartMakerBundle\Chart\Element;
+use Outspaced\ChartsiaBundle\Chart\Charts;
+use Outspaced\ChartsiaBundle\Chart\Config;
+use Outspaced\ChartsiaBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\Element;
 
 class DefaultController extends Controller
 {
@@ -68,7 +68,7 @@ class DefaultController extends Controller
          * Need to make the rendering happen from a dataset
          */
 
-        $renderer = new \Outspaced\GoogleChartMakerBundle\Chart\Renderer\Image();
+        $renderer = new \Outspaced\ChartsiaBundle\Chart\Renderer\Image();
 
         $renderedChart = $renderer->render($chart);
 

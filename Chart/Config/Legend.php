@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
+namespace Outspaced\ChartsiaBundle\Chart\Config;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
+use Outspaced\ChartsiaBundle\Chart\Component\Color;
 
 /**
  * @author Alex Brims <alex.brims@gmail.com>

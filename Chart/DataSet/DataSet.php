@@ -1,13 +1,13 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\DataSet;
+namespace Outspaced\ChartsiaBundle\Chart\DataSet;
 
-use Outspaced\GoogleChartMakerBundle\Chart\DataSet\Legend;
-use Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
+use Outspaced\ChartsiaBundle\Chart\DataSet\Legend;
+use Outspaced\ChartsiaBundle\Chart\Component\Color;
 
 class DataSet
 {
-    use \Outspaced\GoogleChartMakerBundle\Chart\Traits\ColorTrait;
+    use \Outspaced\ChartsiaBundle\Chart\Traits\ColorTrait;
 
     /**
      * @var array

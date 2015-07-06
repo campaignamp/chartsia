@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Traits;
+namespace Outspaced\ChartsiaBundle\Chart\Traits;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Component;
+use Outspaced\ChartsiaBundle\Chart\Component;
 
 trait ColorTrait
 {

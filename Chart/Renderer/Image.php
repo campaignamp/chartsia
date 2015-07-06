@@ -1,9 +1,9 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Renderer;
+namespace Outspaced\ChartsiaBundle\Chart\Renderer;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart;
-use Outspaced\GoogleChartMakerBundle\Chart\Config;
+use Outspaced\ChartsiaBundle\Chart\Charts\BaseChart;
+use Outspaced\ChartsiaBundle\Chart\Config;
 
 /**
  * This library has been deprecated by Google, although the API is still available

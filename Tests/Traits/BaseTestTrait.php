@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\Traits;
+namespace Outspaced\ChartsiaBundle\Tests\Traits;
 
 trait BaseTestTrait
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\DataSet;
+namespace Outspaced\ChartsiaBundle\Tests\DataSet;
 
-use \Outspaced\GoogleChartMakerBundle\Chart\DataSet\Legend;
+use \Outspaced\ChartsiaBundle\Chart\DataSet\Legend;
 
 class LegendTest extends \PHPUnit_Framework_TestCase
 {

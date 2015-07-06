@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
+namespace Outspaced\ChartsiaBundle\Chart\Config;
 
 /**
  * Contains config elements that are common to all charts

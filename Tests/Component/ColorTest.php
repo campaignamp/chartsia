@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\Component;
+namespace Outspaced\ChartsiaBundle\Tests\Component;
 
-use \Outspaced\GoogleChartMakerBundle\Chart\Component\Color;
+use \Outspaced\ChartsiaBundle\Chart\Component\Color;
 
 class ColorTest extends \PHPUnit_Framework_TestCase
 {

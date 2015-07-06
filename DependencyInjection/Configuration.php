@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\DependencyInjection;
+namespace Outspaced\ChartsiaBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

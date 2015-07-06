@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Config;
+namespace Outspaced\ChartsiaBundle\Chart\Config;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Traits;
+use Outspaced\ChartsiaBundle\Chart\Traits;
 
 /**
  * Title element, common to all charts

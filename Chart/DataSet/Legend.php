@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\DataSet;
+namespace Outspaced\ChartsiaBundle\Chart\DataSet;
 
 /**
  * @author Alex Brims <alex.brims@gmail.com>

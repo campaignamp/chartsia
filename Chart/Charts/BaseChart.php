@@ -1,10 +1,10 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
+namespace Outspaced\ChartsiaBundle\Chart\Charts;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Element;
-use Outspaced\GoogleChartMakerBundle\Chart\Config;
-use Outspaced\GoogleChartMakerBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\Element;
+use Outspaced\ChartsiaBundle\Chart\Config;
+use Outspaced\ChartsiaBundle\Chart\DataSet;
 
 abstract class BaseChart
 {

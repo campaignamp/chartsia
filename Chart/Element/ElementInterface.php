@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Element;
+namespace Outspaced\ChartsiaBundle\Chart\Element;
 
 interface ElementInterface
 {

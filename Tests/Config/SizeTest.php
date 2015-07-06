@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\Config;
+namespace Outspaced\ChartsiaBundle\Tests\Config;
 
-use \Outspaced\GoogleChartMakerBundle\Chart\Config\Size;
+use \Outspaced\ChartsiaBundle\Chart\Config\Size;
 
 class SizeTest extends \PHPUnit_Framework_TestCase
 {

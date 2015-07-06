@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\Config;
+namespace Outspaced\ChartsiaBundle\Tests\Config;
 
-use \Outspaced\GoogleChartMakerBundle\Chart\Config\Margin;
+use \Outspaced\ChartsiaBundle\Chart\Config\Margin;
 
 class MarginTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,11 +12,11 @@ class MarginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::__construct
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLeft
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getRight
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getTop
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getBottom
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::__construct
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getLeft
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getRight
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getTop
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getBottom
      */
     public function testConstructWithMargin()
     {
@@ -28,11 +28,11 @@ class MarginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::__construct
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLeft
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setRight
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setTop
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setBottom
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::__construct
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setLeft
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setRight
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setTop
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setBottom
      */
     public function testSetValues()
     {
@@ -72,8 +72,8 @@ class MarginTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLegendHeight
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLegendHeight
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setLegendHeight
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getLegendHeight
      */
     public function testGetLegendHeight()
     {
@@ -83,8 +83,8 @@ class MarginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::setLegendWidth
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Margin::getLegendWidth
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::setLegendWidth
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Margin::getLegendWidth
      */
     public function testGetLegendWidth()
     {

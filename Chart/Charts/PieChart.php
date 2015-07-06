@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Charts;
+namespace Outspaced\ChartsiaBundle\Chart\Charts;
 
-class PieChart extends \Outspaced\GoogleChartMakerBundle\Chart\Charts\BaseChart
+class PieChart extends \Outspaced\ChartsiaBundle\Chart\Charts\BaseChart
 {
     protected $type = 'p3';
     

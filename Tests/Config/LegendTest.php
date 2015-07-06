@@ -1,15 +1,15 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Tests\Config;
+namespace Outspaced\ChartsiaBundle\Tests\Config;
 
-use Outspaced\GoogleChartMakerBundle\Chart\Config;
-use Outspaced\GoogleChartMakerBundle\Chart\Component;
+use Outspaced\ChartsiaBundle\Chart\Config;
+use Outspaced\ChartsiaBundle\Chart\Component;
 
 class LegendTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setPosition
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getPosition
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::setPosition
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::getPosition
      */
     public function testSetPosition()
     {
@@ -19,8 +19,8 @@ class LegendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setFontSize
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getFontSize
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::setFontSize
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::getFontSize
      */
     public function testSetFontSize()
     {
@@ -30,8 +30,8 @@ class LegendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::setColor
-     * @covers Outspaced\GoogleChartMakerBundle\Chart\Config\Legend::getColor
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::setColor
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Legend::getColor
      */
     public function testSetColor()
     {
@@ -39,7 +39,7 @@ class LegendTest extends \PHPUnit_Framework_TestCase
         $legend = new Config\Legend();
         $legend->setColor($color);
 
-        $this->assertInstanceOf('\Outspaced\GoogleChartMakerBundle\Chart\Component\Color', $legend->getColor());
+        $this->assertInstanceOf('\Outspaced\ChartsiaBundle\Chart\Component\Color', $legend->getColor());
     }
 
     /**

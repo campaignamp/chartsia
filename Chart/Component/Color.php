@@ -1,6 +1,6 @@
 <?php
 
-namespace Outspaced\GoogleChartMakerBundle\Chart\Component;
+namespace Outspaced\ChartsiaBundle\Chart\Component;
 
 class Color
 {
@@ -21,7 +21,7 @@ class Color
 
     /**
      * @param string $color
-     * @return \Outspaced\GoogleChartMakerBundle\Chart\Component\Color
+     * @return \Outspaced\ChartsiaBundle\Chart\Component\Color
      */
     public function setColor($color)
     {
