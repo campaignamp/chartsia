@@ -1,5 +1,5 @@
 {
-    "name" : "outspaced/google-chart-maker",
+    "name" : "outspaced/chartsia",
     "description" : "A module for generating Google Charts",
     "type" : "module",
     "authors" : [{
@@ -12,7 +12,7 @@
         "charts",
         "google-charts"
     ],
-    "homepage" : "https://github.com/outspaced/google-chart-maker",
+    "homepage" : "https://github.com/outspaced/chartsia",
     "license" : [
         "proprietary"
     ],
@@ -21,10 +21,10 @@
     },
     "autoload" : {
         "psr-0" : {
-            "Outspaced\\GoogleChartMaker" : ""
+            "Outspaced\\Chartsia" : ""
         }
     },
-    "target-dir" : "Outspaced/GoogleChartMaker",
+    "target-dir" : "Outspaced/Chartsia",
     "extra" : {
     }
 }

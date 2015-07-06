@@ -48,7 +48,7 @@ class ComposerAutoloaderInit02693e1bbb6ad3839761f0528a009583
     public static function autoload($class)
     {
         $dir = dirname(dirname(__DIR__)) . '/';
-        $prefixes = array('Outspaced\\Chartsia');
+        $prefixes = array('Outspaced\\GoogleChartMaker');
         foreach ($prefixes as $prefix) {
             if (0 !== strpos($class, $prefix)) {
                 continue;
