@@ -6,7 +6,7 @@
 
     <!--
     <services>
-        <service id="outspaced_google_chart_maker.example" class="Outspaced\GoogleChartMakerBundle\Example">
+        <service id="outspaced_google_chart_maker.example" class="Outspaced\ChartsiaBundle\Example">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
