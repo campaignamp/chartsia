@@ -27,8 +27,6 @@ trait ColorTrait
      */
     public function getColor()
     {
-        // If no color has been set then this returns null - should it return an empty color?
-
         return $this->color;
     }
 }
