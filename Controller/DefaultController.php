@@ -15,7 +15,7 @@ use Outspaced\ChartsiaBundle\Chart\Element;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="tester")
+     * @Route("/chart", name="chartsia_tester")
      */
     public function testAction()
     {
@@ -76,6 +76,8 @@ class DefaultController extends Controller
 
         // this is the basic goal
         // http://chart.googleapis.com/chart?cht=lc&chs=250x100&chd=t:27,25,90,50&chxl=x|y|z
+
+        dump(get_class($this->get('twig')));
 
         return $this->render('chart/index.html.twig', ['chart_url' => $renderedChart]);
     }
