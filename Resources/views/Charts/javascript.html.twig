@@ -26,7 +26,12 @@
     ]);
 
     // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
+    var options = {'title':'{{ title }}',
+                    titleTextStyle: {
+                      color: '{{ title_color }}',
+                      fontName: 'Arial',
+                      fontSize: 10
+                    },
                    'width':400,
                    'height':300};
 
