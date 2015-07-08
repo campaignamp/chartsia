@@ -4,6 +4,37 @@ namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
 class Label
 {
+    // Not implemented yet
+
+    /**
+     * @var array
+     */
+    protected $labels;
+
+    protected $positions;
+
+    protected $format;
+
+    protected $color;
+
+    protected $font;
+
+    protected $alignment;
+
+    protected $axisOrTick;
+
+
+
+
+
+
+
+
+
+
+
+    /* What follows is redundant and will be removed once I'm 100% certain it's not needed */
+
     /**
      * @var array
      */
