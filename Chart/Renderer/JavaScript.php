@@ -15,7 +15,11 @@ class JavaScript
     {
         $vars = [
             'title' => $this->renderTitle($chart->getTitle()),
-            'title_color' => $this->renderTitleColor($chart->getTitle())
+            'title_color' => $this->renderTitleColor($chart->getTitle()),
+
+            // Move these out to methods
+            'height' => $chart->getSize()->getHeight(),
+            'width' => $chart->getSize()->getWidth(),
         ];
 
         $return = $engine->render(
