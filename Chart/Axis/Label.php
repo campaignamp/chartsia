@@ -1,8 +1,8 @@
 <?php
 
-namespace Outspaced\ChartsiaBundle\Chart\Element;
+namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
-class CustomAxisLabel implements ElementInterface
+class Label
 {
     /**
      * @var array
