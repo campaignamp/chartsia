@@ -87,18 +87,6 @@ class Image
         return '';
     }
 
-    public function renderElements(array $elements = [])
-    {
-        $urlData = '';
-
-        // SOME ELEMENT
-        foreach ($elements as $chartElement) {
-//             $urlData .= $chartElement->getKey().'='.$chartElement->render().'&';
-        }
-
-        return $urlData;
-    }
-
     public function render(BaseChart $chart)
     {
         $url = self::BASE_URL;
@@ -108,7 +96,6 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-        $url .= $this->renderElements($chart->getElements());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset
