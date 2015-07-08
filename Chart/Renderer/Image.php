@@ -87,6 +87,24 @@ class Image
         return '';
     }
 
+    public function renderAxes(array $axes = [])
+    {
+        $urlData = '';
+
+        foreach($axes as $index => $axis) {
+
+            // Need to implement this - right now it does nothing
+            $axisKeys = [
+                'top' => 't',
+                'bottom' => 'x',
+                'left' => 'y',
+                'right' => 'r'
+            ];
+        }
+
+        return $urlData;
+    }
+
     public function render(BaseChart $chart)
     {
         $url = self::BASE_URL;
@@ -96,6 +114,7 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
+        $url .= $this->renderAxes($chart->getAxes());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset

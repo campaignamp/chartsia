@@ -241,6 +241,24 @@ abstract class BaseChart
         return $this->rightAxis;
     }
 
+    /**
+     * Get all axes as an array
+     * @return array
+     */
+    public function getAxes()
+    {
+        $axes = [
+            $this->topAxis,
+            $this->bottomAxis,
+            $this->leftAxis,
+            $this->rightAxis
+        ];
+
+        $axes = array_filter($axes);
+
+        return array_values($axes);
+    }
+
 
     /**
      * @return string
