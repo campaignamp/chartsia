@@ -14,7 +14,7 @@
     ],
     "homepage" : "https://github.com/outspaced/chartsia",
     "license" : [
-        "proprietary"
+        "MIT"
     ],
     "require" : {
         "php" : ">=5.4",
