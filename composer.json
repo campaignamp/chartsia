@@ -16,13 +16,17 @@
     "license" : [
         "proprietary"
     ],
+    {
+        "url": "git@github.com:outspaced/multiple-log.git",
+        "type": "git"
+    },
     "require" : {
         "php" : ">=5.4",
-        "psr/log": "~1.0"
+        "outspaced/multiple-log": "*"
     },
     "autoload" : {
         "psr-0" : {
-            "Outspaced\\Chartsia" : ""
+            "Outspaced\\Chartsia": ""
         }
     },
     "target-dir" : "Outspaced/Chartsia",
