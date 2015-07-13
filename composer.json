@@ -18,7 +18,7 @@
     ],
     "repositories": [
         {
-            "url": "git@github.com:outspaced/multiple-log.git",
+            "url": "git@github.com:outspaced/multiple-logs.git",
             "type": "git"
         }
     ],
