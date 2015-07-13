@@ -16,10 +16,12 @@
     "license" : [
         "MIT"
     ],
-    {
-        "url": "git@github.com:outspaced/multiple-log.git",
-        "type": "git"
-    },
+    "repositories": [
+        {
+            "url": "git@github.com:outspaced/multiple-log.git",
+            "type": "git"
+        }
+    ],
     "require" : {
         "php" : ">=5.4",
         "outspaced/multiple-log": "*"
