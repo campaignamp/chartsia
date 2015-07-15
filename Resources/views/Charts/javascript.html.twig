@@ -15,12 +15,17 @@
 
     // Create the data table.
     var data = google.visualization.arrayToDataTable([
-      ['', 'y', 'z'],
-      ['Mushrooms', 3, 5],
-      ['Onions', 1, 8],
-      ['Olives', 1, 1],
-      ['Zucchini', 1, 6],
-      ['Pepperoni', 2, 1]
+      {% for data_set in data_sets %}
+        [{% for data in data_set %}
+          {% if data matches '/^\\d+$/' %}
+            {{ data }}
+          {% else %}
+            '{{ data }}'
+          {% endif %}  
+          {% if not loop.last %},{% endif %}
+        {% endfor %}]
+        {% if not loop.last %},{% endif %}
+      {% endfor %}
     ]);
 
     // Set chart options
