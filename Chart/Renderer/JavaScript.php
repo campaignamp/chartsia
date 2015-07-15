@@ -6,6 +6,7 @@ use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\DataSet\DataSetCollection;
 
 class JavaScript
 {
@@ -22,7 +23,7 @@ class JavaScript
             'chart_height' => $this->renderChartHeight($chart->getSize()),
             'chart_width'  => $this->renderChartWidth($chart->getSize()),
 
-            'data_sets' => $this->renderDataSets($chart->getDataSets()),
+            'data_sets' => $this->renderDataSets($chart->getDataSetCollection()),
         ];
 
         $return = $engine->render(
@@ -83,22 +84,22 @@ class JavaScript
      *
      * @param array $dataSets
      */
-    protected function renderDataSets(array $dataSets = [])
+    protected function renderDataSets(DataSet\DataSetCollection $dataSetCollection = null)
     {
-        if (empty($dataSets)) {
+        if ($dataSetCollection === null) {
             return [];
         }
 
         $return = [];
 
-        if ($legends = $this->renderDataSetLegends($dataSets)) {
+        if ($legends = $this->renderDataSetLegends($dataSetCollection)) {
             $return[] = $legends;
         }
 
         // Convert to arrays
         $max = 0;
         $dataSetsArrays = [];
-        foreach ($dataSets as $dataSet) {
+        foreach ($dataSetCollection as $dataSet) {
             $max = max([count($dataSet->getData()), $max]);
 
             $dataSetsArrays[] = $dataSet->getData();
@@ -122,8 +123,8 @@ class JavaScript
         return array_merge($return, $restructuredDataSetsArrays);
     }
 
-    protected function renderDataSetLegends(array $dataSets = []) {
-        if (empty($dataSets)) {
+    protected function renderDataSetLegends(DataSet\DataSetCollection $dataSets = null) {
+        if ($dataSets === null) {
             return [];
         }
 

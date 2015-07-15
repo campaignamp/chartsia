@@ -19,9 +19,9 @@ abstract class BaseChart
     protected $elements = [];
 
     /**
-     * @var array
+     * @var DataSet\DataSetCollection
      */
-    protected $dataSets = [];
+    protected $dataSetCollection;
 
     /**
      * @var Config\Title
@@ -73,23 +73,41 @@ abstract class BaseChart
         return $this;
     }
 
+//     /**
+//      * @param  DataSet\DataSet $dataSet
+//      * @return self
+//      */
+//     public function addDataSet(DataSet\DataSet $dataSet)
+//     {
+//         $this->dataSets[] = $dataSet;
+
+//         return $this;
+//     }
+
+//     /**
+//      * @return array
+//      */
+//     public function getDataSets()
+//     {
+//         return $this->dataSets;
+//     }
     /**
-     * @param  DataSet\DataSet $dataSet
+     * @param  DataSet\DataSetCollection $dataSetCollection
      * @return self
      */
-    public function addDataSet(DataSet\DataSet $dataSet)
+    public function setDataSetCollection(DataSet\DataSetCollection $dataSetCollection)
     {
-        $this->dataSets[] = $dataSet;
+        $this->dataSetCollection = $dataSetCollection;
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return DataSet\DataSetCollection
      */
-    public function getDataSets()
+    public function getDataSetCollection()
     {
-        return $this->dataSets;
+        return $this->dataSetCollection;
     }
 
     /**

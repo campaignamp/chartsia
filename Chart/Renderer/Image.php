@@ -123,7 +123,7 @@ class Image
         $lineColors = [];
         $legendLabels = [];
 
-        foreach ($chart->getDataSets() as $dataSet) {
+        foreach ($chart->getDataSetCollection() as $dataSet) {
 
             $data[] = implode(',', $dataSet->getData());
 

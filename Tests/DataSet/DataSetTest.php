@@ -1,17 +1,20 @@
 <?php
+
 namespace Outspaced\ChartsiaBundle\Tests\DataSet;
+
+use Outspaced\ChartsiaBundle\Chart\DataSet;
 
 class DataSetTest extends \PHPUnit_Framework_TestCase
 {
     use \Outspaced\ChartsiaBundle\Tests\Traits\ColorTestTrait;
 
     /**
-     * @var \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet
+     * @var DataSet\DataSet
      */
     protected $object;
 
     /**
-     * @return \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet
+     * @return DataSet\DataSet
      */
     protected function getObject()
     {
@@ -20,11 +23,11 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->object = new \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet;
+        $this->object = new DataSet\DataSet;
     }
 
     /**
-     * @covers \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setData
+     * @covers DataSet\DataSet::setData
      * @todo   Implement testSetData().
      */
     public function testSetData()
@@ -36,7 +39,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getData
+     * @covers DataSet\DataSet::getData
      * @todo   Implement testGetData().
      */
     public function testGetData()
@@ -48,7 +51,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::addData
+     * @covers DataSet\DataSet::addData
      * @todo   Implement testAddData().
      */
     public function testAddData()
@@ -60,7 +63,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setLegend
+     * @covers DataSet\DataSet::setLegend
      * @todo   Implement testSetLegend().
      */
     public function testSetLegend()
@@ -72,7 +75,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getLegend
+     * @covers DataSet\DataSet::getLegend
      * @todo   Implement testGetLegend().
      */
     public function testGetLegend()
