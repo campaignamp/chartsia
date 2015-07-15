@@ -12,7 +12,7 @@ class Color
     /**
      * @param string $color - requires HTML-friendly code
      */
-    public function __construct($color=NULL)
+    public function __construct($color = NULL)
     {
         if ($color !== NULL) {
             $this->setColor($color);

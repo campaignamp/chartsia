@@ -15,6 +15,9 @@ class Image
      */
     const BASE_URL = 'http://chart.googleapis.com/chart?';
 
+    /**
+     * @param string $type
+     */
     protected function renderType($type = NULL)
     {
         if ($type === NULL) {
@@ -91,7 +94,7 @@ class Image
     {
         $urlData = '';
 
-        foreach($axes as $index => $axis) {
+        foreach ($axes as $index => $axis) {
 
             // Need to implement this - right now it does nothing
             $axisKeys = [

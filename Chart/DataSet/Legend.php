@@ -15,7 +15,7 @@ class Legend
     /**
      * @param  string $legend [optional]
      */
-    public function __construct($legend=NULL)
+    public function __construct($legend = NULL)
     {
         if ($legend !== NULL) {
             $this->setLabel($legend);

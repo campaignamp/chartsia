@@ -23,7 +23,7 @@ class Size
      * @param int $height
      * @param int $width
      */
-    public function __construct($height=NULL, $width=NULL)
+    public function __construct($height = NULL, $width = NULL)
     {
         if ($height !== NULL) {
             $this->setHeight($height);

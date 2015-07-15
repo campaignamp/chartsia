@@ -45,7 +45,7 @@ class Margin
      * @param  int $top
      * @param  int $bottom
      */
-    public function __construct($left=NULL, $right=NULL, $top=NULL, $bottom=NULL)
+    public function __construct($left = NULL, $right = NULL, $top = NULL, $bottom = NULL)
     {
         if ($left !== NULL) {
             $this->setLeft($left);
