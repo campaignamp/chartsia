@@ -107,8 +107,8 @@ class JavaScript
         $restructuredDataSetsArrays = [];
 
         // Restructure the datasets so that corresponding values are in the same subarray
-        foreach($dataSetsArrays as $i => $dataSetsArray) {
-            for ($i = 0 ; $i < $max ; $i++) {
+        foreach ($dataSetsArrays as $i => $dataSetsArray) {
+            for ($i = 0; $i < $max; $i++) {
 
                 if ( ! isset($restructuredDataSetsArrays[$i])) {
                     $restructuredDataSetsArrays[$i] = [''];
