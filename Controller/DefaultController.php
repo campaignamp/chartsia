@@ -4,9 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Outspaced\ChartsiaBundle\Chart\Component;
-
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
