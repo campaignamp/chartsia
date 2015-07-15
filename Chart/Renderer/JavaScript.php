@@ -11,7 +11,7 @@ use Outspaced\ChartsiaBundle\Chart\DataSet\DataSetCollection;
 class JavaScript
 {
     /**
-     * @param BaseChart $chart
+     * @param Charts\BaseChart $chart
      * @param \Twig_Environment $engine
      */
     public function renderWithTwig(Charts\BaseChart $chart, \Twig_Environment $engine)
@@ -34,6 +34,10 @@ class JavaScript
         return $return;
     }
 
+    /**
+     * @param  Config\Title $title
+     * @return string
+     */
     protected function renderTitle(Config\Title $title = null)
     {
         if ($title === null) {
@@ -43,6 +47,10 @@ class JavaScript
         return $title->getTitle();
     }
 
+    /**
+     * @param  Config\Title $title
+     * @return string
+     */
     protected function renderTitleColor(Config\Title $title = null)
     {
         if ($title === null) {
@@ -52,6 +60,10 @@ class JavaScript
         return $this->renderColor($title->getColor());
     }
 
+    /**
+     * @param  Component\Color $color
+     * @return string
+     */
     protected function renderColor(Component\Color $color = null)
     {
         if ($color === null) {
@@ -61,6 +73,10 @@ class JavaScript
         return $color->getColor();
     }
 
+    /**
+     * @param  Config\Size $size
+     * @return string
+     */
     protected function renderChartHeight(Config\Size $size = null)
     {
         if ($size === null) {
@@ -70,6 +86,10 @@ class JavaScript
         return $size->getHeight();
     }
 
+    /**
+     * @param  Config\Size $size
+     * @return string
+     */
     protected function renderChartWidth(Config\Size $size = null)
     {
         if ($size === null) {
@@ -123,6 +143,10 @@ class JavaScript
         return array_merge($return, $restructuredDataSetsArrays);
     }
 
+    /**
+     * @param  DataSet\DataSetCollection $dataSets
+     * @return array
+     */
     protected function renderDataSetLegends(DataSet\DataSetCollection $dataSets = null) {
         if ($dataSets === null) {
             return [];
@@ -140,6 +164,10 @@ class JavaScript
         return $legends;
     }
 
+    /**
+     * @param  DataSet\Legend $legend
+     * @return string
+     */
     protected function renderDataSetLegend(DataSet\Legend $legend = null)
     {
         if ($legend === null) {
@@ -147,6 +175,5 @@ class JavaScript
         }
 
         return $legend->getLabel();
-
     }
 }
