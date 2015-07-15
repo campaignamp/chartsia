@@ -86,6 +86,6 @@ class Size
      */
     public function getDimensions()
     {
-        return [$this->height, $this->width];
+        return [$this->width, $this->height];
     }
 }

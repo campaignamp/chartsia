@@ -84,6 +84,9 @@ abstract class BaseChart
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getDataSets()
     {
         return $this->dataSets;
