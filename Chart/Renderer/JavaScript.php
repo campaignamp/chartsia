@@ -82,7 +82,7 @@ class JavaScript
     /**
      * This will transform the datasets into an array
      *
-     * @param array $dataSets
+     * @param DataSet\DataSetCollection $dataSetCollection
      */
     protected function renderDataSets(DataSet\DataSetCollection $dataSetCollection = null)
     {

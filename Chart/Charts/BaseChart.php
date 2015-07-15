@@ -73,24 +73,6 @@ abstract class BaseChart
         return $this;
     }
 
-//     /**
-//      * @param  DataSet\DataSet $dataSet
-//      * @return self
-//      */
-//     public function addDataSet(DataSet\DataSet $dataSet)
-//     {
-//         $this->dataSets[] = $dataSet;
-
-//         return $this;
-//     }
-
-//     /**
-//      * @return array
-//      */
-//     public function getDataSets()
-//     {
-//         return $this->dataSets;
-//     }
     /**
      * @param  DataSet\DataSetCollection $dataSetCollection
      * @return self

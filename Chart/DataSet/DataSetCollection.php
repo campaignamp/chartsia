@@ -42,7 +42,7 @@ class DataSetCollection implements \Iterator {
     /**
      * @return DataSet|null
      */
-    function rewind()
+    public function rewind()
     {
         return reset($this->dataSets);
     }
@@ -50,7 +50,7 @@ class DataSetCollection implements \Iterator {
     /**
      * @return DataSet|null
      */
-    function current()
+    public function current()
     {
         return current($this->dataSets);
     }
@@ -58,7 +58,7 @@ class DataSetCollection implements \Iterator {
     /**
      * @return int
      */
-    function key()
+    public function key()
     {
         return key($this->dataSets);
     }
@@ -66,7 +66,7 @@ class DataSetCollection implements \Iterator {
     /**
      * @return DataSet|null
      */
-    function next()
+    public function next()
     {
         return next($this->dataSets);
     }
@@ -74,7 +74,7 @@ class DataSetCollection implements \Iterator {
     /**
      * @return bool
      */
-    function valid()
+    public function valid()
     {
         return key($this->dataSets) !== null;
     }
