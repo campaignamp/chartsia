@@ -27,7 +27,7 @@ class SizeTest extends \PHPUnit_Framework_TestCase
         $size = new Size();
         $size->setHeight(300);
         $size->setWidth(500);
-        $this->assertEquals($size->getDimensions(), [300, 500]);
+        $this->assertEquals($size->getDimensions(), [500, 300]);
     }
 
     /**
