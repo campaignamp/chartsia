@@ -21,9 +21,9 @@ class Image
     /**
      * @param string $type
      */
-    protected function renderType($type = NULL)
+    protected function renderType($type = null)
     {
-        if ($type === NULL) {
+        if ($type === null) {
             return '';
         } else {
             return 'cht='.$type.'&';
@@ -35,9 +35,9 @@ class Image
      * @param  Config\Size $size
      * @return string
      */
-    protected function renderSize(Config\Size $size = NULL)
+    protected function renderSize(Config\Size $size = null)
     {
-        if ($size === NULL) {
+        if ($size === null) {
             return '';
         }
 
@@ -48,9 +48,9 @@ class Image
      * @param Config\Margin $margin
      * @return string
      */
-    protected function renderMargin(Config\Margin $margin = NULL)
+    protected function renderMargin(Config\Margin $margin = null)
     {
-        if ($margin === NULL) {
+        if ($margin === null) {
             return '';
         }
 
@@ -87,15 +87,15 @@ class Image
      * @param  Config\Title $title
      * @return string
      */
-    protected function renderTitle(Config\Title $title = NULL)
+    protected function renderTitle(Config\Title $title = null)
     {
-        if ($title === NULL) {
+        if ($title === null) {
             return '';
         }
 
         $url = 'chtt='.urlencode($title->getTitle()).'&';
 
-        if ($title->getColor() !== NULL) {
+        if ($title->getColor() !== null) {
             $url .= 'chts='.$title->getColor()->getColor().'&';
         }
 
@@ -106,9 +106,9 @@ class Image
      * @param Config\Legend $chartLegend
      * @return string
      */
-    protected function renderChartLegend(Config\Legend $chartLegend = NULL)
+    protected function renderChartLegend(Config\Legend $chartLegend = null)
     {
-        if ($chartLegend !== NULL) {
+        if ($chartLegend !== null) {
             return '';
         }
 
