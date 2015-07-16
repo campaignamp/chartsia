@@ -4,6 +4,9 @@ namespace Outspaced\ChartsiaBundle\Chart\Renderer;
 
 use Outspaced\ChartsiaBundle\Chart\Charts\BaseChart;
 use Outspaced\ChartsiaBundle\Chart\Config;
+use Outspaced\ChartsiaBundle\Chart\Component;
+
+use Doctrine\Common\CommonException;
 
 /**
  * This library has been deprecated by Google, although the API is still available
@@ -110,7 +113,7 @@ class Image
         }
 
         //chdlp=<opt_position>|<opt_label_order>
-        return 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
+        return 'chdls='.$this->renderColor($chartLegend->getColor()).','.$chartLegend->getFontSize().'&';
     }
 
     /**
@@ -133,6 +136,22 @@ class Image
         }
 
         return $urlData;
+    }
+
+    /**
+     * @param  Component\Color $color
+     * @return string
+     *
+     * This is now DUPLICATED - need to make the decision if the renderers will extend a
+     * common class now
+     */
+    protected function renderColor(Component\Color $color = null)
+    {
+        if ($color === null) {
+            return '';
+        }
+
+        return $color->getColor();
     }
 
     /**
@@ -161,10 +180,7 @@ class Image
 
             $data[] = implode(',', $dataSet->getData());
 
-            // OK so how to handle the chart-specific elements?
-            if ($dataSet->getColor()) {
-                $lineColors[] = $dataSet->getColor()->getColor();
-            }
+            $lineColors[] = $this->renderColor($dataSet->getColor());
 
             if ($legend = $dataSet->getLegend()) {
                 $legendLabels[] = urlencode($legend->getLabel());
