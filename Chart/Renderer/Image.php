@@ -117,7 +117,7 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-        $url .= $this->renderAxes($chart->getAxes());
+        $url .= $this->renderAxes($chart->getAxisCollection());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset

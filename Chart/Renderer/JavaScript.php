@@ -23,6 +23,8 @@ class JavaScript
             'chart_height' => $this->renderChartHeight($chart->getSize()),
             'chart_width'  => $this->renderChartWidth($chart->getSize()),
 
+            'chart_legend' => $this->renderChartLegend($chart->getLegend()),
+
             'data_sets' => $this->renderDataSets($chart->getDataSetCollection()),
         ];
 
@@ -157,6 +159,7 @@ class JavaScript
             $legends[] = $this->renderDataSetLegend($dataSet->getLegend());
         }
 
+        // If the array doesn't have any non-empty elements, then return an empty array
         if ( ! array_filter($legends)) {
             return [];
         }
@@ -175,5 +178,19 @@ class JavaScript
         }
 
         return $legend->getLabel();
+    }
+
+    protected function renderChartLegend(Config\Legend $legend = null)
+    {
+        // hmmm is this right?
+        if ($legend === null) {
+            return [
+                'color' => ''
+            ];
+        }
+
+        return [
+            'color' => $this->renderColor($legend->getColor())
+        ];
     }
 }
