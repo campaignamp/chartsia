@@ -4,12 +4,10 @@ namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
 class Label
 {
-    // Not implemented yet
-
     /**
-     * @var array
+     * @var string
      */
-    protected $labels;
+    protected $label;
 
     protected $positions;
 
@@ -23,7 +21,24 @@ class Label
 
     protected $axisOrTick;
 
+    /**
+     * @param  string  $label
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
 
 
