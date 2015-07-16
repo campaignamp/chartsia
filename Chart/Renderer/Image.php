@@ -27,42 +27,63 @@ class Image
         }
     }
 
+
+    /**
+     * @param  Config\Size $size
+     * @return string
+     */
     protected function renderSize(Config\Size $size = NULL)
     {
         if ($size === NULL) {
             return '';
-        } else {
-            return 'chs='.implode('x', $size->getDimensions()).'&';
         }
+
+        return 'chs='.implode('x', $size->getDimensions()).'&';
     }
 
+    /**
+     * @param Config\Margin $margin
+     * @return string
+     */
     protected function renderMargin(Config\Margin $margin = NULL)
     {
-        if ($margin !== NULL) {
-            return 'chma='.implode(',', $margin->getDimensions()).'&';
+        if ($margin === NULL) {
+            return '';
         }
 
-        return '';
+        return 'chma='.implode(',', $margin->getDimensions()).'&';
     }
 
+    /**
+     * @param  array $legendLabels
+     * @return string
+     */
     protected function renderLegendLabels(array $legendLabels = [])
     {
-        if ( ! empty($legendLabels)) {
-            return 'chdl='.implode('|', $legendLabels).'&';
+        if (empty($legendLabels)) {
+            return '';
         }
 
-        return '';
+        return 'chdl='.implode('|', $legendLabels).'&';
     }
 
+    /**
+     * @param  array $lineColors
+     * @return string
+     */
     protected function renderLineColors(array $lineColors = [])
     {
-        if ( ! empty($lineColors)) {
-            return 'chco='.implode(',', $lineColors).'&';
+        if (empty($lineColors)) {
+            return '';
         }
 
-        return '';
+        return 'chco='.implode(',', $lineColors).'&';
     }
 
+    /**
+     * @param  Config\Title $title
+     * @return string
+     */
     protected function renderTitle(Config\Title $title = NULL)
     {
         if ($title === NULL) {
@@ -78,18 +99,24 @@ class Image
         return $url;
     }
 
-    // Still not sure of best way to actually handle this - to reliably type hint, I
-    // need to be sure that getLegend() will always return a legend
+    /**
+     * @param Config\Legend $chartLegend
+     * @return string
+     */
     protected function renderChartLegend(Config\Legend $chartLegend = NULL)
     {
         if ($chartLegend !== NULL) {
-            //chdlp=<opt_position>|<opt_label_order>
-            return 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
+            return '';
         }
 
-        return '';
+        //chdlp=<opt_position>|<opt_label_order>
+        return 'chdls='.$chartLegend->getColor()->getColor().','.$chartLegend->getFontSize().'&';
     }
 
+    /**
+     * @param array $axes
+     * @return string
+     */
     public function renderAxes(array $axes = [])
     {
         $urlData = '';
@@ -108,6 +135,10 @@ class Image
         return $urlData;
     }
 
+    /**
+     * @param  BaseChart $chart
+     * @return string
+     */
     public function render(BaseChart $chart)
     {
         $url = self::BASE_URL;
