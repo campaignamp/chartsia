@@ -2,6 +2,8 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
+use Outspaced\ChartsiaBundle\Chart\Component;
+
 class Axis
 {
     /**
