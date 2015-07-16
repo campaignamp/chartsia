@@ -4,16 +4,20 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Outspaced\ChartsiaBundle\Chart\Component;
+
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
 use Outspaced\ChartsiaBundle\Chart\Element;
+use Outspaced\ChartsiaBundle\Chart\Renderer;
+use Outspaced\ChartsiaBundle\Chart\Axis;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/chart", name="chartsia_tester")
+     * @Route("/", name="tester")
      */
     public function testAction()
     {
@@ -21,14 +25,9 @@ class DefaultController extends Controller
         $title->setTitle('Wahey what a chart')
             ->setColor(new Component\Color('00FF00'));
 
-        $customAxisLabel = (new Element\CustomAxisLabel())
-            ->add('x')
-            ->add('y')
-            ->add('z');
-
         $size = (new Config\Size())
-            ->setHeight(800)
-            ->setWidth(300);
+            ->setHeight(300)
+            ->setWidth(800);
 
         $margin = new Config\Margin(50, 80, 20, 100);
 
@@ -36,13 +35,6 @@ class DefaultController extends Controller
             ->setPosition('up')
             ->setFontSize(23)
             ->setColor(new Component\Color('FFFF44'));
-
-        $chart = (new Charts\LineChart())
-            ->setTitle($title)
-            ->setSize($size)
-            ->setMargin($margin)
-            ->addElement($customAxisLabel)
-            ->setLegend($legend);
 
         $dataSet = (new DataSet\DataSet())
             ->addData(10)
@@ -57,27 +49,44 @@ class DefaultController extends Controller
             ->setColor(new Component\Color('0000FF'))
             ->setLegend(new DataSet\Legend('Set 2'));
 
-        $chart->addDataSet($dataSet)
-            ->addDataSet($dataSet2);
+        $dataSetCollection = (new DataSet\DataSetCollection())
+            ->add($dataSet)
+            ->add($dataSet2);
 
-        /*
-         * UP NEXT
-         *
-         * Need to make the rendering happen from a dataset
-         */
+        $bottomAxis = (new Axis\Axis())
+            ->setLabel((new Axis\Label())->setLabel('I am the bottom'));
 
-        $renderer = new \Outspaced\ChartsiaBundle\Chart\Renderer\Image();
+        $leftAxis = (new Axis\Axis())
+            ->setLabel((new Axis\Label())->setLabel('Me lefty'));
+
+        $axisCollection = (new Axis\AxisCollection())
+            ->setBottomAxis($bottomAxis)
+            ->setLeftAxis($leftAxis);
+
+        $chart = (new Charts\LineChart())
+            ->setTitle($title)
+            ->setSize($size)
+            ->setMargin($margin)
+            ->setLegend($legend)
+            ->setDataSetCollection($dataSetCollection);
+
+        $renderer = new Renderer\Image();
 
         $renderedChart = $renderer->render($chart);
-
         dump($renderedChart);
+
+
+        $javaScriptRenderer = new Renderer\JavaScript();
+        $javaScriptRenderedChart = $javaScriptRenderer->renderWithTwig($chart, $this->get('twig'));
+        dump($javaScriptRenderedChart);
 
         // this is the basic goal
         // http://chart.googleapis.com/chart?cht=lc&chs=250x100&chd=t:27,25,90,50&chxl=x|y|z
 
-        dump(get_class($this->get('twig')));
-
-        return $this->render('chart/index.html.twig', ['chart_url' => $renderedChart]);
+        return $this->render('chart/index.html.twig', [
+            'chart_url' => $renderedChart,
+            'js_chart'  => $javaScriptRenderedChart
+        ]);
     }
 
 

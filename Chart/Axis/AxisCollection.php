@@ -2,119 +2,80 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
-class AxisCollection
-{
-    /**
-     * @var Axis
-     */
-    protected $topAxis;
+class AxisCollection implements \Iterator {
 
     /**
-     * @var Axis
+     * @var array
      */
-    protected $bottomAxis;
+    protected $axis = [];
 
     /**
-     * @var Axis
-     */
-    protected $leftAxis;
-
-    /**
-     * @var Axis
-     */
-    protected $rightAxis;
-
-    /**
-     * @param  Axis  $axis
+     * @param  Axis $axis
      * @return self
      */
-    public function setTopAxis(Axis $axis)
+    public function add(Axis $axis)
     {
-        $this->topAxis = $axis;
+        $this->axes[] = $axis;
 
         return $this;
     }
 
     /**
-     * @return Axis
-     */
-    public function getTopAxis()
-    {
-        return $this->topAxis;
-    }
-
-    /**
-     * @param  Axis  $axis
+     * Removes a Axis if present
+     *
+     * @param  Axis $axis
      * @return self
      */
-    public function setBottomAxis(Axis $axis)
+    public function remove(Axis $axis)
     {
-        $this->bottomAxis = $axis;
+        $key = array_search($axis, $this->axes);
+
+        // Remove key and reindex
+        if ($key !== false) {
+            unset($this->axes[$key]);
+            $this->axes = array_values($this->axes);
+        }
 
         return $this;
     }
 
     /**
-     * @return Axis
+     * @return Axis|null
      */
-    public function getBottomAxis()
+    public function rewind()
     {
-        return $this->bottomAxis;
+        return reset($this->axes);
     }
 
     /**
-     * @param  Axis  $axis
-     * @return self
+     * @return Axis|null
      */
-    public function setLeftAxis(Axis $axis)
+    public function current()
     {
-        $this->leftAxis = $axis;
-
-        return $this;
+        return current($this->axes);
     }
 
     /**
-     * @return Axis
+     * @return int
      */
-    public function getLeftAxis()
+    public function key()
     {
-        return $this->leftAxis;
+        return key($this->axes);
     }
 
     /**
-     * @param  Axis  $axis
-     * @return self
+     * @return Axis|null
      */
-    public function setRightAxis(Axis $axis)
+    public function next()
     {
-        $this->rightAxis = $axis;
-
-        return $this;
+        return next($this->axes);
     }
 
     /**
-     * @return Axis
+     * @return bool
      */
-    public function getRightAxis()
+    public function valid()
     {
-        return $this->rightAxis;
-    }
-
-    /**
-     * Get all axes as an array
-     * @return array
-     */
-    public function getAxes()
-    {
-        $axes = [
-            $this->topAxis,
-            $this->bottomAxis,
-            $this->leftAxis,
-            $this->rightAxis
-        ];
-
-        $axes = array_filter($axes);
-
-        return array_values($axes);
+        return key($this->axes) !== null;
     }
 }

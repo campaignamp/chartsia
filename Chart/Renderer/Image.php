@@ -5,8 +5,7 @@ namespace Outspaced\ChartsiaBundle\Chart\Renderer;
 use Outspaced\ChartsiaBundle\Chart\Charts\BaseChart;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\Component;
-
-use Doctrine\Common\CommonException;
+use Outspaced\ChartsiaBundle\Chart\Axis;
 
 /**
  * This library has been deprecated by Google, although the API is still available
@@ -108,7 +107,7 @@ class Image
      */
     protected function renderChartLegend(Config\Legend $chartLegend = null)
     {
-        if ($chartLegend !== null) {
+        if ($chartLegend === null) {
             return '';
         }
 
@@ -117,26 +116,50 @@ class Image
     }
 
     /**
-     * @param array $axes
+     * @param  Axis\AxesCollection $axesCollection
      * @return string
      */
-    public function renderAxes(array $axes = [])
+    protected function renderAxesCollection(Axis\AxesCollection $axesCollection = null)
     {
-        $urlData = '';
-
-        foreach ($axes as $index => $axis) {
-
-            // Need to implement this - right now it does nothing
-            $axisKeys = [
-                'top' => 't',
-                'bottom' => 'x',
-                'left' => 'y',
-                'right' => 'r'
-            ];
+        if ($axesCollection === null) {
+            return '';
         }
+
+        $axesData = [
+            't' => $this->renderAxisCollection($axesCollection->getTopAxisCollection()),
+            'x' => $this->renderAxisCollection($axesCollection->getBottomAxisCollection()),
+            'y' => $this->renderAxisCollection($axesCollection->getLeftAxisCollection()),
+            'r' => $this->renderAxisCollection($axesCollection->getRightAxisCollection())
+        ];
+
+        $axesData = array_filter($axesData);
+
+        if (empty($axesData)) {
+            return '';
+        }
+
+        $urlData = 'chxt='.implode(',', array_keys($axesData)).'&';
+
+        dump($urlData);
 
         return $urlData;
     }
+
+    /**
+     * Suddenly this isn't going to work
+     *
+     * @param  Axis\AxisCollection $axis
+     * @return string
+     */
+    protected function renderAxisCollection(Axis\AxisCollection $axisCollection = null)
+    {
+        if ($axisCollection === null) {
+            return '';
+        }
+
+        return 'hi';
+    }
+
 
     /**
      * @param  Component\Color $color
@@ -167,7 +190,7 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-        $url .= $this->renderAxes($chart->getAxisCollection());
+        $url .= $this->renderAxesCollection($chart->getAxesCollection());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset

@@ -5,6 +5,7 @@ namespace Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Element;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\Axis;
 
 abstract class BaseChart
 {
@@ -24,9 +25,9 @@ abstract class BaseChart
     protected $dataSetCollection;
 
     /**
-     * @var Axis\AxisCollection
+     * @var Axis\AxesCollection
      */
-    protected $axisCollection;
+    protected $axesCollection;
 
     /**
      * @var Config\Title
@@ -169,9 +170,22 @@ abstract class BaseChart
         return $this->elements;
     }
 
-    // @todo implement me!
-    public function getAxisCollection()
+    /**
+     * @param  Axis\AxesCollection $axesCollection
+     * @return self
+     */
+    public function setAxesCollection(Axis\AxesCollection $axesCollection)
     {
-        return [];
+        $this->axesCollection = $axesCollection;
+
+        return $this;
+    }
+
+    /**
+     * @return Axis\AxesCollection
+     */
+    public function getAxesCollection()
+    {
+        return $this->axesCollection;
     }
 }
