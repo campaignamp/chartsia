@@ -82,10 +82,10 @@ class Axis
     }
 
     /**
-     * @param  Color  $color
+     * @param  Component\Color  $color
      * @return self
      */
-    public function setColor(Color $color)
+    public function setColor(Component\Color $color)
     {
         $this->color = $color;
 
@@ -93,7 +93,7 @@ class Axis
     }
 
     /**
-     * @return Color
+     * @return Component\Color
      */
     public function getColor()
     {

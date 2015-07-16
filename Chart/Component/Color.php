@@ -20,8 +20,8 @@ class Color
     }
 
     /**
-     * @param string $color
-     * @return \Outspaced\ChartsiaBundle\Chart\Component\Color
+     * @param  string $color
+     * @return self
      */
     public function setColor($color)
     {

@@ -5,30 +5,30 @@ namespace Outspaced\ChartsiaBundle\Chart\Axis;
 class AxisCollection
 {
     /**
-     * @var Axis\Axis
+     * @var Axis
      */
     protected $topAxis;
 
     /**
-     * @var Axis\Axis
+     * @var Axis
      */
     protected $bottomAxis;
 
     /**
-     * @var Axis\Axis
+     * @var Axis
      */
     protected $leftAxis;
 
     /**
-     * @var Axis\Axis
+     * @var Axis
      */
     protected $rightAxis;
 
     /**
-     * @param  Axis\Axis  $axis
+     * @param  Axis  $axis
      * @return self
      */
-    public function setTopAxis(Axis\Axis $axis)
+    public function setTopAxis(Axis $axis)
     {
         $this->topAxis = $axis;
 
@@ -44,10 +44,10 @@ class AxisCollection
     }
 
     /**
-     * @param  Axis\Axis  $axis
+     * @param  Axis  $axis
      * @return self
      */
-    public function setBottomAxis(Axis\Axis $axis)
+    public function setBottomAxis(Axis $axis)
     {
         $this->bottomAxis = $axis;
 
@@ -63,10 +63,10 @@ class AxisCollection
     }
 
     /**
-     * @param  Axis\Axis  $axis
+     * @param  Axis  $axis
      * @return self
      */
-    public function setLeftAxis(Axis\Axis $axis)
+    public function setLeftAxis(Axis $axis)
     {
         $this->leftAxis = $axis;
 
@@ -82,10 +82,10 @@ class AxisCollection
     }
 
     /**
-     * @param  Axis\Axis  $axis
+     * @param  Axis  $axis
      * @return self
      */
-    public function setRightAxis(Axis\Axis $axis)
+    public function setRightAxis(Axis $axis)
     {
         $this->rightAxis = $axis;
 
