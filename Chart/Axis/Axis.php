@@ -22,7 +22,7 @@ class Axis
     protected $tick;
 
     /**
-     * @var Color
+     * @var COmponent\Color
      */
     protected $color;
 
