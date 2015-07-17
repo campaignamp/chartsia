@@ -2,12 +2,12 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
-class AxisCollection implements \Iterator {
+class AxisCollection implements \Iterator, \Countable {
 
     /**
      * @var array
      */
-    protected $axis = [];
+    protected $axes = [];
 
     /**
      * @param  Axis $axis
@@ -77,5 +77,13 @@ class AxisCollection implements \Iterator {
     public function valid()
     {
         return key($this->axes) !== null;
+    }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->axes);;
     }
 }

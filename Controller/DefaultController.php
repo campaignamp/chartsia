@@ -24,6 +24,11 @@ class DefaultController extends Controller
         $title = new Config\Title();
         $title->setTitle('Wahey what a chart')
             ->setColor(new Component\Color('00FF00'));
+;
+//         $customAxisLabel = (new Element\CustomAxisLabel())
+//             ->add('x')
+//             ->add('y')
+//             ->add('z');
 
         $size = (new Config\Size())
             ->setHeight(300)
@@ -56,19 +61,27 @@ class DefaultController extends Controller
         $bottomAxis = (new Axis\Axis())
             ->setLabel((new Axis\Label())->setLabel('I am the bottom'));
 
+        $bottomAxisCollection = (new Axis\AxisCollection())
+            ->add(new Axis\Axis())
+            ->add($bottomAxis);
+
         $leftAxis = (new Axis\Axis())
             ->setLabel((new Axis\Label())->setLabel('Me lefty'));
 
-        $axisCollection = (new Axis\AxisCollection())
-            ->setBottomAxis($bottomAxis)
-            ->setLeftAxis($leftAxis);
+        $leftAxisCollection = (new Axis\AxisCollection())
+            ->add($leftAxis);
+
+        $axesCollection = (new Axis\AxesCollection())
+            ->setBottomAxisCollection($bottomAxisCollection)
+            ->setLeftAxisCollection($leftAxisCollection);
 
         $chart = (new Charts\LineChart())
             ->setTitle($title)
             ->setSize($size)
             ->setMargin($margin)
             ->setLegend($legend)
-            ->setDataSetCollection($dataSetCollection);
+            ->setDataSetCollection($dataSetCollection)
+            ->setAxesCollection($axesCollection);
 
         $renderer = new Renderer\Image();
 

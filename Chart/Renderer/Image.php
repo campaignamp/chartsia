@@ -125,6 +125,7 @@ class Image
             return '';
         }
 
+        // So this needs to change innit
         $axesData = [
             't' => $this->renderAxisCollection($axesCollection->getTopAxisCollection()),
             'x' => $this->renderAxisCollection($axesCollection->getBottomAxisCollection()),
@@ -132,17 +133,48 @@ class Image
             'r' => $this->renderAxisCollection($axesCollection->getRightAxisCollection())
         ];
 
+        $possibleAxisKeys = [
+            't' => 'top',
+            'x' => 'bottom',
+            'y' => 'left',
+            'r' => 'right'
+        ];
+
+        $actualAxisKeys = [];
+
+        foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
+            $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
+
+            $count = $this->countTheFuckingAxis($axesCollection->$method());
+
+            $actualAxisKeys = array_pad($actualAxisKeys, count($actualAxisKeys) + $count, $possibleAxisKey);
+
+
         $axesData = array_filter($axesData);
 
         if (empty($axesData)) {
             return '';
         }
 
+        //
         $urlData = 'chxt='.implode(',', array_keys($axesData)).'&';
 
         dump($urlData);
 
         return $urlData;
+    }
+
+    /**
+     * @param  Axis\AxisCollection $axisCollection
+     * @return int;
+     */
+    protected function countTheFuckingAxis(Axis\AxisCollection $axisCollection = null)
+    {
+        if ($axisCollection == null) {
+            return 0;
+        }
+
+        return $axisCollection->count();
     }
 
     /**
