@@ -6,11 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Outspaced\ChartsiaBundle\Chart\Component;
-
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
-use Outspaced\ChartsiaBundle\Chart\Element;
 use Outspaced\ChartsiaBundle\Chart\Renderer;
 use Outspaced\ChartsiaBundle\Chart\Axis;
 
@@ -24,11 +22,6 @@ class DefaultController extends Controller
         $title = new Config\Title();
         $title->setTitle('Wahey what a chart')
             ->setColor(new Component\Color('00FF00'));
-;
-//         $customAxisLabel = (new Element\CustomAxisLabel())
-//             ->add('x')
-//             ->add('y')
-//             ->add('z');
 
         $size = (new Config\Size())
             ->setHeight(300)

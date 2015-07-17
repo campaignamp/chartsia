@@ -29,7 +29,6 @@ class Image
         }
     }
 
-
     /**
      * @param  Config\Size $size
      * @return string
@@ -148,7 +147,7 @@ class Image
             $count = $this->countTheFuckingAxis($axesCollection->$method());
 
             $actualAxisKeys = array_pad($actualAxisKeys, count($actualAxisKeys) + $count, $possibleAxisKey);
-
+        }
 
         $axesData = array_filter($axesData);
 
@@ -158,8 +157,6 @@ class Image
 
         //
         $urlData = 'chxt='.implode(',', array_keys($axesData)).'&';
-
-        dump($urlData);
 
         return $urlData;
     }
@@ -180,7 +177,7 @@ class Image
     /**
      * Suddenly this isn't going to work
      *
-     * @param  Axis\AxisCollection $axis
+     * @param  Axis\AxisCollection $axisCollection
      * @return string
      */
     protected function renderAxisCollection(Axis\AxisCollection $axisCollection = null)
