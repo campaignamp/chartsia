@@ -2,7 +2,7 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Renderer;
 
-use Outspaced\ChartsiaBundle\Chart\Charts\BaseChart;
+use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\Axis;
@@ -43,7 +43,7 @@ class Image
     }
 
     /**
-     * @param Config\Margin $margin
+     * @param  Config\Margin $margin
      * @return string
      */
     protected function renderMargin(Config\Margin $margin = null)
@@ -115,6 +115,8 @@ class Image
     }
 
     /**
+     * Oh this is in dire need of a refactor
+     *
      * @param  Axis\AxisCollectionCollection $axisCollectionCollection
      * @return string
      */
@@ -151,8 +153,6 @@ class Image
             return '';
         }
 
-        dump($axesData);
-
         $urlData = 'chxt='.implode(',', array_values($axesData)).'&';
 
         /**
@@ -160,31 +160,37 @@ class Image
          */
         // render the labels
         $labels = [];
+        $positions = [];
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
             $localLabels = $this->renderAxisCollectionLabels($axisCollectionCollection->$method());
             $labels = array_merge($labels, $localLabels);
+
+            $localPositions = $this->renderAxisCollectionPositions($axisCollectionCollection->$method());
+            $positions = array_merge($positions, $localPositions);
         }
 
+        $positions = array_filter($positions);
         $labels = array_filter($labels);
-        dump($labels);
 
-        // OK so here's another snag
-        // the labels need to be an array - so it's time to implement a labelcollection
-
-        $urlData .= 'chxl=';
-        foreach ($labels as $labelKey => $labelValue) {
-            $urlData .= $labelKey .':|'.$labelValue.'|';
+        // Labels
+        if ( ! empty($labels)) {
+            $urlData .= 'chxl=';
+            foreach ($labels as $labelKey => $labelValue) {
+                $urlData .= $labelKey .':|'.$labelValue.'|';
+            }
+            $urlData .= '&';
         }
-        $urlData .= '&';
 
-//         $urlData .= 'chxp=1,50';
-//         foreach ($labels as $labelKey => $labelValue) {
-//             $urlData .= $labelKey .':|'.$labelValue.'|';
-//         }
-//         $urlData .= '&';
-
+        if ( ! empty($positions)) {
+            $urlData .= 'chxp=';
+            foreach ($positions as $positionKey => $positionValue) {
+                $urlData .= $positionKey .','.$positionValue.'|';
+            }
+            $urlData = rtrim($urlData, "|");
+            $urlData .= '&';
+        }
 
         return $urlData;
     }
@@ -219,16 +225,49 @@ class Image
         $labelArray = [];
 
         foreach ($axisCollection as $axis) {
-            // This needs some extrapolation.
-            // Actually no need to explain, once extrapolated, that will handle it
-            if ($axis->getLabel()) {
-                $labelArray[] = $axis->getLabel()->getLabel();
-            } else {
-                $labelArray[] = '';
-            }
+            $labelArray[] = $this->extractLabel($axis->getLabel());
         }
 
         return $labelArray;
+    }
+
+    protected function extractLabel(Axis\Label $label = null)
+    {
+        if ($label === null) {
+            return '';
+        }
+
+        return $label->getLabel();
+    }
+
+    /**
+     * Needs to be moved to a renderAxis class
+     *
+     * @param  Axis\AxisCollection $axisCollection
+     * @return array
+     */
+    protected function renderAxisCollectionPositions(Axis\AxisCollection $axisCollection = null)
+    {
+        if ($axisCollection === null) {
+            return [];
+        }
+
+        $positionArray = [];
+
+        foreach ($axisCollection as $axis) {
+            $positionArray[] = $this->extractPosition($axis->getLabel());
+        }
+
+        return $positionArray;
+    }
+
+    protected function extractPosition(Axis\Label $label = null)
+    {
+        if ($label === null) {
+            return '';
+        }
+
+        return $label->getPosition();
     }
 
     /**
@@ -265,10 +304,10 @@ class Image
     }
 
     /**
-     * @param  BaseChart $chart
+     * @param  Charts\BaseChart $chart
      * @return string
      */
-    public function render(BaseChart $chart)
+    public function render(Charts\BaseChart $chart)
     {
         $url = self::BASE_URL;
 
@@ -280,8 +319,6 @@ class Image
         $url .= $this->renderAxisCollectionCollection($chart->getAxisCollectionCollection());
 
         // DATA SETS
-        // So there's several elements that might rely on a dataset
-        // Start with a loop then refactor
         $data = [];
         $lineColors = [];
         $legendLabels = [];

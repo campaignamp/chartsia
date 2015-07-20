@@ -9,7 +9,7 @@ class Label
      */
     protected $label;
 
-    protected $positions;
+    protected $position;
 
     protected $format;
 
@@ -40,46 +40,22 @@ class Label
         return $this->label;
     }
 
-
-
-
-
-
-
-
-
-    /* What follows is redundant and will be removed once I'm 100% certain it's not needed */
-
     /**
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     *
-     * So is this only relevant for the image-based rendering
-     *
-     * @var string
-     */
-    protected $key = 'chxl';
-
-    /**
-     * Adds a value, so should probably be called addElement
-     *
-     * @param  string $value
+     * @param  int  $position
      * @return self
      */
-    public function add($value)
+    public function setPosition($position)
     {
-        $this->data[] = $value;
+        $this->position = $position;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getKey()
+    public function getPosition()
     {
-        return $this->key;
+        return $this->position;
     }
 }
