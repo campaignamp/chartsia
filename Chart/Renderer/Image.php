@@ -24,9 +24,9 @@ class Image
     {
         if ($type === null) {
             return '';
-        } else {
-            return 'cht='.$type.'&';
         }
+
+        return 'cht='.$type.'&';
     }
 
     /**
