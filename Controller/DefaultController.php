@@ -64,7 +64,7 @@ class DefaultController extends Controller
         $leftAxisCollection = (new Axis\AxisCollection())
             ->add($leftAxis);
 
-        $axesCollection = (new Axis\AxesCollection())
+        $axisCollectionCollection = (new Axis\AxisCollectionCollection())
             ->setBottomAxisCollection($bottomAxisCollection)
             ->setLeftAxisCollection($leftAxisCollection);
 
@@ -74,7 +74,7 @@ class DefaultController extends Controller
             ->setMargin($margin)
             ->setLegend($legend)
             ->setDataSetCollection($dataSetCollection)
-            ->setAxesCollection($axesCollection);
+            ->setAxisCollectionCollection($axisCollectionCollection);
 
         $renderer = new Renderer\Image();
 

@@ -25,9 +25,9 @@ abstract class BaseChart
     protected $dataSetCollection;
 
     /**
-     * @var Axis\AxesCollection
+     * @var Axis\AxisCollectionCollection
      */
-    protected $axesCollection;
+    protected $axisCollectionCollection;
 
     /**
      * @var Config\Title
@@ -171,21 +171,21 @@ abstract class BaseChart
     }
 
     /**
-     * @param  Axis\AxesCollection $axesCollection
+     * @param  Axis\AxisCollectionCollection $axisCollectionCollection
      * @return self
      */
-    public function setAxesCollection(Axis\AxesCollection $axesCollection)
+    public function setAxisCollectionCollection(Axis\AxisCollectionCollection $axisCollectionCollection)
     {
-        $this->axesCollection = $axesCollection;
+        $this->axisCollectionCollection = $axisCollectionCollection;
 
         return $this;
     }
 
     /**
-     * @return Axis\AxesCollection
+     * @return Axis\AxisCollectionCollection
      */
-    public function getAxesCollection()
+    public function getAxisCollectionCollection()
     {
-        return $this->axesCollection;
+        return $this->axisCollectionCollection;
     }
 }

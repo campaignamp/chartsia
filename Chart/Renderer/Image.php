@@ -115,12 +115,12 @@ class Image
     }
 
     /**
-     * @param  Axis\AxesCollection $axesCollection
+     * @param  Axis\AxisCollectionCollection $axisCollectionCollection
      * @return string
      */
-    protected function renderAxesCollection(Axis\AxesCollection $axesCollection = null)
+    protected function renderAxisCollectionCollection(Axis\AxisCollectionCollection $axisCollectionCollection = null)
     {
-        if ($axesCollection === null) {
+        if ($axisCollectionCollection === null) {
             return '';
         }
 
@@ -139,7 +139,7 @@ class Image
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
-            $count = $this->countTheAxis($axesCollection->$method());
+            $count = $this->countTheAxis($axisCollectionCollection->$method());
 
             $actualAxisKeys = array_pad($actualAxisKeys, count($actualAxisKeys) + $count, $possibleAxisKey);
         }
@@ -163,7 +163,7 @@ class Image
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
-            $localLabels = $this->renderAxisCollectionLabels($axesCollection->$method());
+            $localLabels = $this->renderAxisCollectionLabels($axisCollectionCollection->$method());
             $labels = array_merge($labels, $localLabels);
         }
 
@@ -177,7 +177,14 @@ class Image
         foreach ($labels as $labelKey => $labelValue) {
             $urlData .= $labelKey .':|'.$labelValue.'|';
         }
-        $urlData .= '&' ;
+        $urlData .= '&';
+
+//         $urlData .= 'chxp=1,50';
+//         foreach ($labels as $labelKey => $labelValue) {
+//             $urlData .= $labelKey .':|'.$labelValue.'|';
+//         }
+//         $urlData .= '&';
+
 
         return $urlData;
     }
@@ -270,7 +277,7 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-        $url .= $this->renderAxesCollection($chart->getAxesCollection());
+        $url .= $this->renderAxisCollectionCollection($chart->getAxisCollectionCollection());
 
         // DATA SETS
         // So there's several elements that might rely on a dataset

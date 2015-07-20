@@ -2,7 +2,7 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Axis;
 
-class AxesCollection
+class AxisCollectionCollection
 {
     /**
      * @var AxisCollection
