@@ -92,6 +92,6 @@ class AxisCollection implements \Iterator, \Countable {
      */
     public function count()
     {
-        return count($this->axes);;
+        return count($this->axes); ;
     }
 }
