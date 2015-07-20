@@ -124,14 +124,9 @@ class Image
             return '';
         }
 
-        // So this needs to change innit
-        $axesData = [
-            't' => $this->renderAxisCollection($axesCollection->getTopAxisCollection()),
-            'x' => $this->renderAxisCollection($axesCollection->getBottomAxisCollection()),
-            'y' => $this->renderAxisCollection($axesCollection->getLeftAxisCollection()),
-            'r' => $this->renderAxisCollection($axesCollection->getRightAxisCollection())
-        ];
-
+        /**
+         * STEP 1
+         */
         $possibleAxisKeys = [
             't' => 'top',
             'x' => 'bottom',
@@ -144,30 +139,58 @@ class Image
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
-            $count = $this->countTheFuckingAxis($axesCollection->$method());
+            $count = $this->countTheAxis($axesCollection->$method());
 
             $actualAxisKeys = array_pad($actualAxisKeys, count($actualAxisKeys) + $count, $possibleAxisKey);
         }
 
+        $axesData = $actualAxisKeys;
         $axesData = array_filter($axesData);
 
         if (empty($axesData)) {
             return '';
         }
 
-        //
-        $urlData = 'chxt='.implode(',', array_keys($axesData)).'&';
+        dump($axesData);
+
+        $urlData = 'chxt='.implode(',', array_values($axesData)).'&';
+
+        /**
+         * STEP 2
+         */
+        // render the labels
+        $labels = [];
+        foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
+            $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
+
+            $localLabels = $this->renderAxisCollectionLabels($axesCollection->$method());
+            $labels = array_merge($labels, $localLabels);
+        }
+
+        $labels = array_filter($labels);
+        dump($labels);
+
+        // OK so here's another snag
+        // the labels need to be an array - so it's time to implement a labelcollection
+
+        $urlData .= 'chxl=';
+        foreach ($labels as $labelKey => $labelValue) {
+            $urlData .= $labelKey .':|'.$labelValue.'|';
+        }
+        $urlData .= '&' ;
 
         return $urlData;
     }
 
     /**
+     * Needs to be moved to a renderAxis class
+     *
      * @param  Axis\AxisCollection $axisCollection
      * @return int;
      */
-    protected function countTheFuckingAxis(Axis\AxisCollection $axisCollection = null)
+    protected function countTheAxis(Axis\AxisCollection $axisCollection = null)
     {
-        if ($axisCollection == null) {
+        if ($axisCollection === null) {
             return 0;
         }
 
@@ -175,20 +198,48 @@ class Image
     }
 
     /**
-     * Suddenly this isn't going to work
+     * Needs to be moved to a renderAxis class
      *
      * @param  Axis\AxisCollection $axisCollection
-     * @return string
+     * @return array
+     */
+    protected function renderAxisCollectionLabels(Axis\AxisCollection $axisCollection = null)
+    {
+        if ($axisCollection === null) {
+            return [];
+        }
+
+        $labelArray = [];
+
+        foreach ($axisCollection as $axis) {
+            // This needs some extrapolation.
+            // Actually no need to explain, once extrapolated, that will handle it
+            if ($axis->getLabel()) {
+                $labelArray[] = $axis->getLabel()->getLabel();
+            } else {
+                $labelArray[] = '';
+            }
+        }
+
+        return $labelArray;
+    }
+
+    /**
+     * Needs to be moved to a renderAxis class
+     *
+     * Actually this doesn't work, these are still Axis objects
+     *
+     * @param  Axis\AxisCollection $axisCollection
+     * @return array
      */
     protected function renderAxisCollection(Axis\AxisCollection $axisCollection = null)
     {
         if ($axisCollection === null) {
-            return '';
+            return [];
         }
 
-        return 'hi';
+        return $axisCollection->getAxes();
     }
-
 
     /**
      * @param  Component\Color $color

@@ -10,6 +10,14 @@ class AxisCollection implements \Iterator, \Countable {
     protected $axes = [];
 
     /**
+     * @return array
+     */
+    public function getAxes()
+    {
+        return $this->axes;
+    }
+
+    /**
      * @param  Axis $axis
      * @return self
      */
