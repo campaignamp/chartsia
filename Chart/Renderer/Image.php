@@ -178,7 +178,7 @@ class Image
         if ( ! empty($labels)) {
             $urlData .= 'chxl=';
             foreach ($labels as $labelKey => $labelValue) {
-                $urlData .= $labelKey .':|'.$labelValue.'|';
+                $urlData .= $labelKey.':|'.$labelValue.'|';
             }
             $urlData .= '&';
         }
@@ -186,7 +186,7 @@ class Image
         if ( ! empty($positions)) {
             $urlData .= 'chxp=';
             foreach ($positions as $positionKey => $positionValue) {
-                $urlData .= $positionKey .','.$positionValue.'|';
+                $urlData .= $positionKey.','.$positionValue.'|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
