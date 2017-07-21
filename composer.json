@@ -24,7 +24,7 @@
     ],
     "require" : {
         "php" : ">=5.4",
-        "outspaced/multiple-logs": "*"
+        "outspaced/multiple-logs": "dev-master"
     },
     "autoload" : {
         "psr-0" : {
