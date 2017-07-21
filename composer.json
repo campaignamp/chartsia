@@ -24,7 +24,7 @@
     ],
     "require" : {
         "php" : ">=5.4",
-        "outspaced/multiple-logs": "1.0.2"
+        "outspaced/multiple-logs": "*"
     },
     "autoload" : {
         "psr-0" : {
