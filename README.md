@@ -11,3 +11,5 @@ An incomplete library for making Google Charts.
 Still a work in progress.  Right now it is only packaged as a Symfony bundle, but once a few more features are completed, I will make it into a general-use library, with a separate bundle wrapper.
 
 Documentation coming soon.
+
+
