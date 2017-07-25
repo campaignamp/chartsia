@@ -9,17 +9,20 @@ class Label
      */
     protected $label;
 
+    /**
+     * @var int
+     */
     protected $position;
 
-    protected $format;
+//     protected $format;
 
-    protected $color;
+//     protected $color;
 
-    protected $font;
+//     protected $font;
 
-    protected $alignment;
+//     protected $alignment;
 
-    protected $axisOrTick;
+//     protected $axisOrTick;
 
     /**
      * @param  string  $label
@@ -58,4 +61,19 @@ class Label
     {
         return $this->position;
     }
+
+
+//     // This part here should not be here, it should live inside Axis
+//     public function setLabelViaMarkers(array $markers, $step = 1)
+//     {
+//         if ($step > 1) {
+//             for ($i = 0 ; $i < count($markers) ; $i++) {
+//                 if ($i % $step) {
+//                     $markers[$i] = '';
+//                 }
+//             }
+//         }
+
+//         $this->label = '';
+//     }
 }

@@ -121,6 +121,7 @@ class JavaScript
         // Convert to arrays
         $max = 0;
         $dataSetsArrays = [];
+
         foreach ($dataSetCollection as $dataSet) {
             $max = max([count($dataSet->getData()), $max]);
 
@@ -133,7 +134,7 @@ class JavaScript
         foreach ($dataSetsArrays as $i => $dataSetsArray) {
             for ($i = 0; $i < $max; $i++) {
 
-                if ( ! isset($restructuredDataSetsArrays[$i])) {
+                if (!isset($restructuredDataSetsArrays[$i])) {
                     $restructuredDataSetsArrays[$i] = [''];
                 }
 
@@ -149,12 +150,14 @@ class JavaScript
      * @param  DataSet\DataSetCollection $dataSets
      * @return array
      */
-    protected function renderDataSetLegends(DataSet\DataSetCollection $dataSets = null) {
+    protected function renderDataSetLegends(DataSet\DataSetCollection $dataSets = null)
+    {
         if ($dataSets === null) {
             return [];
         }
 
         $legends = [''];
+
         foreach ($dataSets as $dataSet) {
             $legends[] = $this->renderDataSetLegend($dataSet->getLegend());
         }

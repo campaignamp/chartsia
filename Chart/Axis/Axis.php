@@ -7,9 +7,9 @@ use Outspaced\ChartsiaBundle\Chart\Component;
 class Axis
 {
     /**
-     * @var Label
+     * @var Label[]
      */
-    protected $label;
+    protected $labels = [];
 
     /**
      * @var Range
@@ -30,9 +30,9 @@ class Axis
      * @param  Label  $label
      * @return self
      */
-    public function setLabel(Label $label)
+    public function addLabel(Label $label)
     {
-        $this->label = $label;
+        $this->labels[] = $label;
 
         return $this;
     }
@@ -40,9 +40,9 @@ class Axis
     /**
      * @return Label
      */
-    public function getLabel()
+    public function getLabels()
     {
-        return $this->label;
+        return $this->labels;
     }
 
     /**

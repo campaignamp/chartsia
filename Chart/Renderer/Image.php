@@ -161,29 +161,44 @@ class Image
         // render the labels
         $labels = [];
         $positions = [];
+
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
-            $localLabels = $this->renderAxisCollectionLabels($axisCollectionCollection->$method());
-            $labels = array_merge($labels, $localLabels);
+            // Add the labels from this axis to the labels array
+            $labels = array_merge(
+                $labels,
+                $this->renderAxisCollectionLabels($axisCollectionCollection->$method())
+            );
 
-            $localPositions = $this->renderAxisCollectionPositions($axisCollectionCollection->$method());
-            $positions = array_merge($positions, $localPositions);
+            dump($labels);
+
+            // Add the positions from this axis to the positions array
+            $positions = array_merge(
+                $positions,
+                $this->renderAxisCollectionPositions($axisCollectionCollection->$method())
+            );
+
+            dump($positions);
         }
 
         $positions = array_filter($positions);
-        $labels = array_filter($labels);
+        $labels    = array_filter($labels);
+
+        dump($labels, $positions);
 
         // Labels
-        if ( ! empty($labels)) {
+        if (!empty($labels)) {
             $urlData .= 'chxl=';
+
             foreach ($labels as $labelKey => $labelValue) {
                 $urlData .= $labelKey.':|'.$labelValue.'|';
             }
+
             $urlData .= '&';
         }
 
-        if ( ! empty($positions)) {
+        if (!empty($positions)) {
             $urlData .= 'chxp=';
             foreach ($positions as $positionKey => $positionValue) {
                 $urlData .= $positionKey.','.$positionValue.'|';
@@ -225,20 +240,30 @@ class Image
         $labelArray = [];
 
         foreach ($axisCollection as $axis) {
-            $labelArray[] = $this->extractLabel($axis->getLabel());
+
+            $labelTexts = [];
+
+            foreach ($axis->getLabels() as $label) {
+
+                $labelTexts[] = $label->getLabel();
+
+            }
+
+            $labelArray[] = implode('|', $labelTexts);
+//             $labelArray[] = $this->extractLabel($axis->getLabel());
         }
 
         return $labelArray;
     }
 
-    protected function extractLabel(Axis\Label $label = null)
-    {
-        if ($label === null) {
-            return '';
-        }
+//     protected function extractLabel(Axis\Label $label = null)
+//     {
+//         if ($label === null) {
+//             return '';
+//         }
 
-        return $label->getLabel();
-    }
+//         return impl$label->getLabels();
+//     }
 
     /**
      * Needs to be moved to a renderAxis class
@@ -255,7 +280,17 @@ class Image
         $positionArray = [];
 
         foreach ($axisCollection as $axis) {
-            $positionArray[] = $this->extractPosition($axis->getLabel());
+            $positionTexts = [];
+
+            foreach ($axis->getLabels() as $label) {
+
+                $positionTexts[] = $label->getPosition();
+
+            }
+
+            $positionArray[] = implode('|', $positionTexts);
+
+//             $positionArray[] = $this->extractPosition($axis->getLabel());
         }
 
         return $positionArray;

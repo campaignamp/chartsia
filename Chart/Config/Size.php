@@ -23,13 +23,13 @@ class Size
      * @param int $height
      * @param int $width
      */
-    public function __construct($height = NULL, $width = NULL)
+    public function __construct($height = null, $width = null)
     {
-        if ($height !== NULL) {
+        if ($height !== null) {
             $this->setHeight($height);
         }
 
-        if ($width !== NULL) {
+        if ($width !== null) {
             $this->setWidth($width);
         }
     }
@@ -40,7 +40,7 @@ class Size
      */
     public function setHeight($height)
     {
-        if ( ! is_int($height)) {
+        if (!is_int($height)) {
             throw new \InvalidArgumentException('Size height must be an int');
         }
 
