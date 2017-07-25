@@ -3,7 +3,6 @@
 namespace Outspaced\ChartsiaBundle\Tests\Chart\Axis;
 
 use Outspaced\ChartsiaBundle\Chart\Axis\Label;
-
 use Outspaced\ChartsiaBundle\Chart\Axis;
 
 class LabelTest extends \PHPUnit_Framework_TestCase
@@ -25,7 +24,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Label::__construct
+     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Label::__construct
      */
     public function testCanBeInstantiated()
     {
