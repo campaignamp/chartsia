@@ -250,20 +250,10 @@ class Image
             }
 
             $labelArray[] = implode('|', $labelTexts);
-//             $labelArray[] = $this->extractLabel($axis->getLabel());
         }
 
         return $labelArray;
     }
-
-//     protected function extractLabel(Axis\Label $label = null)
-//     {
-//         if ($label === null) {
-//             return '';
-//         }
-
-//         return impl$label->getLabels();
-//     }
 
     /**
      * Needs to be moved to a renderAxis class
@@ -289,20 +279,9 @@ class Image
             }
 
             $positionArray[] = implode('|', $positionTexts);
-
-//             $positionArray[] = $this->extractPosition($axis->getLabel());
         }
 
         return $positionArray;
-    }
-
-    protected function extractPosition(Axis\Label $label = null)
-    {
-        if ($label === null) {
-            return '';
-        }
-
-        return $label->getPosition();
     }
 
     /**

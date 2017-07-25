@@ -112,8 +112,9 @@ class Axis
     public function createLabels(array $labelSet, $step = 1)
     {
         $labels = [];
+        $labelSetCount = count($labelSet);
 
-        for ($i = 0 ; $i < count($labelSet) ; $i++) {
+        for ($i = 0 ; $i < $labelSetCount ; $i++) {
             if ($step > 1) {
                 if ($i % $step) {
                     $labelSet[$i] = '';
