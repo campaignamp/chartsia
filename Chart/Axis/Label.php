@@ -18,7 +18,7 @@ class Label
      * @param string $label
      * @param int    $position
      */
-    public function __construct($label=null, $position=null)
+    public function __construct($label = null, $position = null)
     {
         $this->label = $label;
 

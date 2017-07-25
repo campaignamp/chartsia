@@ -101,4 +101,28 @@ class Axis
     {
         return $this->color;
     }
+
+    /**
+     * Takes a list of of possible label keys, and reduces them to ones that
+     *   are $step steps apart
+     *
+     * @param array $labelSet
+     * @param int   $step
+     */
+    public function createLabels(array $labelSet, $step = 1)
+    {
+        $labels = [];
+
+        for ($i = 0 ; $i < count($labelSet) ; $i++) {
+            if ($step > 1) {
+                if ($i % $step) {
+                    $labelSet[$i] = '';
+                }
+            }
+
+            $labels[] = new Label($labelSet[$i]);
+        }
+
+        $this->labels = $labels;
+    }
 }

@@ -14,8 +14,6 @@ class AxisTest extends \PHPUnit_Framework_TestCase
     protected $object;
 
     /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
      */
     protected function setUp()
     {
@@ -23,82 +21,44 @@ class AxisTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::setLabel
-     * @todo   Implement testSetLabel().
-     */
-    public function testSetLabel()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::getLabel
+     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::getLabels
+     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::addLabel
      * @todo   Implement testGetLabel().
      */
     public function testGetLabel()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $label = new Axis\Label('Hi', 12);
+
+        $this->object->addLabel($label);
+
+        $labels = $this->object->getLabels();
+
+        $this->assertEquals($label, $labels[0]);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::setRange
-     * @todo   Implement testSetRange().
+     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::createLabels
      */
-    public function testSetRange()
+    public function testCreateLabels()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
+        $labelData = [
+            '2017-01-01',
+            '2017-01-02',
+            '2017-01-03',
+            '2017-01-04',
+        ];
 
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::getRange
-     * @todo   Implement testGetRange().
-     */
-    public function testGetRange()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
+        $this->object->createLabels($labelData, 2);
 
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::setTick
-     * @todo   Implement testSetTick().
-     */
-    public function testSetTick()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
+        $labels = $this->object->getLabels();
 
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Axis::getTick
-     * @todo   Implement testGetTick().
-     */
-    public function testGetTick()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $expected = [
+            new Axis\Label('2017-01-01'),
+            new Axis\Label(''),
+            new Axis\Label('2017-01-03'),
+            new Axis\Label(''),
+        ];
+
+        $this->assertEquals($expected, $labels);
     }
 }
