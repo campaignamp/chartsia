@@ -180,12 +180,53 @@ class Image
             );
 
             dump($positions);
+
+        /**
+         * STEP 3
+         *
+         * (Refactor me!)
+         */
+        $xGridlines =
+
+
+
+
+
+        // render the gridlines
+        $gridlines = [];
+
+        foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
+
+
+            // Actually no, fuck this
+            // @todo make this atrocity better
+            if (!in_array($possibleAxisKey, ['x', 'y'])) {
+                continue;
+            }
+
+            $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
+
+            /*
+            // Add the labels from this axis to the labels array
+            $g = array_merge(
+                $labels,
+                $this->renderAxisCollectionLabels($axisCollectionCollection->$method())
+            );
+
+            dump($labels);
+
+            // Add the positions from this axis to the positions array
+            $positions = array_merge(
+                $positions,
+                $this->renderAxisCollectionPositions($axisCollectionCollection->$method())
+            );
+
+            dump($positions);
+            */
         }
 
         $positions = array_filter($positions);
         $labels    = array_filter($labels);
-
-        dump($labels, $positions);
 
         // Labels
         if (!empty($labels)) {

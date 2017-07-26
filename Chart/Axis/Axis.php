@@ -22,6 +22,11 @@ class Axis
     protected $tick;
 
     /**
+     * @var Gridlines
+     */
+    protected $gridlines;
+
+    /**
      * @var Component\Color
      */
     protected $color;
@@ -100,6 +105,25 @@ class Axis
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * @param  Gridlines $gridlines
+     * @return self
+     */
+    public function setGridlines(Gridlines $gridlines)
+    {
+        $this->gridlines = $gridlines;
+
+        return $this;
+    }
+
+    /**
+     * @return Gridlines
+     */
+    public function getGridlines()
+    {
+        return $this->gridlines;
     }
 
     /**
