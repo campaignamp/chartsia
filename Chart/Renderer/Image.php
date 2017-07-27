@@ -130,32 +130,32 @@ class Image
         return $color->getColor();
     }
 
-
-
-
-    protected function renderAxisTing(Charts\LineChart $chart)
+    /**
+     * @param Charts\LineChart $chart
+     * @return string
+     */
+    protected function renderAxes(Charts\LineChart $chart)
     {
         $possibleAxisKeys = [
-            't' => 'top',
-            'x' => 'bottom',
-            'y' => 'left',
-            'r' => 'right'
+            't' => 'getTopAxis',
+            'x' => 'getBottomAxis',
+            'y' => 'getLeftAxis',
+            'r' => 'getRightAxis'
         ];
 
         $actualAxes = [];
-        $titles     = [];
         $positions  = [];
         $labels     = [];
+        $gridlines  = [];
 
-        foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
-
-            $method = 'get'.ucwords($possibleAxisName).'Axis';
+        foreach ($possibleAxisKeys as $possibleAxisKey => $method) {
 
             // eg getTopAxis, getLeftAxis
             if ($axis = $chart->{$method}()) {
 
                 $actualAxes[] = $possibleAxisKey;
 
+                // Label
                 if ($labelTings = $axis->getLabels()) {
 
                     $labelTexts = [];
@@ -169,25 +169,36 @@ class Image
                     $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
                     $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode(',', $positionTings);
                 } else {
-
                     // THINK ABOUT THIS ONE
                     // So - do I want to display nothing if user ain't said nothing?
                     $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = '';
                 }
 
+                // Title
                 if ($title = $axis->getTitle()) {
                     $actualAxes[] = $possibleAxisKey;
-
                     $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = $title->getValue();
-
                     $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = $title->getPosition();
                 }
+
+                // Gridlines
+                if (in_array($possibleAxisKey, ['x', 'y'])) {
+                    if ($gridlinesTing = $axis->getGridlines()) {
+                        $gridlines[$possibleAxisKey]['step'] = $gridlinesTing->getStepSize();
+                        $gridlines[$possibleAxisKey]['offset'] = $gridlinesTing->getOffset();
+                    } else {
+                        $gridlines[$possibleAxisKey]['step'] = 0;
+                        $gridlines[$possibleAxisKey]['offset'] = 0;
+                    }
+                }
+
             }
         }
 
+        // Add the defined axes to the URL
         $urlData = 'chxt='.implode(',', array_values($actualAxes)).'&';
 
-        // Labels
+        // Add the defined labels to the URL
         if (!empty($labels)) {
             $urlData .= 'chxl=';
 
@@ -198,6 +209,7 @@ class Image
             $urlData .= '&';
         }
 
+        // Add the defined positions to the URL
         if (!empty($positions)) {
             $urlData .= 'chxp=';
             foreach ($positions as $positionKey => $positionValue) {
@@ -206,6 +218,15 @@ class Image
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
         }
+
+        // Add gridlines
+        $urlData .= 'chg=' . $gridlines['x']['step'] . ',' .
+            $gridlines['y']['step'] . ',' .
+            '0,0,' .
+            $gridlines['x']['offset'] . ',' .
+            $gridlines['y']['offset'];
+
+        $urlData .= '&';
 
         return $urlData;
     }
@@ -236,10 +257,7 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-
-
-        // $url .= $this->renderAxisCollectionCollection($chart->getAxisCollectionCollection());
-        $url .= $this->renderAxisTing($chart);
+        $url .= $this->renderAxes($chart);
 
         // DATA SETS
         $data = [];

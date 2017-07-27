@@ -19,7 +19,7 @@ class Gridlines
      * @param int $stepSize
      * @param int $offset
      */
-    public function __construct($stepSize = null, $offset = null)
+    public function __construct($stepSize = null, $offset = 0)
     {
         $this->stepSize = $stepSize;
 
