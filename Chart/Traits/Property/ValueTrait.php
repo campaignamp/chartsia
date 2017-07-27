@@ -5,12 +5,12 @@ namespace Outspaced\ChartsiaBundle\Chart\Traits\Property;
 trait ValueTrait
 {
     /**
-     * @var string/number
+     * @var mixed
      */
     protected $value;
 
     /**
-     * @param  string/number $value
+     * @param  mixed $value
      * @return self
      */
     public function setValue($value)
@@ -21,7 +21,7 @@ trait ValueTrait
     }
 
     /**
-     * @return string/number
+     * @return mixed
      */
     public function getValue()
     {

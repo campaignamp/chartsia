@@ -5,12 +5,12 @@ namespace Outspaced\ChartsiaBundle\Chart\Traits\Property;
 trait LabelTrait
 {
     /**
-     * @var string/number
+     * @var mixed
      */
     protected $label;
 
     /**
-     * @param  string/number $label
+     * @param  mixed $label
      * @return self
      */
     public function setLabel($label)
@@ -21,7 +21,7 @@ trait LabelTrait
     }
 
     /**
-     * @return string/number
+     * @return mixed
      */
     public function getLabel()
     {
