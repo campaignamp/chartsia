@@ -29,7 +29,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->object = new Image();
 
         $title = (new Config\Title())
-//        $title->setTitle('Wahey what a chart')
+            ->setTitle('Wahey what a chart')
             ->setColor(new Component\Color('00FF00'));
 
         $size = (new Config\Size())
@@ -63,7 +63,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             ->createLabels(array_keys($data), 1);
 
         $leftAxis = (new Axis\Axis())
-//            ->setTitle(new Axis\Title('HELLO!', 30))
             ->setGridlines(new Axis\Gridlines(20));
 
         $chart = (new Charts\LineChart())
@@ -78,7 +77,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $renderer = new Renderer\Image();
 
         $this->renderedChart = $renderer->render($chart);
-
     }
 
     /**
@@ -146,9 +144,8 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsTitle()
+    public function testRenderContainsTitleColor()
     {
-        // Currently has no title
         $this->assertContains(
             'chts=00FF00&',
             $this->renderedChart
@@ -228,6 +225,17 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertContains(
             'chdl=Set+2',
+            $this->renderedChart
+        );
+    }
+
+    /**
+     * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
+     */
+    public function testRenderContainsTitle()
+    {
+        $this->assertContains(
+            'chtt=Wahey+what+a+chart',
             $this->renderedChart
         );
     }
