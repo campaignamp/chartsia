@@ -20,7 +20,7 @@ class GridlinesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Gridlines::__construct
+     * @covers Outspaced\ChartsiaBundle\Chart\Axis\Gridlines::__construct
      */
     public function testCanBeInstantiated()
     {
