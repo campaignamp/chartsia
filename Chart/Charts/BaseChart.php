@@ -25,11 +25,6 @@ abstract class BaseChart
     protected $dataSetCollection;
 
     /**
-     * @var Axis\AxisCollectionCollection
-     */
-    protected $axisCollectionCollection;
-
-    /**
      * @var Config\Title
      */
     protected $title;
@@ -168,24 +163,5 @@ abstract class BaseChart
     public function getElements()
     {
         return $this->elements;
-    }
-
-    /**
-     * @param  Axis\AxisCollectionCollection $axisCollectionCollection
-     * @return self
-     */
-    public function setAxisCollectionCollection(Axis\AxisCollectionCollection $axisCollectionCollection)
-    {
-        $this->axisCollectionCollection = $axisCollectionCollection;
-
-        return $this;
-    }
-
-    /**
-     * @return Axis\AxisCollectionCollection
-     */
-    public function getAxisCollectionCollection()
-    {
-        return $this->axisCollectionCollection;
     }
 }

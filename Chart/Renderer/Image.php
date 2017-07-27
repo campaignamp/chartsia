@@ -165,6 +165,9 @@ class Image
         foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
             $method = 'get'.ucwords($possibleAxisName).'AxisCollection';
 
+
+            // But following this, how did I know the index of the thing being done?
+
             // Add the labels from this axis to the labels array
             $labels = array_merge(
                 $labels,
@@ -180,13 +183,14 @@ class Image
             );
 
             dump($positions);
+        }
 
         /**
          * STEP 3
          *
          * (Refactor me!)
          */
-        $xGridlines =
+//        $xGridlines =
 
 
 
@@ -358,11 +362,104 @@ class Image
         return $color->getColor();
     }
 
+
+
+
+    protected function renderAxisTing(Charts\LineChart $chart)
+    {
+        $possibleAxisKeys = [
+            't' => 'top',
+            'x' => 'bottom',
+            'y' => 'left',
+            'r' => 'right'
+        ];
+
+        $actualAxes = [];
+        $titles     = [];
+        $positions  = [];
+        $labels     = [];
+
+        foreach ($possibleAxisKeys as $possibleAxisKey => $possibleAxisName) {
+
+            $method = 'get'.ucwords($possibleAxisName).'Axis';
+
+            // eg getTopAxis, getLeftAxis
+            if ($axis = $chart->{$method}()) {
+
+                $actualAxes[] = $possibleAxisKey;
+
+                if ($labelTings = $axis->getLabels()) {
+
+                    $labelTexts = [];
+                    $positionTings = [];
+
+                    foreach ($labelTings as $label) {
+                        $labelTexts[] = $label->getLabel();
+                        $positionTings[]  = $label->getPosition();
+                    }
+
+                    $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
+                    $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode(',', $positionTings);
+                } else {
+
+                    // THINK ABOUT THIS ONE
+                    // So - do I want to display nothing if user ain't said nothing?
+                    $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = '';
+                }
+
+                if ($title = $axis->getTitle()) {
+                    $actualAxes[] = $possibleAxisKey;
+
+                    $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = $title->getValue();
+
+                    $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = $title->getPosition();
+                }
+            }
+        }
+
+        $urlData = 'chxt='.implode(',', array_values($actualAxes)).'&';
+
+        // Labels
+        if (!empty($labels)) {
+            $urlData .= 'chxl=';
+
+            foreach ($labels as $labelKey => $labelValue) {
+                $urlData .= $labelKey.':|'.$labelValue.'|';
+            }
+
+            $urlData .= '&';
+        }
+
+        if (!empty($positions)) {
+            $urlData .= 'chxp=';
+            foreach ($positions as $positionKey => $positionValue) {
+                $urlData .= $positionKey.','.$positionValue.'|';
+            }
+            $urlData = rtrim($urlData, "|");
+            $urlData .= '&';
+        }
+
+        return $urlData;
+    }
+
+    /**
+     * Gets the current highest key from $axes array
+     *
+     * @param  array $axes
+     * @return int
+     */
+    protected function getCurrentKeyFromAxesArray(array $axes)
+    {
+        end($axes);
+
+        return key($axes);
+    }
+
     /**
      * @param  Charts\BaseChart $chart
      * @return string
      */
-    public function render(Charts\BaseChart $chart)
+    public function render(Charts\LineChart $chart)
     {
         $url = self::BASE_URL;
 
@@ -371,7 +468,10 @@ class Image
         $url .= $this->renderMargin($chart->getMargin());
         $url .= $this->renderChartLegend($chart->getLegend());
         $url .= $this->renderTitle($chart->getTitle());
-        $url .= $this->renderAxisCollectionCollection($chart->getAxisCollectionCollection());
+
+
+        // $url .= $this->renderAxisCollectionCollection($chart->getAxisCollectionCollection());
+        $url .= $this->renderAxisTing($chart);
 
         // DATA SETS
         $data = [];

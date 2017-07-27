@@ -22,6 +22,11 @@ class Axis
     protected $tick;
 
     /**
+     * @var Title
+     */
+    protected $title;
+
+    /**
      * @var Gridlines
      */
     protected $gridlines;
@@ -108,6 +113,25 @@ class Axis
     }
 
     /**
+     * @param  Title  $title
+     * @return self
+     */
+    public function setTitle(Title $title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * @param  Gridlines $gridlines
      * @return self
      */
@@ -132,6 +156,7 @@ class Axis
      *
      * @param array $labelSet
      * @param int   $step
+     * @return self
      */
     public function createLabels(array $labelSet, $step = 1)
     {
@@ -149,5 +174,7 @@ class Axis
         }
 
         $this->labels = $labels;
+
+        return $this;
     }
 }
