@@ -168,10 +168,6 @@ class Image
 
                     $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
                     $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode(',', $positionTings);
-                } else {
-                    // THINK ABOUT THIS ONE
-                    // So - do I want to display nothing if user ain't said nothing?
-//                    $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = '';
                 }
 
                 // Title

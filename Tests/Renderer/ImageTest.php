@@ -82,7 +82,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::__construct
      */
     public function testCanBeInstantiated()
     {
