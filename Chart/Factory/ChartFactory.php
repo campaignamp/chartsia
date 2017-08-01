@@ -252,9 +252,9 @@ class ChartFactory
         return $this;
     }
 
-    public function createChart()
+    public function getPreparedChart()
     {
-        $this->chart = new LineChart();
+        $chart = new LineChart();
 
         foreach ($this as $key => $value) {
             if ($key == 'chart') {
@@ -267,15 +267,9 @@ class ChartFactory
 
             $setMethod = 'set' . ucwords($key);
 
-            $this->chart->{$setMethod}($value);
+            $chart->{$setMethod}($value);
         }
 
-        return $this;
-    }
-
-
-    public function getChart()
-    {
-        return $this->chart;
+        return $chart;
     }
 }
