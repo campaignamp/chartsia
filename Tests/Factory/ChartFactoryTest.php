@@ -19,7 +19,6 @@ class ChartFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::__construct
      */
     public function testCanBeInstantiated()
     {
