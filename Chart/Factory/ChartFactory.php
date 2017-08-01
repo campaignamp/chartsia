@@ -15,6 +15,11 @@ use Outspaced\ChartsiaBundle\Chart\DataSet;
 class ChartFactory
 {
     /**
+     * @var Component\Color
+     */
+    protected $defaultColor;
+
+    /**
      * @var Config\Title
      */
     protected $title;
@@ -60,6 +65,17 @@ class ChartFactory
     protected $topAxis;
 
     /**
+     * @param string $colorName
+     * @return ChartFactory
+     */
+    public function createDefaultColor($colorName)
+    {
+        $this->defaultColor = new Component\Color($colorName);
+
+        return $this;
+    }
+
+    /**
      * @param  string
      * @param  string
      * @return ChartFactory
@@ -70,11 +86,16 @@ class ChartFactory
             ->setTitle($title);
 
         if ($colorName) {
-            $this->title->setColor(new Component\Color('00FF00'));
+            $this->title->setColor(new Component\Color($colorName));
+        } elseif ($this->defaultColor) {
+            $this->title->setColor($this->defaultColor);
         }
 
         return $this;
     }
+
+
+
     /**
      * @param  int
      * @param  int
@@ -113,8 +134,13 @@ class ChartFactory
     {
         $this->legend = (new Config\Legend())
             ->setPosition($position)
-            ->setFontSize($fontSize)
-            ->setColor(new Component\Color($colorName));
+            ->setFontSize($fontSize);
+
+        if ($colorName) {
+            $this->legend->setColor(new Component\Color($colorName));
+        } elseif ($this->defaultColor) {
+            $this->legend->setColor($this->defaultColor);
+        }
 
         return $this;
     }
@@ -127,8 +153,13 @@ class ChartFactory
      */
     public function addDataSet(array $data, $colorName, $legend = null)
     {
-        $dataSet = (new DataSet\DataSet())
-            ->setColor(new Component\Color($colorName));
+        $dataSet = new DataSet\DataSet();
+
+        if ($colorName) {
+            $dataSet->setColor(new Component\Color($colorName));
+        } elseif ($this->defaultColor) {
+            $dataSet->setColor($this->defaultColor);
+        }
 
         if ($legend !== null) {
             $dataSet->setLegend(new DataSet\Legend($legend));
@@ -144,6 +175,18 @@ class ChartFactory
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @param string $colorName
+     * @param string $legend
+     * @return ChartFactory
+     */
+    public function addPrimaryDataSet(array $data, $colorName = null, $legend = null)
+    {
+        $this->createBottomAxis(array_keys($data), 1);
+
+        return $this->addDataSet($data, $colorName, $legend);
+    }
 
     /**
      * @return ChartFactory
@@ -237,7 +280,7 @@ class ChartFactory
         $chart = new LineChart();
 
         foreach ($this as $key => $value) {
-            if ($key == 'chart') {
+            if ($key == 'chart' || $key == 'defaultColor') {
                 continue;
             }
 
