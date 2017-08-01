@@ -4,11 +4,6 @@ namespace Outspaced\ChartsiaBundle\Tests\Chart\Factory;
 
 use Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory;
 
-use Outspaced\ChartsiaBundle\Chart\Factory;
-use Outspaced\ChartsiaBundle\Chart\Config;
-use Outspaced\ChartsiaBundle\Chart\DataSet;
-use Outspaced\ChartsiaBundle\Chart\Config\Axis;
-
 class ChartFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -32,147 +27,83 @@ class ChartFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setTitle
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getTitle
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createTitle
      */
-    public function testSetTitle()
+    public function testCreateTitle()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Title')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createTitle('hello', 'blue');
 
-        $this->object->setTitle($value);
-
-        $this->assertEquals($value, $this->object->getTitle());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setSize
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getSize
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createSize
      */
-    public function testSetSize()
+    public function testCreateSize()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Size')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createSize(300, 800);
 
-        $this->object->setSize($value);
-
-        $this->assertEquals($value, $this->object->getSize());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setMargin
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getMargin
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createMargin
      */
-    public function testSetMargin()
+    public function testCreateMargin()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Margin')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createMargin(1, 2, 3, 4);
 
-        $this->object->setMargin($value);
-
-        $this->assertEquals($value, $this->object->getMargin());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setLegend
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getLegend
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createLegend
      */
-    public function testSetLegend()
+    public function testCreateLegend()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Legend')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createLegend('blue', 1, 2);
 
-        $this->object->setLegend($value);
-
-        $this->assertEquals($value, $this->object->getLegend());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setDataSetCollection
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getDataSetCollection
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createLeftAxis
      */
-    public function testSetDataSetCollection()
+    public function testCreateLeftAxis()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\DataSet\DataSetCollection')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createLeftAxis();
 
-        $this->object->setDataSetCollection($value);
-
-        $this->assertEquals($value, $this->object->getDataSetCollection());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setLeftAxis
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getLeftAxis
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createBottomAxis
      */
-    public function testSetLeftAxis()
+    public function testCreateBottomAxis()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Axis\Axis')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createBottomAxis();
 
-        $this->object->setLeftAxis($value);
-
-        $this->assertEquals($value, $this->object->getLeftAxis());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setBottomAxis
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getBottomAxis
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createRightAxis
      */
-    public function testSetBottomAxis()
+    public function testCreateRightAxis()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Axis\Axis')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createRightAxis();
 
-        $this->object->setBottomAxis($value);
-
-        $this->assertEquals($value, $this->object->getBottomAxis());
+        $this->assertEquals($this->object, $return);
     }
 
     /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setRightAxis
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getRightAxis
+     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::createTopAxis
      */
-    public function testSetRightAxis()
+    public function testCreateTopAxis()
     {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Axis\Axis')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $return = $this->object->createTopAxis();
 
-        $this->object->setRightAxis($value);
-
-        $this->assertEquals($value, $this->object->getRightAxis());
-    }
-
-    /**
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::setTopAxis
-     * @covers Outspaced\ChartsiaBundle\Chart\Factory\ChartFactory::getTopAxis
-     */
-    public function testSetTopAxis()
-    {
-        $value = $this
-            ->getMockBuilder('Outspaced\ChartsiaBundle\Chart\Config\Axis\Axis')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->object->setTopAxis($value);
-
-        $this->assertEquals($value, $this->object->getTopAxis());
+        $this->assertEquals($this->object, $return);
     }
 
 }
