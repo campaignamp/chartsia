@@ -165,17 +165,7 @@ class ChartFactory
      */
     public function createLeftAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
     {
-        $axis = new Axis\Axis();
-
-        if (!empty($labels)) {
-            $axis->createLabels($labels, $labelsStep);
-        }
-
-        if ($gridlinesStepSize || $gridlinesOffset) {
-            $axis->setGridlines(new Axis\Gridlines($gridlinesStepSize, $gridlinesOffset));
-        }
-
-        $this->leftAxis = $axis;
+        $this->leftAxis = $this->createAxis($labels, $labelsStep, $gridlinesStepSize, $gridlinesOffset);
 
         return $this;
     }
@@ -188,17 +178,7 @@ class ChartFactory
      */
     public function createBottomAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
     {
-        $axis = new Axis\Axis();
-
-        if ($labels) {
-            $axis->createLabels($labels, $labelsStep);
-        }
-
-        if ($gridlinesStepSize || $gridlinesOffset) {
-            $axis->setGridlines(new Axis\Gridlines($gridlinesStepSize, $gridlinesOffset));
-        }
-
-        $this->bottomAxis = $axis;
+        $this->bottomAxis = $this->createAxis($labels, $labelsStep, $gridlinesStepSize, $gridlinesOffset);
 
         return $this;
     }
@@ -210,13 +190,7 @@ class ChartFactory
      */
     public function createTopAxis(array $labels = [], $labelsStep = 1)
     {
-        $axis = new Axis\Axis();
-
-        if ($labels) {
-            $axis->createLabels($labels, $labelsStep);
-        }
-
-        $this->topAxis = $axis;
+        $this->topAxis = $this->createAxis($labels, $labelsStep);
 
         return $this;
     }
@@ -228,15 +202,31 @@ class ChartFactory
      */
     public function createRightAxis(array $labels = [], $labelsStep = 1)
     {
+        $this->rightAxis = $this->createAxis($labels, $labelsStep);
+
+        return $this;
+    }
+
+    /**
+     * @param array $labels
+     * @param number $labelsStep
+     * @param number $gridlinesStepSize
+     * @param number $gridlinesOffset
+     * @return Axis\Axis
+     */
+    public function createAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
+    {
         $axis = new Axis\Axis();
 
-        if ($labels) {
+        if (!empty($labels)) {
             $axis->createLabels($labels, $labelsStep);
         }
 
-        $this->rightAxis = $axis;
+        if ($gridlinesStepSize || $gridlinesOffset) {
+            $axis->setGridlines(new Axis\Gridlines($gridlinesStepSize, $gridlinesOffset));
+        }
 
-        return $this;
+        return $axis;
     }
 
     /**
