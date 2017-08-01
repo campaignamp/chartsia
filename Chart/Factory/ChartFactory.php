@@ -15,11 +15,6 @@ use Outspaced\ChartsiaBundle\Chart\DataSet;
 class ChartFactory
 {
     /**
-     * @var Charts\Chart
-     */
-    protected $chart;
-
-    /**
      * @var Config\Title
      */
     protected $title;
@@ -63,14 +58,6 @@ class ChartFactory
      * @var Axis\Axis
      */
     protected $topAxis;
-
-    /**
-     * Right now it's only a line chart
-     */
-    public function __construct()
-    {
-        $this->chart = new LineChart();
-    }
 
     /**
      * @param  string
@@ -143,7 +130,7 @@ class ChartFactory
         $dataSet = (new DataSet\DataSet())
             ->setColor(new Component\Color($colorName));
 
-        if ($legend) {
+        if ($legend !== null) {
             $dataSet->setLegend(new DataSet\Legend($legend));
         }
 
@@ -180,7 +167,7 @@ class ChartFactory
     {
         $axis = new Axis\Axis();
 
-        if ($labels) {
+        if (!empty($labels)) {
             $axis->createLabels($labels, $labelsStep);
         }
 
@@ -252,6 +239,9 @@ class ChartFactory
         return $this;
     }
 
+    /**
+     * @return \Outspaced\ChartsiaBundle\Chart\Charts\LineChart
+     */
     public function getPreparedChart()
     {
         $chart = new LineChart();
