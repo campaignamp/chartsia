@@ -65,6 +65,8 @@ class ChartFactory
     protected $topAxis;
 
     /**
+     * @todo this should actually be a Type object
+     *
      * @param  string $type
      * @return self
      */
