@@ -28,6 +28,8 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->object = new Image();
 
+        $type = (new Config\Type('lc'));
+
         $title = (new Config\Title())
             ->setTitle('Wahey what a chart')
             ->setColor(new Component\Color('00FF00'));
@@ -66,6 +68,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             ->setGridlines(new Axis\Gridlines(20));
 
         $chart = (new Charts\LineChart())
+            ->setType($type)
             ->setTitle($title)
             ->setSize($size)
             ->setMargin($margin)

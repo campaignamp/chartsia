@@ -10,9 +10,9 @@ use Outspaced\ChartsiaBundle\Chart\Element;
 class LineChart
 {
     /**
-     * @var string
+     * @var Config\Type
      */
-    protected $type = 'lc';
+    protected $type;
 
     /**
      * @var array
@@ -65,10 +65,10 @@ class LineChart
     protected $rightAxis;
 
     /**
-     * @param  string $type
-     * @return self
+     * @param  Config\Type $type
+     * @return LineChart
      */
-    public function setType($type)
+    public function setType(Config\Type $type)
     {
         $this->type = $type;
 
