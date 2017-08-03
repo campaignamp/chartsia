@@ -146,7 +146,16 @@ class Image
         $actualAxes = [];
         $positions  = [];
         $labels     = [];
-        $gridlines  = [];
+        $gridlines  = [
+            'x' => [
+                'step' => 0,
+                'offset' => 0
+            ],
+            'y' => [
+                'step' => 0,
+                'offset' => 0
+            ],
+        ];
 
         foreach ($possibleAxisKeys as $possibleAxisKey => $method) {
 

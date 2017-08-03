@@ -65,6 +65,17 @@ class ChartFactory
     protected $topAxis;
 
     /**
+     * @param  string $type
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
      * @param string $colorName
      * @return ChartFactory
      */

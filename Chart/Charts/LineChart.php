@@ -65,6 +65,17 @@ class LineChart
     protected $rightAxis;
 
     /**
+     * @param  string $type
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
      * @param  Element\ElementInterface $element
      * @return self
      */
