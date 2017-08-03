@@ -21,7 +21,7 @@ class TypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Type::__construct
+     * @covers Outspaced\ChartsiaBundle\Chart\Config\Type::__construct
      */
     public function testCanBeInstantiated()
     {
