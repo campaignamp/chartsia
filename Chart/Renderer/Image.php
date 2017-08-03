@@ -18,15 +18,16 @@ class Image
     const BASE_URL = 'http://chart.googleapis.com/chart?';
 
     /**
-     * @param string $type
+     * @param Config\Type $type
+     * @return string
      */
-    protected function renderType($type = null)
+    protected function renderType(Config\Type $type = null)
     {
         if ($type === null) {
             return '';
         }
 
-        return 'cht='.$type.'&';
+        return 'cht=' . $type->getType() . '&';
     }
 
     /**

@@ -70,9 +70,9 @@ class ChartFactory
      * @param  string $type
      * @return self
      */
-    public function setType($type)
+    public function createType($type)
     {
-        $this->type = $type;
+        $this->type = new Config\Type($type);
 
         return $this;
     }
