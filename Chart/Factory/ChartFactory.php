@@ -78,6 +78,8 @@ class ChartFactory
     /**
      * @param  string
      * @param  string
+     * @param string $title
+     * @param string $colorName
      * @return ChartFactory
      */
     public function createTitle($title, $colorName)
@@ -99,6 +101,8 @@ class ChartFactory
     /**
      * @param  int
      * @param  int
+     * @param integer $height
+     * @param integer $width
      * @return ChartFactory
      */
     public function createSize($height, $width)
@@ -115,6 +119,10 @@ class ChartFactory
      * @param  int
      * @param  int
      * @param  int
+     * @param integer $left
+     * @param integer $bottom
+     * @param integer $right
+     * @param integer $top
      * @return ChartFactory
      */
     public function createMargin($left, $bottom, $right, $top)
@@ -189,7 +197,7 @@ class ChartFactory
     }
 
     /**
-     * @return ChartFactory
+     * @return DataSet\DataSetCollection
      */
     public function getDataSetCollection()
     {
@@ -202,9 +210,9 @@ class ChartFactory
 
     /**
      * @param array $labels
-     * @param number $labelsStep
-     * @param number $gridlinesStepSize
-     * @param number $gridlinesOffset
+     * @param integer $labelsStep
+     * @param integer $gridlinesStepSize
+     * @param integer $gridlinesOffset
      */
     public function createLeftAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
     {
@@ -215,9 +223,9 @@ class ChartFactory
 
     /**
      * @param array $labels
-     * @param number $labelsStep
-     * @param number $gridlinesStepSize
-     * @param number $gridlinesOffset
+     * @param integer $labelsStep
+     * @param integer $gridlinesStepSize
+     * @param integer $gridlinesOffset
      */
     public function createBottomAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
     {
@@ -228,7 +236,7 @@ class ChartFactory
 
     /**
      * @param  array $labels
-     * @param  number $labelsStep
+     * @param  integer $labelsStep
      * @return ChartFactory
      */
     public function createTopAxis(array $labels = [], $labelsStep = 1)
@@ -240,7 +248,7 @@ class ChartFactory
 
     /**
      * @param  array $labels
-     * @param  number $labelsStep
+     * @param  integer $labelsStep
      * @return ChartFactory
      */
     public function createRightAxis(array $labels = [], $labelsStep = 1)
@@ -252,9 +260,9 @@ class ChartFactory
 
     /**
      * @param array $labels
-     * @param number $labelsStep
-     * @param number $gridlinesStepSize
-     * @param number $gridlinesOffset
+     * @param integer $labelsStep
+     * @param integer $gridlinesStepSize
+     * @param integer $gridlinesOffset
      * @return Axis\Axis
      */
     public function createAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
