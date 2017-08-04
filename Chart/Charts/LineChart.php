@@ -65,6 +65,11 @@ class LineChart
     protected $rightAxis;
 
     /**
+     * @var Component\Color[]
+     */
+    protected $colorCollection = [];
+
+    /**
      * @param  Config\Type $type
      * @return LineChart
      */
@@ -273,6 +278,25 @@ class LineChart
     public function getRightAxis()
     {
         return $this->rightAxis;
+    }
+
+    /**
+     * @param  Component\Color[] $colorCollection
+     * @return self
+     */
+    public function setColorCollection(array $colorCollection)
+    {
+        $this->colorCollection = $colorCollection;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Color[]
+     */
+    public function getColorCollection()
+    {
+        return $this->colorCollection;
     }
 
     /**

@@ -82,6 +82,70 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->renderedChart = $renderer->render($chart);
     }
 
+
+    /**
+     */
+    public function providerPieChart()
+    {
+        $type = (new Config\Type('p'));
+
+        $title = (new Config\Title())
+            ->setTitle('Wahey what a chart')
+            ->setColor(new Component\Color('00FF00'));
+
+        $size = (new Config\Size())
+            ->setHeight(300)
+            ->setWidth(800);
+
+        $margin = new Config\Margin(50, 80, 20, 100);
+
+        $legend = (new Config\Legend())
+            ->setPosition('up')
+            ->setFontSize(23)
+            ->setColor(new Component\Color('FFFF44'));
+
+        $data = [
+            "AB" => 63,
+            "CD" => 72,
+            "EF" => 91,
+            "GH" => 84,
+            "IJ" => 97
+        ];
+
+        $colorCollection = [
+            new Component\Color('0000FF'),
+            new Component\Color('00FF00'),
+            new Component\Color('FF0000'),
+            new Component\Color('FF00FF'),
+            new Component\Color('FFFF00'),
+        ];
+
+        $dataSet = (new DataSet\DataSet())
+            ->setData($data)
+//             ->setColorCollection($colorCollection)
+            ->setLegend(new DataSet\Legend('Set 2'));
+
+        $dataSetCollection = (new DataSet\DataSetCollection())
+            ->add($dataSet);
+
+        $bottomAxis = (new Axis\Axis())
+            ->createLabels(array_keys($data), 1);
+
+        $chart = (new Charts\LineChart())
+            ->setType($type)
+            ->setTitle($title)
+            ->setSize($size)
+            ->setMargin($margin)
+            ->setLegend($legend)
+            ->setDataSetCollection($dataSetCollection);
+
+       $return = (new Renderer\Image())
+            ->render($chart);
+
+        return [[$return]];
+    }
+
+
     /**
      */
     public function testCanBeInstantiated()
@@ -94,7 +158,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsUrl()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'http://chart.googleapis.com/chart',
             $this->renderedChart
         );
@@ -103,9 +167,9 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsChartDefinition()
+    public function testRenderContainsChartType()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'cht=lc',
             $this->renderedChart
         );
@@ -116,7 +180,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsChartSize()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chs=800x300',
             $this->renderedChart
         );
@@ -127,7 +191,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsMargins()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chma=50,80,20,100',
             $this->renderedChart
         );
@@ -138,7 +202,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsLegend()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chdls=FFFF44,23',
             $this->renderedChart
         );
@@ -149,7 +213,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsTitleColor()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chts=00FF00&',
             $this->renderedChart
         );
@@ -160,7 +224,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsAxes()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chxt=x,y',
             $this->renderedChart
         );
@@ -171,7 +235,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsAxisLabels()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chxl=0:|02/04|09/04|16/04|04/06|11/06|',
             $this->renderedChart
         );
@@ -182,7 +246,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsAxisPositions()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chxp=0,,,,,',
             $this->renderedChart
         );
@@ -193,7 +257,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsGridlines()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chg=0,20,0,0,0,0',
             $this->renderedChart
         );
@@ -204,7 +268,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsDataSet()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chd=t:63,72,91,84,97',
             $this->renderedChart
         );
@@ -215,7 +279,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsLineColours()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chco=0000FF',
             $this->renderedChart
         );
@@ -226,7 +290,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsDataSetLabel()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chdl=Set+2',
             $this->renderedChart
         );
@@ -237,9 +301,46 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderContainsTitle()
     {
-        $this->assertContains(
+        $this->assertStringContainsOnce(
             'chtt=Wahey+what+a+chart',
             $this->renderedChart
         );
     }
+
+    /**
+     * @dataProvider providerPieChart
+     * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
+     */
+    public function testPieChartRenderContainsColorSet($chart)
+    {
+        $this->assertStringContainsOnce(
+            'cht=p',
+            $chart
+        );
+    }
+
+    /**
+     * @param string $needle
+     * @param string $haystack
+     * @throws \PHPUnit_Framework_ExpectationFailedException
+     */
+    protected function assertStringContainsOnce($needle, $haystack)
+    {
+        $needle = preg_quote($needle, '/');
+
+        if (!preg_match_all('/(' . $needle . ')/', $haystack, $matches)) {
+            throw new \PHPUnit_Framework_ExpectationFailedException(
+                'String ' . $haystack . ' does not contain ' . $needle
+            );
+        }
+
+        $count = count($matches[1]);
+
+        if ($count != 1) {
+            throw new \PHPUnit_Framework_ExpectationFailedException(
+                'String ' . $haystack . ' contains ' . $needle . ' more than once: ' . $count . ' times'
+            );
+        }
+    }
+
 }

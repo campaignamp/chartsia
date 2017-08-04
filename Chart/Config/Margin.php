@@ -40,10 +40,10 @@ class Margin
     protected $legendWidth;
 
     /**
-     * @param  int $left
-     * @param  int $right
-     * @param  int $top
-     * @param  int $bottom
+     * @param int $left
+     * @param int $bottom
+     * @param int $right
+     * @param int $top
      */
     public function __construct($left = NULL, $right = NULL, $top = NULL, $bottom = NULL)
     {

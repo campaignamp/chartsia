@@ -140,7 +140,7 @@ class ChartFactory
      */
     public function createMargin($left, $bottom, $right, $top)
     {
-        $this->margin = new Config\Margin($left, $bottom, $right, $top);
+        $this->margin = new Config\Margin($left, $right, $top, $bottom);
 
         return $this;
     }

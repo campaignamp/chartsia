@@ -70,6 +70,8 @@ class Image
     }
 
     /**
+     * so LINE COLORS?  no, just colors, motherfucker!
+     *
      * @param  array $lineColors
      * @return string
      */
