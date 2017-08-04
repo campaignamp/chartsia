@@ -20,6 +20,11 @@ class ChartFactory
     protected $defaultColor;
 
     /**
+     * @var Component\Color[]
+     */
+    protected $defaultColorCollection;
+
+    /**
      * @var Config\Title
      */
     protected $title;
@@ -89,6 +94,22 @@ class ChartFactory
     }
 
     /**
+     * @param  array $colorNames
+     * @return ChartFactory
+     */
+    public function createDefaultColorCollection(array $colorNames)
+    {
+        $this->defaultColorCollection = [];
+
+        foreach ($colorNames as $colorName) {
+            $this->defaultColorCollection[] = new Component\Color($colorName);
+        }
+
+        return $this;
+    }
+
+
+    /**
      * @param  string
      * @param  string
      * @param string $title
@@ -108,8 +129,6 @@ class ChartFactory
 
         return $this;
     }
-
-
 
     /**
      * @param  int
@@ -168,18 +187,29 @@ class ChartFactory
 
     /**
      * @param array $data
-     * @param string $colorName
+     * @param array $colorNames
      * @param string $legend
      * @return ChartFactory
      */
-    public function addDataSet(array $data, $colorName, $legend = null)
+    public function addDataSet(array $data, $colorNames = [], $legend = null)
     {
         $dataSet = new DataSet\DataSet();
 
-        if ($colorName) {
-            $dataSet->setColor(new Component\Color($colorName));
+        if (count($colorNames) == 1) {
+            $dataSet->setColor(new Component\Color(current($colorNames)));
         } elseif ($this->defaultColor) {
             $dataSet->setColor($this->defaultColor);
+        } elseif ($this->defaultColorCollection) {
+            $dataSet->setColorCollection($this->defaultColorCollection);
+        } else {
+
+            $colorCollection  = [];
+
+            foreach ($colorNames as $colorName) {
+                $colorCollection[] = new Component\Color($colorName);
+            }
+
+            $dataSet->setColorCollection($colorCollection);
         }
 
         if ($legend !== null) {
@@ -198,15 +228,15 @@ class ChartFactory
 
     /**
      * @param array $data
-     * @param string $colorName
+     * @param array $colorNames
      * @param string $legend
      * @return ChartFactory
      */
-    public function addPrimaryDataSet(array $data, $colorName = null, $legend = null)
+    public function addPrimaryDataSet(array $data, $colorNames = [], $legend = null)
     {
         $this->createBottomAxis(array_keys($data), 1);
 
-        return $this->addDataSet($data, $colorName, $legend);
+        return $this->addDataSet($data, $colorNames, $legend);
     }
 
     /**
@@ -301,7 +331,7 @@ class ChartFactory
         $chart = new LineChart();
 
         foreach ($this as $key => $value) {
-            if ($key == 'chart' || $key == 'defaultColor') {
+            if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection') {
                 continue;
             }
 
