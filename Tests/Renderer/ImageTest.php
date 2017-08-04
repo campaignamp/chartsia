@@ -131,9 +131,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $dataSetCollection = (new DataSet\DataSetCollection())
             ->add($dataSet);
 
-        $bottomAxis = (new Axis\Axis())
-            ->createLabels(array_keys($data), 1);
-
         $chart = (new Charts\LineChart())
             ->setType($type)
             ->setTitle($title)

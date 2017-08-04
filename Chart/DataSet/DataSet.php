@@ -3,7 +3,7 @@
 namespace Outspaced\ChartsiaBundle\Chart\DataSet;
 
 use Outspaced\ChartsiaBundle\Chart\DataSet\Legend;
-use Outspaced\ChartsiaBundle\Chart\Component\Color;
+use Outspaced\ChartsiaBundle\Chart\Component;
 
 class DataSet
 {

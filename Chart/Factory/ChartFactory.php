@@ -197,9 +197,9 @@ class ChartFactory
 
         if (count($colorNames) == 1) {
             $dataSet->setColor(new Component\Color(current($colorNames)));
-        } elseif ($this->defaultColor) {
+        } elseif (!empty($this->defaultColor)) {
             $dataSet->setColor($this->defaultColor);
-        } elseif ($this->defaultColorCollection) {
+        } elseif (!empty($this->defaultColorCollection)) {
             $dataSet->setColorCollection($this->defaultColorCollection);
         } else {
 
