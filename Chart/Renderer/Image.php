@@ -271,16 +271,35 @@ class Image
         $data = [];
         $lineColors = [];
         $legendLabels = [];
+        $colorCollections = [];
 
         foreach ($chart->getDataSetCollection() as $dataSet) {
 
             $data[] = implode(',', $dataSet->getData());
 
+            // Line colours
             $lineColors[] = $this->renderColor($dataSet->getColor());
 
             if ($legend = $dataSet->getLegend()) {
                 $legendLabels[] = urlencode($legend->getLabel());
             }
+
+            // Colour collections
+            if ($colorCollection = $dataSet->getColorCollection()) {
+
+                $tmpColorCollection = [];
+
+                foreach ($colorCollection as $dataSetColor) {
+                    $tmpColorCollection[] = $this->renderColor($dataSetColor);
+                }
+
+                $colorCollections[] = implode('|', $tmpColorCollection);
+            }
+
+            if ($legend = $dataSet->getLegend()) {
+                $legendLabels[] = urlencode($legend->getLabel());
+            }
+
         }
 
         // Dataset data
@@ -288,6 +307,10 @@ class Image
 
         $url .= $this->renderLineColors($lineColors);
         $url .= $this->renderLegendLabels($legendLabels);
+
+        if (!empty($colorCollections)) {
+            $url .= 'chco=' . implode(',', $colorCollections).'&';
+        }
 
         return $url;
     }

@@ -20,6 +20,11 @@ class DataSet
     protected $legend;
 
     /**
+     * @var Component\Color[]
+     */
+    protected $colorCollection = [];
+
+    /**
      * Overwrites the data to value in $data
      *
      * @param  array $data
@@ -73,4 +78,24 @@ class DataSet
     {
         return $this->legend;
     }
+
+    /**
+     * @param  Component\Color[] $colorCollection
+     * @return self
+     */
+    public function setColorCollection(array $colorCollection)
+    {
+        $this->colorCollection = $colorCollection;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Color[]
+     */
+    public function getColorCollection()
+    {
+        return $this->colorCollection;
+    }
+
 }

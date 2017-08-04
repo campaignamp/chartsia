@@ -84,6 +84,9 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Provide me pie!
+     *
+     * @return string[][]
      */
     public function providerPieChart()
     {
@@ -122,7 +125,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
         $dataSet = (new DataSet\DataSet())
             ->setData($data)
-//             ->setColorCollection($colorCollection)
+            ->setColorCollection($colorCollection)
             ->setLegend(new DataSet\Legend('Set 2'));
 
         $dataSetCollection = (new DataSet\DataSetCollection())
@@ -311,10 +314,22 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerPieChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testPieChartRenderContainsColorSet($chart)
+    public function testPieChartRenderContainsChartType($chart)
     {
         $this->assertStringContainsOnce(
             'cht=p',
+            $chart
+        );
+    }
+
+    /**
+     * @dataProvider providerPieChart
+     * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
+     */
+    public function testPieChartRenderContainsColorSet($chart)
+    {
+        $this->assertStringContainsOnce(
+            'chco=0000FF|00FF00|FF0000|FF00FF|FFFF00',
             $chart
         );
     }
