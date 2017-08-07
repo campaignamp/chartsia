@@ -233,10 +233,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsAxisLabels()
+    public function testRenderContainsBottomAxisLabels()
     {
         $this->assertStringContainsOnce(
-            'chxl=0:|02/04|09/04|16/04|04/06|11/06|',
+            'chxl=|0:|02/04|09/04|16/04|04/06|11/06',
             $this->renderedChart
         );
     }

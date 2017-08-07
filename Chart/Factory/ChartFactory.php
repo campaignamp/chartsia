@@ -108,7 +108,6 @@ class ChartFactory
         return $this;
     }
 
-
     /**
      * @param  string
      * @param  string
@@ -147,10 +146,6 @@ class ChartFactory
     }
 
     /**
-     * @param  int
-     * @param  int
-     * @param  int
-     * @param  int
      * @param integer $left
      * @param integer $bottom
      * @param integer $right
@@ -236,6 +231,8 @@ class ChartFactory
     {
         $this->createBottomAxis(array_keys($data), 1);
 
+        $this->createLeftAxis();
+
         return $this->addDataSet($data, $colorNames, $legend);
     }
 
@@ -260,6 +257,10 @@ class ChartFactory
     public function createLeftAxis(array $labels = [], $labelsStep = 1, $gridlinesStepSize = 0, $gridlinesOffset = 0)
     {
         $this->leftAxis = $this->createAxis($labels, $labelsStep, $gridlinesStepSize, $gridlinesOffset);
+
+        if (empty($labels)) {
+            $this->leftAxis->setAutoLabel(true);
+        }
 
         return $this;
     }

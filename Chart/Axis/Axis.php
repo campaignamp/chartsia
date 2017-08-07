@@ -177,4 +177,21 @@ class Axis
 
         return $this;
     }
+
+    /**
+     * @var bool
+     */
+    protected $autoLabel;
+
+    public function setAutoLabel($autoLabel)
+    {
+        $this->autoLabel = $autoLabel;
+
+        return $this;
+    }
+
+    public function getAutoLabel()
+    {
+        return $this->autoLabel;
+    }
 }

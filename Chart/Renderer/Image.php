@@ -211,7 +211,7 @@ class Image
             $urlData .= 'chxl=';
 
             foreach ($labels as $labelKey => $labelValue) {
-                $urlData .= $labelKey.':|'.$labelValue.'|';
+                $urlData .= '|' . $labelKey . ':|' . $labelValue;
             }
 
             $urlData .= '&';
@@ -303,15 +303,35 @@ class Image
         }
 
         // Dataset data
-        $url .= 'chd=t:'.implode('|', $data).'&';
+        $url .= 'chd=t:'.implode('|', $data) . '&';
 
         $url .= $this->renderLineColors($lineColors);
         $url .= $this->renderLegendLabels($legendLabels);
 
         if (!empty($colorCollections)) {
-            $url .= 'chco=' . implode(',', $colorCollections).'&';
+            $url .= 'chco=' . implode(',', $colorCollections) . '&';
+        }
+
+        // Auto-scale?
+        if ($this->isAutoScale($chart)) {
+            $url .= 'chds=a&';
         }
 
         return $url;
+    }
+
+    /**
+     * @param Charts\Chart $chart
+     * @return boolean
+     */
+    protected function isAutoScale(Charts\LineChart $chart)
+    {
+        if ($leftAxis = $chart->getLeftAxis()) {
+            if ($leftAxis->getAutoLabel()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
