@@ -40,7 +40,7 @@ class Image
             return '';
         }
 
-        return 'chs='.implode('x', $size->getDimensions()).'&';
+        return 'chs=' . implode('x', $size->getDimensions()) . '&';
     }
 
     /**
@@ -53,7 +53,7 @@ class Image
             return '';
         }
 
-        return 'chma='.implode(',', $margin->getDimensions()).'&';
+        return 'chma=' . implode(',', $margin->getDimensions()) . '&';
     }
 
     /**
@@ -66,7 +66,7 @@ class Image
             return '';
         }
 
-        return 'chdl='.implode('|', $legendLabels).'&';
+        return 'chdl=' . implode('|', $legendLabels) . '&';
     }
 
     /**
@@ -81,7 +81,7 @@ class Image
             return '';
         }
 
-        return 'chco='.implode(',', $lineColors).'&';
+        return 'chco=' . implode(',', $lineColors) . '&';
     }
 
     /**
@@ -94,10 +94,10 @@ class Image
             return '';
         }
 
-        $url = 'chtt='.urlencode($title->getTitle()).'&';
+        $url = 'chtt=' . urlencode($title->getTitle()) . '&';
 
         if ($title->getColor() !== null) {
-            $url .= 'chts='.$title->getColor()->getColor().'&';
+            $url .= 'chts=' . $title->getColor()->getColor() . '&';
         }
 
         return $url;
@@ -114,7 +114,7 @@ class Image
         }
 
         //chdlp=<opt_position>|<opt_label_order>
-        return 'chdls='.$this->renderColor($chartLegend->getColor()).','.$chartLegend->getFontSize().'&';
+        return 'chdls=' . $this->renderColor($chartLegend->getColor()) . ',' . $chartLegend->getFontSize() . '&';
     }
 
     /**
@@ -175,7 +175,7 @@ class Image
 
                     foreach ($labelTings as $label) {
                         $labelTexts[] = $label->getLabel();
-                        $positionTings[]  = $label->getPosition();
+                        $positionTings[] = $label->getPosition();
                     }
 
                     $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
@@ -204,7 +204,7 @@ class Image
         }
 
         // Add the defined axes to the URL
-        $urlData = 'chxt='.implode(',', array_values($actualAxes)).'&';
+        $urlData = 'chxt=' . implode(',', array_values($actualAxes)) . '&';
 
         // Add the defined labels to the URL
         if (!empty($labels)) {
@@ -221,7 +221,7 @@ class Image
         if (!empty($positions)) {
             $urlData .= 'chxp=';
             foreach ($positions as $positionKey => $positionValue) {
-                $urlData .= $positionKey.','.$positionValue.'|';
+                $urlData .= $positionKey . ',' . $positionValue . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
@@ -303,7 +303,7 @@ class Image
         }
 
         // Dataset data
-        $url .= 'chd=t:'.implode('|', $data) . '&';
+        $url .= 'chd=t:' . implode('|', $data) . '&';
 
         $url .= $this->renderLineColors($lineColors);
         $url .= $this->renderLegendLabels($legendLabels);
