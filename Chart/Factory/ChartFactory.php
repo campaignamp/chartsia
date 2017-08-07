@@ -109,19 +109,17 @@ class ChartFactory
     }
 
     /**
-     * @param  string
-     * @param  string
      * @param string $title
-     * @param string $colorName
+     * @param string $titleColorName
      * @return ChartFactory
      */
-    public function createTitle($title, $colorName)
+    public function createTitle($title, $titleColorName)
     {
         $this->title = (new Config\Title())
             ->setTitle($title);
 
-        if ($colorName) {
-            $this->title->setColor(new Component\Color($colorName));
+        if ($titleColorName) {
+            $this->title->setColor(new Component\Color($titleColorName));
         } elseif ($this->defaultColor) {
             $this->title->setColor($this->defaultColor);
         }
@@ -130,8 +128,6 @@ class ChartFactory
     }
 
     /**
-     * @param  int
-     * @param  int
      * @param integer $height
      * @param integer $width
      * @return ChartFactory
