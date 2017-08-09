@@ -70,6 +70,8 @@ class ChartFactory
     protected $topAxis;
 
     /**
+     * Type should probably go into the constructor
+     *
      * @param  string $type
      * @return self
      */
@@ -223,10 +225,13 @@ class ChartFactory
      */
     public function addPrimaryDataSet(array $data, $colorNames = [], $legend = null)
     {
-        $this->createBottomAxis(array_keys($data), 1);
-
-        $this->createLeftAxis();
-
+        if ($this->type->getType() == 'bhs') {
+            $this->createBottomAxis();
+            $this->createLeftAxis(array_keys($data), 1);
+        } else {
+            $this->createBottomAxis(array_keys($data), 1);
+            $this->createLeftAxis();
+        }
         return $this->addDataSet($data, $colorNames, $legend);
     }
 

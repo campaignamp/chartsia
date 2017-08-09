@@ -236,7 +236,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function testRenderContainsBottomAxisLabels()
     {
         $this->assertStringContainsOnce(
-            'chxl=|0:|02/04|09/04|16/04|04/06|11/06',
+            'chxl=|0:|02%2F04%7C09%2F04%7C16%2F04%7C04%2F06%7C11%2F0',
             $this->renderedChart
         );
     }

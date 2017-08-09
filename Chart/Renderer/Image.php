@@ -211,7 +211,7 @@ class Image
             $urlData .= 'chxl=';
 
             foreach ($labels as $labelKey => $labelValue) {
-                $urlData .= '|' . $labelKey . ':|' . $labelValue;
+                $urlData .= '|' . $labelKey . ':|' . urlencode($labelValue);
             }
 
             $urlData .= '&';
