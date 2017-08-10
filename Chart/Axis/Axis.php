@@ -163,7 +163,7 @@ class Axis
         $labels = [];
         $labelSetCount = count($labelSet);
 
-        for ($i = 0 ; $i < $labelSetCount ; $i++) {
+        for ($i = 0; $i < $labelSetCount; $i++) {
             if ($step > 1) {
                 if ($i % $step) {
                     $labelSet[$i] = '';

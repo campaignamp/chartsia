@@ -197,7 +197,7 @@ class Margin
 
         if ($this->legendWidth) {
             // Fill with a null value if only the width has been specified
-            if ( ! $this->legendHeight) {
+            if (!$this->legendHeight) {
                 $return[] = NULL;
             }
 

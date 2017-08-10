@@ -139,7 +139,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             ->setLegend($legend)
             ->setDataSetCollection($dataSetCollection);
 
-       $return = (new Renderer\Image())
+        $return = (new Renderer\Image())
             ->render($chart);
 
         return [[$return]];

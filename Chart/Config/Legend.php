@@ -70,7 +70,7 @@ class Legend
      */
     public function setFontSize($fontSize)
     {
-        if ( ! is_int($fontSize)) {
+        if (!is_int($fontSize)) {
             throw new \InvalidArgumentException('Legend fontSize must be an int');
         }
 

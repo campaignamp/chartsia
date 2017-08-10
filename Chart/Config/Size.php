@@ -63,7 +63,7 @@ class Size
      */
     public function setWidth($width)
     {
-        if ( ! is_int($width)) {
+        if (!is_int($width)) {
             throw new \InvalidArgumentException('Size width must be an int');
         }
 
