@@ -27,8 +27,8 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers DataSet\DataSet::setData
-     * @covers DataSet\DataSet::getData
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setData
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getData
      */
     public function testSetData()
     {
@@ -42,8 +42,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers DataSet\DataSet::addData
-     * @todo   Implement testAddData().
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::addData
      */
     public function testAddData()
     {
@@ -61,8 +60,8 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers DataSet\DataSet::setColorCollection
-     * @covers DataSet\DataSet::getColorCollection
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setColorCollection
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getColorCollection
      */
     public function testSetColorCollection()
     {
@@ -77,9 +76,8 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers DataSet\DataSet::setLegend
-     * @covers DataSet\DataSet::getLegend
-     * @todo   Implement testSetLegend().
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setLegend
+     * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getLegend
      */
     public function testSetLegend()
     {
