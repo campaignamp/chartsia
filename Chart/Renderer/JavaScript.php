@@ -163,7 +163,7 @@ class JavaScript
         }
 
         // If the array doesn't have any non-empty elements, then return an empty array
-        if ( ! array_filter($legends)) {
+        if (!array_filter($legends)) {
             return [];
         }
 

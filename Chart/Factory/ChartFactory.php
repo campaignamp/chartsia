@@ -212,7 +212,7 @@ class ChartFactory
             $dataSet->setColorCollection($this->defaultColorCollection);
         } else {
 
-            $colorCollection  = [];
+            $colorCollection = [];
 
             foreach ($colorNames as $colorName) {
                 $colorCollection[] = new Component\Color($colorName);
