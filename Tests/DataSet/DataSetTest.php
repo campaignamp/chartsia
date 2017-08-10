@@ -28,26 +28,17 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers DataSet\DataSet::setData
-     * @todo   Implement testSetData().
+     * @covers DataSet\DataSet::getData
      */
     public function testSetData()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
+        $data = ['one', 'two', 'three'];
 
-    /**
-     * @covers DataSet\DataSet::getData
-     * @todo   Implement testGetData().
-     */
-    public function testGetData()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->object->setData($data);
+
+        $result = $this->object->getData($data);
+
+        $this->assertEquals($data, $result);
     }
 
     /**
@@ -56,33 +47,48 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddData()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $data = ['one', 'two', 'three'];
+
+        $this->object->setData($data);
+
+        $this->object->addData('four');
+
+        $result = $this->object->getData($data);
+
+        $expected = ['one', 'two', 'three', 'four'];
+
+        $this->assertEquals($expected, $result);
     }
 
     /**
+     * @covers DataSet\DataSet::setColorCollection
+     * @covers DataSet\DataSet::getColorCollection
+     */
+    public function testSetColorCollection()
+    {
+        $data = ['red', 'white', 'blue'];
+
+        $this->object->setColorCollection($data);
+
+        $result = $this->object->getColorCollection();
+
+        $this->assertEquals($data, $result);
+    }
+
+
+    /**
      * @covers DataSet\DataSet::setLegend
+     * @covers DataSet\DataSet::getLegend
      * @todo   Implement testSetLegend().
      */
     public function testSetLegend()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
+        $legend = new DataSet\Legend();
 
-    /**
-     * @covers DataSet\DataSet::getLegend
-     * @todo   Implement testGetLegend().
-     */
-    public function testGetLegend()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->object->setLegend($legend);
+
+        $result = $this->object->getLegend();
+
+        $this->assertEquals($legend, $result);
     }
 }

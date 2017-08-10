@@ -2,7 +2,6 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\DataSet;
 
-use Outspaced\ChartsiaBundle\Chart\DataSet\Legend;
 use Outspaced\ChartsiaBundle\Chart\Component;
 
 class DataSet
@@ -50,7 +49,7 @@ class DataSet
     }
 
     /**
-     * @param  int (I think?)
+     * @param  mixed
      * @return self
      */
     public function addData($data)
