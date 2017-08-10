@@ -334,8 +334,8 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider providerPieChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
+     * @dataProvider providerPieChart
      */
     public function testPieChartRenderContainsColorSet($chart)
     {
