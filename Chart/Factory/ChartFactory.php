@@ -15,6 +15,11 @@ use Outspaced\ChartsiaBundle\Chart\Type;
 class ChartFactory
 {
     /**
+     * @var Type\Type
+     */
+    protected $type;
+
+    /**
      * @var Component\Color
      */
     protected $defaultColor;
