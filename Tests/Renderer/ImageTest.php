@@ -2,7 +2,6 @@
 
 namespace Outspaced\ChartsiaBundle\Tests\Chart\Renderer;
 
-use Outspaced\ChartsiaBundle\Chart\Renderer\Image;
 use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
@@ -25,10 +24,8 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
     /**
      */
-    protected function setUp()
+    public function providerLineChart()
     {
-        $this->object = new Image();
-
         $type = new Type\LineChart();
 
         $title = (new Config\Title())
@@ -78,9 +75,11 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             ->setLeftAxis($leftAxis)
             ->setBottomAxis($bottomAxis);
 
-        $renderer = new Renderer\Image();
 
-        $this->renderedChart = $renderer->render($chart);
+        $return = (new Renderer\Image())
+            ->render($chart);
+
+        return [[$return]];
     }
 
 
@@ -151,160 +150,174 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanBeInstantiated()
     {
-        $this->assertInstanceOf(Image::class, $this->object);
+        $this->assertInstanceOf(Renderer\Image::class, new Renderer\Image());
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsUrl()
+    public function testRenderContainsUrl($chart)
     {
         $this->assertStringContainsOnce(
             'http://chart.googleapis.com/chart',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsChartType()
+    public function testRenderContainsChartType($chart)
     {
         $this->assertStringContainsOnce(
             'cht=lc',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsChartSize()
+    public function testRenderContainsChartSize($chart)
     {
         $this->assertStringContainsOnce(
             'chs=800x300',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsMargins()
+    public function testRenderContainsMargins($chart)
     {
         $this->assertStringContainsOnce(
             'chma=50,80,20,100',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsLegend()
+    public function testRenderContainsLegend($chart)
     {
         $this->assertStringContainsOnce(
             'chdls=FFFF44,23',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsTitleColor()
+    public function testRenderContainsTitleColor($chart)
     {
         $this->assertStringContainsOnce(
             'chts=00FF00&',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsAxes()
+    public function testRenderContainsAxes($chart)
     {
         $this->assertStringContainsOnce(
             'chxt=x,y',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsBottomAxisLabels()
+    public function testRenderContainsBottomAxisLabels($chart)
     {
         $this->assertStringContainsOnce(
             'chxl=|0:|02%2F04%7C09%2F04%7C16%2F04%7C04%2F06%7C11%2F0',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsAxisPositions()
+    public function testRenderContainsAxisPositions($chart)
     {
         $this->assertStringContainsOnce(
             'chxp=0,,,,,',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsGridlines()
+    public function testRenderContainsGridlines($chart)
     {
         $this->assertStringContainsOnce(
             'chg=0,20,0,0,0,0',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsDataSet()
+    public function testRenderContainsDataSet($chart)
     {
         $this->assertStringContainsOnce(
             'chd=t:63,72,91,84,97',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsLineColours()
+    public function testRenderContainsLineColours($chart)
     {
         $this->assertStringContainsOnce(
             'chco=0000FF',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsDataSetLabel()
+    public function testRenderContainsDataSetLabel($chart)
     {
         $this->assertStringContainsOnce(
             'chdl=Set+2',
-            $this->renderedChart
+            $chart
         );
     }
 
     /**
+     * @dataProvider providerLineChart
      * @covers Outspaced\ChartsiaBundle\Chart\Renderer\Image::render
      */
-    public function testRenderContainsTitle()
+    public function testRenderContainsTitle($chart)
     {
         $this->assertStringContainsOnce(
             'chtt=Wahey+what+a+chart',
-            $this->renderedChart
+            $chart
         );
     }
 
@@ -355,5 +368,4 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             );
         }
     }
-
 }
