@@ -3,11 +3,11 @@
 namespace Outspaced\ChartsiaBundle\Chart\Factory;
 
 use Outspaced\ChartsiaBundle\Chart\Axis;
-use Outspaced\ChartsiaBundle\Chart\Charts\LineChart;
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\Type;
 
 /**
  * Factory to make charts and the components, without having to manually create all the objects
@@ -77,7 +77,20 @@ class ChartFactory
      */
     public function createType($type)
     {
-        $this->type = new Config\Type($type);
+        switch ($type) {
+            case 'lc':
+            case 'line_chart':
+                $this->type = new Type\LineChart();
+                break;
+            case 'p':
+            case 'pie_chart':
+                $this->type = new Type\PieChart();
+                break;
+            case 'bhs':
+            case 'bar_chart':
+                $this->type = new Type\BarChart();
+                break;
+        }
 
         return $this;
     }
@@ -225,13 +238,15 @@ class ChartFactory
      */
     public function addPrimaryDataSet(array $data, $colorNames = [], $legend = null)
     {
-        if ($this->type->getType() == 'bhs') {
+        // Bar charts default to bars running left-right
+        if ($this->type->getSlug() == 'bar_chart') {
             $this->createBottomAxis();
             $this->createLeftAxis(array_keys($data), 1);
         } else {
             $this->createBottomAxis(array_keys($data), 1);
             $this->createLeftAxis();
         }
+
         return $this->addDataSet($data, $colorNames, $legend);
     }
 
@@ -324,11 +339,11 @@ class ChartFactory
     }
 
     /**
-     * @return \Outspaced\ChartsiaBundle\Chart\Charts\LineChart
+     * @return Charts\Chart
      */
     public function getPreparedChart()
     {
-        $chart = new LineChart();
+        $chart = new Charts\Chart();
 
         foreach ($this as $key => $value) {
             if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection') {

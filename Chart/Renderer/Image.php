@@ -6,6 +6,7 @@ use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\Axis;
+use Outspaced\ChartsiaBundle\Chart\Type;
 
 /**
  * This library has been deprecated by Google, although the API is still available
@@ -18,16 +19,30 @@ class Image
     const BASE_URL = 'http://chart.googleapis.com/chart?';
 
     /**
-     * @param Config\Type $type
+     * @param Type\Type $type
      * @return string
      */
-    protected function renderType(Config\Type $type = null)
+    protected function renderType(Type\Type $type = null)
     {
         if ($type === null) {
             return '';
         }
 
-        return 'cht=' . $type->getType() . '&';
+        switch ($type->getSlug()) {
+            case 'line_chart':
+                $typeName = 'lc';
+                break;
+            case 'bar_chart':
+                $typeName = 'bhs';
+                break;
+            case 'pie_chart':
+                $typeName = 'p';
+                break;
+            default:
+                $typeName = '';
+        }
+
+        return 'cht=' . $typeName . '&';
     }
 
     /**
@@ -134,10 +149,10 @@ class Image
     }
 
     /**
-     * @param Charts\LineChart $chart
+     * @param Charts\Chart $chart
      * @return string
      */
-    protected function renderAxes(Charts\LineChart $chart)
+    protected function renderAxes(Charts\Chart $chart)
     {
         $possibleAxisKeys = [
             't' => 'getTopAxis',
@@ -256,7 +271,7 @@ class Image
      * @param  Charts\BaseChart $chart
      * @return string
      */
-    public function render(Charts\LineChart $chart)
+    public function render(Charts\Chart $chart)
     {
         $url = self::BASE_URL;
 
@@ -324,7 +339,7 @@ class Image
      * @param Charts\Chart $chart
      * @return boolean
      */
-    protected function isAutoScale(Charts\LineChart $chart)
+    protected function isAutoScale(Charts\Chart $chart)
     {
         if ($leftAxis = $chart->getLeftAxis()) {
             if ($leftAxis->getAutoLabel()) {

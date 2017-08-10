@@ -6,11 +6,12 @@ use Outspaced\ChartsiaBundle\Chart\Axis\Axis;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
 use Outspaced\ChartsiaBundle\Chart\Element;
+use Outspaced\ChartsiaBundle\Chart\Type;
 
-class LineChart
+class Chart
 {
     /**
-     * @var Config\Type
+     * @var Type\Type
      */
     protected $type;
 
@@ -65,10 +66,10 @@ class LineChart
     protected $rightAxis;
 
     /**
-     * @param  Config\Type $type
-     * @return LineChart
+     * @param  Type\Type $type
+     * @return Chart
      */
-    public function setType(Config\Type $type)
+    public function setType(Type\Type $type)
     {
         $this->type = $type;
 

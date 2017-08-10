@@ -9,6 +9,7 @@ use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
 use Outspaced\ChartsiaBundle\Chart\Renderer;
 use Outspaced\ChartsiaBundle\Chart\Axis;
+use Outspaced\ChartsiaBundle\Chart\Type;
 
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +29,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->object = new Image();
 
-        $type = (new Config\Type('lc'));
+        $type = new Type\LineChart();
 
         $title = (new Config\Title())
             ->setTitle('Wahey what a chart')
@@ -67,7 +68,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $leftAxis = (new Axis\Axis())
             ->setGridlines(new Axis\Gridlines(20));
 
-        $chart = (new Charts\LineChart())
+        $chart = (new Charts\Chart())
             ->setType($type)
             ->setTitle($title)
             ->setSize($size)
@@ -90,7 +91,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function providerPieChart()
     {
-        $type = (new Config\Type('p'));
+        $type = new Type\PieChart();
 
         $title = (new Config\Title())
             ->setTitle('Wahey what a chart')
@@ -131,7 +132,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $dataSetCollection = (new DataSet\DataSetCollection())
             ->add($dataSet);
 
-        $chart = (new Charts\LineChart())
+        $chart = (new Charts\Chart())
             ->setType($type)
             ->setTitle($title)
             ->setSize($size)
