@@ -2,6 +2,7 @@
 
 namespace Outspaced\ChartsiaBundle\Chart\Renderer;
 
+use Outspaced\ChartsiaBundle\Chart\Axis;
 use Outspaced\ChartsiaBundle\Chart\Charts;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\Component;
@@ -11,10 +12,32 @@ use Outspaced\ChartsiaBundle\Chart\DataSet\DataSetCollection;
 class JavaScript
 {
     /**
+     * @var \Twig_Environment
+     */
+    protected $engine;
+
+    /**
+     * @param \Twig_Environment $engine
+     */
+    public function __construct(\Twig_Environment $engine)
+    {
+        $this->engine = $engine;
+    }
+
+    /**
+     * @param Charts\Chart $chart
+     * @return string
+     */
+    public function render(Charts\Chart $chart)
+    {
+        return $this->renderWithTwig($chart, $this->engine);
+    }
+
+    /**
      * @param Charts\BaseChart $chart
      * @param \Twig_Environment $engine
      */
-    public function renderWithTwig(Charts\BaseChart $chart, \Twig_Environment $engine)
+    public function renderWithTwig(Charts\Chart $chart, \Twig_Environment $engine)
     {
         $vars = [
             'title' => $this->renderTitle($chart->getTitle()),
@@ -25,7 +48,10 @@ class JavaScript
 
             'chart_legend' => $this->renderChartLegend($chart->getLegend()),
 
-            'data_sets' => $this->renderDataSets($chart->getDataSetCollection()),
+            'data_sets' => $this->renderDataSets(
+                $chart->getDataSetCollection(),
+                $chart->getBottomAxis()
+            ),
         ];
 
         $return = $engine->render(
@@ -102,48 +128,32 @@ class JavaScript
     }
 
     /**
-     * This will transform the datasets into an array
+     * This will transform the datasets into an array, where the hAxis label is the first element of each row
+     *
+     * eg:
+     *
+     * $data[0] = ['January', 10, 20];
+     * $data[1] = ['February', 35, 45];
      *
      * @param DataSet\DataSetCollection $dataSetCollection
      */
-    protected function renderDataSets(DataSet\DataSetCollection $dataSetCollection = null)
+    protected function renderDataSets(DataSet\DataSetCollection $dataSetCollection, Axis\Axis $bottomAxis)
     {
-        if ($dataSetCollection === null) {
-            return [];
+        $data = [];
+
+        // First put the labels into the resulting array
+        foreach ($bottomAxis->getLabels() as $label) {
+            $data[][] = $label->getLabel();
         }
 
-        $return = [];
-
-        if ($legends = $this->renderDataSetLegends($dataSetCollection)) {
-            $return[] = $legends;
-        }
-
-        // Convert to arrays
-        $max = 0;
-        $dataSetsArrays = [];
-
+        // Now add the data sets
         foreach ($dataSetCollection as $dataSet) {
-            $max = max([count($dataSet->getData()), $max]);
-
-            $dataSetsArrays[] = $dataSet->getData();
-        }
-
-        $restructuredDataSetsArrays = [];
-
-        // Restructure the datasets so that corresponding values are in the same subarray
-        foreach ($dataSetsArrays as $i => $dataSetsArray) {
-            for ($i = 0; $i < $max; $i++) {
-
-                if (!isset($restructuredDataSetsArrays[$i])) {
-                    $restructuredDataSetsArrays[$i] = [''];
-                }
-
-                $restructuredDataSetsArrays[$i][] = $dataSetsArray[$i];
+            foreach ($dataSet->getData() as $dataIndex => $dataItem) {
+                $data[$dataIndex][] = $dataItem;
             }
         }
 
-        // Add the headers before returning
-        return array_merge($return, $restructuredDataSetsArrays);
+        return $data;
     }
 
     /**

@@ -200,7 +200,7 @@ class ChartFactory
      * @param string $legend
      * @return ChartFactory
      */
-    public function addDataSet(array $data, $colorNames = [], $legend = null)
+    public function addDataSet(array $data, array $colorNames = [], $legend = null)
     {
         $dataSet = new DataSet\DataSet();
 
@@ -225,9 +225,11 @@ class ChartFactory
             $dataSet->setLegend(new DataSet\Legend($legend));
         }
 
-        foreach ($data as $item) {
-            $dataSet->addData($item);
-        }
+
+        $dataSet->setData($data);
+//         foreach ($data as $item) {
+//             $dataSet->addData($item);
+//         }
 
         $this->getDataSetCollection()
             ->add($dataSet);
