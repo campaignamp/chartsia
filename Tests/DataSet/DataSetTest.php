@@ -3,6 +3,7 @@
 namespace Outspaced\ChartsiaBundle\Tests\DataSet;
 
 use Outspaced\ChartsiaBundle\Chart\DataSet;
+use Outspaced\ChartsiaBundle\Chart\Component\Color;
 
 class DataSetTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,7 +37,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
 
         $this->object->setData($data);
 
-        $result = $this->object->getData($data);
+        $result = $this->object->getData();
 
         $this->assertEquals($data, $result);
     }
@@ -52,7 +53,7 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
 
         $this->object->addData('four');
 
-        $result = $this->object->getData($data);
+        $result = $this->object->getData();
 
         $expected = ['one', 'two', 'three', 'four'];
 
@@ -60,12 +61,18 @@ class DataSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Thi
+     *
      * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::setColorCollection
      * @covers Outspaced\ChartsiaBundle\Chart\DataSet\DataSet::getColorCollection
      */
     public function testSetColorCollection()
     {
-        $data = ['red', 'white', 'blue'];
+        $data = [
+            new Color('red'),
+            new Color('white'),
+            new Color('blue')
+        ];
 
         $this->object->setColorCollection($data);
 

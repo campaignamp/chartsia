@@ -250,7 +250,7 @@ class ChartFactory
         if ($this->type->getSlug() == 'bar_chart') {
             $this->createBottomAxis();
 
-            // @todo this needs improvement
+            // This needs improvement - it doesn't make much sense at the moment
             $this->bottomAxis->createTopValuePositionOnly(max($data));
 
             $this->autoScale = true;
@@ -359,11 +359,7 @@ class ChartFactory
     {
         $chart = new Charts\Chart();
 
-        print '================ <br/>';
-
         foreach ($this as $key => $value) {
-
-            print "GO: " . $key . ' // ' . print_r($value, true) . '<br/>';
 
             if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection') {
                 continue;
@@ -377,8 +373,6 @@ class ChartFactory
 
             $chart->{$setMethod}($value);
         }
-
-//         exit('dsfhdsjfhdsjfhds');
 
         return $chart;
     }

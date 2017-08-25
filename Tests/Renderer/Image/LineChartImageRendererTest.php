@@ -2,16 +2,19 @@
 
 namespace Outspaced\ChartsiaBundle\Tests\Chart\Renderer\Image;
 
-use Outspaced\ChartsiaBundle\Chart\Component;
+use Outspaced\ChartsiaBundle\Chart\Axis;
 use Outspaced\ChartsiaBundle\Chart\Charts;
+use Outspaced\ChartsiaBundle\Chart\Component;
 use Outspaced\ChartsiaBundle\Chart\Config;
 use Outspaced\ChartsiaBundle\Chart\DataSet;
 use Outspaced\ChartsiaBundle\Chart\Renderer;
-use Outspaced\ChartsiaBundle\Chart\Axis;
 use Outspaced\ChartsiaBundle\Chart\Type;
+use Outspaced\ChartsiaBundle\Tests\Traits;
 
 class LineChartImageRendererTest extends \PHPUnit_Framework_TestCase
 {
+    use Traits\AssertStringContainsOnce;
+
     /**
      * @var Image
      */
@@ -255,29 +258,5 @@ class LineChartImageRendererTest extends \PHPUnit_Framework_TestCase
             'chtt=Wahey+what+a+chart',
             $chart
         );
-    }
-
-    /**
-     * @param string $needle
-     * @param string $haystack
-     * @throws \PHPUnit_Framework_ExpectationFailedException
-     */
-    protected function assertStringContainsOnce($needle, $haystack)
-    {
-        $needle = preg_quote($needle, '/');
-
-        if (!preg_match_all('/(' . $needle . ')/', $haystack, $matches)) {
-            throw new \PHPUnit_Framework_ExpectationFailedException(
-                'String ' . $haystack . ' does not contain ' . $needle
-            );
-        }
-
-        $count = count($matches[1]);
-
-        if ($count != 1) {
-            throw new \PHPUnit_Framework_ExpectationFailedException(
-                'String ' . $haystack . ' contains ' . $needle . ' more than once: ' . $count . ' times'
-            );
-        }
     }
 }
