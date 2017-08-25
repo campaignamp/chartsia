@@ -189,12 +189,17 @@ class Image
                     $positionTings = [];
 
                     foreach ($labelTings as $label) {
-                        $labelTexts[] = $label->getLabel();
+                        $labelTexts[] = urlencode($label->getLabel());
                         $positionTings[] = $label->getPosition();
                     }
 
-                    $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
-                    $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode(',', $positionTings);
+                    if (array_filter($labelTexts)) {
+                        $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
+                    }
+
+                    if (array_filter($positionTings)) {
+                        $positions[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode(',', $positionTings);
+                    }
                 }
 
                 // Title
@@ -226,7 +231,7 @@ class Image
             $urlData .= 'chxl=';
 
             foreach ($labels as $labelKey => $labelValue) {
-                $urlData .= '|' . $labelKey . ':|' . urlencode($labelValue);
+                $urlData .= '|' . $labelKey . ':|' . $labelValue;
             }
 
             $urlData .= '&';

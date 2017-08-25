@@ -178,6 +178,16 @@ class Axis
         return $this;
     }
 
+    public function createTopValuePositionOnly($topValue)
+    {
+        $this->labels = [
+            new Label(null, 0),
+            new Label(null, $topValue)
+        ];
+
+        return $this;
+    }
+
     /**
      * @var bool
      */
