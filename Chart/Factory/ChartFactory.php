@@ -22,6 +22,11 @@ class ChartFactory
     /**
      * @var Component\Color
      */
+    protected $defaultAxisColor;
+
+    /**
+     * @var Component\Color
+     */
     protected $defaultColor;
 
     /**
@@ -112,6 +117,17 @@ class ChartFactory
     public function createDefaultColor($colorName)
     {
         $this->defaultColor = new Component\Color($colorName);
+
+        return $this;
+    }
+
+    /**
+     * @param string $colorName
+     * @return ChartFactory
+     */
+    public function createDefaultAxisColor($colorName)
+    {
+        $this->defaultAxisColor = new Component\Color($colorName);
 
         return $this;
     }
@@ -349,6 +365,10 @@ class ChartFactory
             $axis->setGridlines(new Axis\Gridlines($gridlinesStepSize, $gridlinesOffset));
         }
 
+        if ($this->defaultAxisColor) {
+            $axis->setColor($this->defaultAxisColor);
+        }
+
         return $axis;
     }
 
@@ -361,7 +381,8 @@ class ChartFactory
 
         foreach ($this as $key => $value) {
 
-            if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection') {
+            // This sucks!
+            if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection' || $key == 'defaultAxisColor') {
                 continue;
             }
 

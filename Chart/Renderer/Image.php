@@ -164,6 +164,7 @@ class Image
         $actualAxes = [];
         $positions  = [];
         $labels     = [];
+        $axisColors = [];
         $gridlines  = [
             'x' => [
                 'step' => 0,
@@ -220,6 +221,10 @@ class Image
                     }
                 }
 
+                // Axis colouring
+                if ($axisColor = $axis->getColor()) {
+                    $axisColors[$this->getCurrentKeyFromAxesArray($actualAxes)] = $axisColor->getColor();
+                }
             }
         }
 
@@ -242,6 +247,16 @@ class Image
             $urlData .= 'chxp=';
             foreach ($positions as $positionKey => $positionValue) {
                 $urlData .= $positionKey . ',' . $positionValue . '|';
+            }
+            $urlData = rtrim($urlData, "|");
+            $urlData .= '&';
+        }
+
+        // Add the defined positions to the URL
+        if (!empty($axisColors)) {
+            $urlData .= 'chxs=';
+            foreach ($axisColors as $axisColorKey => $axisColor) {
+                $urlData .= $axisColorKey . ',' . $axisColor . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
@@ -305,6 +320,7 @@ class Image
             }
 
             // Colour collections
+            // These refer to the colours of the data representation - ie the line/bar/pie slice
             if ($colorCollection = $dataSet->getColorCollection()) {
 
                 $tmpColorCollection = [];
