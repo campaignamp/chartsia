@@ -346,6 +346,10 @@ class Image
      */
     protected function isAutoScale(Charts\Chart $chart)
     {
+        if ($chart->isAutoScale()) {
+            return true;
+        }
+
         if ($leftAxis = $chart->getLeftAxis()) {
             if ($leftAxis->getAutoLabel()) {
                 return true;

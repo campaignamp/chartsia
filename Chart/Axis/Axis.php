@@ -37,6 +37,11 @@ class Axis
     protected $color;
 
     /**
+     * @var bool
+     */
+    protected $autoLabel;
+
+    /**
      * @param  Label  $label
      * @return self
      */
@@ -178,6 +183,10 @@ class Axis
         return $this;
     }
 
+    /**
+     * @param  number $topValue
+     * @return self
+     */
     public function createTopValuePositionOnly($topValue)
     {
         $this->labels = [
@@ -189,10 +198,9 @@ class Axis
     }
 
     /**
-     * @var bool
+     * @param  bool $autoLabel
+     * @return self
      */
-    protected $autoLabel;
-
     public function setAutoLabel($autoLabel)
     {
         $this->autoLabel = $autoLabel;
@@ -200,6 +208,9 @@ class Axis
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function getAutoLabel()
     {
         return $this->autoLabel;

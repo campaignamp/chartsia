@@ -66,6 +66,11 @@ class Chart
     protected $rightAxis;
 
     /**
+     * @var bool
+     */
+    protected $autoScale;
+
+    /**
      * @param  Type\Type $type
      * @return Chart
      */
@@ -274,6 +279,25 @@ class Chart
     public function getRightAxis()
     {
         return $this->rightAxis;
+    }
+
+    /**
+     * @param  bool $autoScale
+     * @return self
+     */
+    public function setAutoScale($autoScale)
+    {
+        $this->autoScale = $autoScale;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAutoScale()
+    {
+        return $this->autoScale;
     }
 
     /**

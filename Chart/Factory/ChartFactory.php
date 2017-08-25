@@ -75,6 +75,11 @@ class ChartFactory
     protected $topAxis;
 
     /**
+     * @var bool
+     */
+    protected $autoScale;
+
+    /**
      * Type should probably go into the constructor
      *
      * @param  string $type
@@ -225,11 +230,7 @@ class ChartFactory
             $dataSet->setLegend(new DataSet\Legend($legend));
         }
 
-
         $dataSet->setData($data);
-//         foreach ($data as $item) {
-//             $dataSet->addData($item);
-//         }
 
         $this->getDataSetCollection()
             ->add($dataSet);
@@ -248,6 +249,12 @@ class ChartFactory
         // Bar charts default to bars running left-right
         if ($this->type->getSlug() == 'bar_chart') {
             $this->createBottomAxis();
+
+            // @todo this needs improvement
+            $this->bottomAxis->createTopValuePositionOnly(max($data));
+
+            $this->autoScale = true;
+
             $this->createLeftAxis(array_keys($data), 1);
         } else {
             $this->createBottomAxis(array_keys($data), 1);
@@ -352,7 +359,12 @@ class ChartFactory
     {
         $chart = new Charts\Chart();
 
+        print '================ <br/>';
+
         foreach ($this as $key => $value) {
+
+            print "GO: " . $key . ' // ' . print_r($value, true) . '<br/>';
+
             if ($key == 'chart' || $key == 'defaultColor' || $key == 'defaultColorCollection') {
                 continue;
             }
@@ -365,6 +377,8 @@ class ChartFactory
 
             $chart->{$setMethod}($value);
         }
+
+//         exit('dsfhdsjfhdsjfhds');
 
         return $chart;
     }
