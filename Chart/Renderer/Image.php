@@ -161,10 +161,11 @@ class Image
             'r' => 'getRightAxis'
         ];
 
-        $actualAxes = [];
-        $positions  = [];
-        $labels     = [];
-        $axisColors = [];
+        $actualAxes     = [];
+        $positions      = [];
+        $labels         = [];
+        $axisColors     = [];
+        $axisFontSizes  = [];
         $gridlines  = [
             'x' => [
                 'step' => 0,
@@ -225,6 +226,11 @@ class Image
                 if ($axisColor = $axis->getColor()) {
                     $axisColors[$this->getCurrentKeyFromAxesArray($actualAxes)] = $axisColor->getColor();
                 }
+
+                // Axis font sizes
+                if ($fontSize = $axis->getFontSize()) {
+                    $axisFontSizes[$this->getCurrentKeyFromAxesArray($actualAxes)] = $axis->getFontSize();
+                }
             }
         }
 
@@ -252,11 +258,18 @@ class Image
             $urlData .= '&';
         }
 
-        // Add the defined positions to the URL
-        if (!empty($axisColors)) {
+        // Add the defined colours and font sizes to the URL
+        if (!empty($axisColors) || !empty($axisFontSizes)) {
             $urlData .= 'chxs=';
             foreach ($axisColors as $axisColorKey => $axisColor) {
-                $urlData .= $axisColorKey . ',' . $axisColor . '|';
+
+                if (isset($axisFontSizes[$axisColorKey])) {
+                    $axisFontSize = ',' . $axisFontSizes[$axisColorKey];
+                } else {
+                    $axisFontSize = '';
+                }
+
+                $urlData .= $axisColorKey . ',' . $axisColor . $axisFontSize . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
