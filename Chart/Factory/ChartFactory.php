@@ -397,4 +397,30 @@ class ChartFactory
 
         return $chart;
     }
+
+    /**
+     *
+     * @param int $fontSize
+     * @return self
+     */
+    public function setAxisFontSize($fontSize)
+    {
+        if ($this->topAxis) {
+            $this->topAxis->setFontSize($fontSize);
+        }
+
+        if ($this->bottomAxis) {
+            $this->bottomAxis->setFontSize($fontSize);
+        }
+
+        if ($this->leftAxis) {
+            $this->leftAxis->setFontSize($fontSize);
+        }
+
+        if ($this->rightAxis) {
+            $this->rightAxis->setFontSize($fontSize);
+        }
+
+        return $this;
+    }
 }

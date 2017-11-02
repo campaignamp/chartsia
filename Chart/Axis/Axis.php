@@ -42,6 +42,11 @@ class Axis
     protected $autoLabel;
 
     /**
+     * @var int
+     */
+    protected $fontSize = 12;
+
+    /**
      * @param  Label  $label
      * @return self
      */
@@ -214,5 +219,28 @@ class Axis
     public function getAutoLabel()
     {
         return $this->autoLabel;
+    }
+
+    /**
+     * @param int $fontSize
+     * @return self
+     */
+    public function setFontSize($fontSize)
+    {
+        if (!is_int($fontSize)) {
+            throw new \InvalidArgumentException('Axis fontSize must be an int');
+        }
+
+        $this->fontSize = $fontSize;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFontSize()
+    {
+        return $this->fontSize;
     }
 }
