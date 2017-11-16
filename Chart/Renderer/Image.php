@@ -242,6 +242,10 @@ class Image
             $urlData .= 'chxl=';
 
             foreach ($labels as $labelKey => $labelValue) {
+                
+                // remove any unique numbering
+                $labelKey = substr($labelKey, strpos($labelKey, '.'));
+                
                 $urlData .= '|' . $labelKey . ':|' . $labelValue;
             }
 
