@@ -276,8 +276,14 @@ class Image
                 } else {
                     $axisFontSize = '';
                 }
+                
+                if ($axisColorKey == 1) {
+                    $grouping = 'N*s*';
+                } else {
+                    $grouping = '';
+                }
 
-                $urlData .= $axisColorKey . 'N*s*,' . $axisColor . $axisFontSize . '|';
+                $urlData .= $axisColorKey . $grouping . ',' . $axisColor . $axisFontSize . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
