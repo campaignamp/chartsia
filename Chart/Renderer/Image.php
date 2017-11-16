@@ -269,7 +269,7 @@ class Image
                     $axisFontSize = '';
                 }
 
-                $urlData .= $axisColorKey . ',' . $axisColor . $axisFontSize . '|';
+                $urlData .= $axisColorKey . 'N*s*,' . $axisColor . $axisFontSize . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
