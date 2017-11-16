@@ -203,7 +203,7 @@ class Image
                             
                             // remove any unique indexing
                             if (strpos($text, '.')) {
-                                $text = substr($text, (strpos($text, ',') + 1));
+                                $text = substr($text, (strpos($text, '.') + 1));
                             }
                             
                             $filteredLabelTexts[] = $text;
