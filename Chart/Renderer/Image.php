@@ -201,7 +201,7 @@ class Image
                         
                         foreach ($labelTexts as $text) {
                             // remove any unique numbering
-                            $filteredLabelTexts[] = substr($text, strpos($text, '.'));
+                            $filteredLabelTexts[] = substr($text, (strpos($text, '.') + 1));
                         }
                         
                         $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $filteredLabelTexts);
