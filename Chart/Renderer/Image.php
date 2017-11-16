@@ -196,7 +196,15 @@ class Image
                     }
 
                     if (array_filter($labelTexts)) {
-                        $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $labelTexts);
+                        
+                        $filteredLabelTexts = [];
+                        
+                        foreach ($labelTexts as $text) {
+                            // remove any unique numbering
+                            $filteredLabelTexts[] = substr($text, strpos($text, '.'));
+                        }
+                        
+                        $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $filteredLabelTexts);
                     }
 
                     if (array_filter($positionTings)) {
@@ -242,10 +250,6 @@ class Image
             $urlData .= 'chxl=';
 
             foreach ($labels as $labelKey => $labelValue) {
-                
-                // remove any unique numbering
-                $labelKey = substr($labelKey, strpos($labelKey, '.'));
-                
                 $urlData .= '|' . $labelKey . ':|' . $labelValue;
             }
 
