@@ -200,8 +200,13 @@ class Image
                         $filteredLabelTexts = [];
                         
                         foreach ($labelTexts as $text) {
-                            // remove any unique numbering
-                            $filteredLabelTexts[] = substr($text, (strpos($text, '.') + 1));
+                            
+                            // remove any unique indexing
+                            if (strpos($text, '.')) {
+                                $text = substr($text, (strpos($text, ',') + 1));
+                            }
+                            
+                            $filteredLabelTexts[] = $text;
                         }
                         
                         $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $filteredLabelTexts);
@@ -276,14 +281,8 @@ class Image
                 } else {
                     $axisFontSize = '';
                 }
-                
-                if ($axisColorKey == 1) {
-                    $grouping = 'N*s*';
-                } else {
-                    $grouping = '';
-                }
 
-                $urlData .= $axisColorKey . $grouping . ',' . $axisColor . $axisFontSize . '|';
+                $urlData .= $axisColorKey . 'N*s*,' . $axisColor . $axisFontSize . '|';
             }
             $urlData = rtrim($urlData, "|");
             $urlData .= '&';
