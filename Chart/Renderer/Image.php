@@ -381,6 +381,19 @@ class Image
 
         return $url;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function renderAsBase64() 
+    {
+        $url = $this->render();
+        
+        $data = file_get_contents($url);
+        
+        return 'data:image/png;base64,' . base64_encode($data);
+    }
 
     /**
      * @param Charts\Chart $chart
