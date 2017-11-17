@@ -384,11 +384,12 @@ class Image
     
     /**
      * 
+     * @param  Charts\Chart $chart
      * @return string
      */
-    public function renderAsBase64() 
+    public function renderAsBase64(Charts\Chart $chart) 
     {
-        $url = $this->render();
+        $url = $this->render($chart);
         
         $data = file_get_contents($url);
         
