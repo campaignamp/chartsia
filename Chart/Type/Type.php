@@ -15,6 +15,11 @@ abstract class Type
     protected $slug;
 
     /**
+     * @var string
+     */
+    protected $chartCode;
+
+    /**
      * @return string
      */
     public function getName()
@@ -28,5 +33,24 @@ abstract class Type
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @param string $code
+     * @return self
+     */
+    public function setChartCode($code)
+    {
+        $this->chartCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChartCode()
+    {
+        return $this->chartCode;
     }
 }

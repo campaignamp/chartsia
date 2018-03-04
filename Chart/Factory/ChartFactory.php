@@ -102,10 +102,14 @@ class ChartFactory
                 $this->type = new Type\PieChart();
                 break;
             case 'bhs':
+            case 'bvg':
             case 'bar_chart':
                 $this->type = new Type\BarChart();
                 break;
         }
+
+        $this->type
+            ->setChartCode($type);
 
         return $this;
     }
@@ -263,7 +267,7 @@ class ChartFactory
     public function addPrimaryDataSet(array $data, $colorNames = [], $legend = null)
     {
         // Bar charts default to bars running left-right
-        if ($this->type->getSlug() == 'bar_chart') {
+        if ($this->type->getSlug() == 'bar_chart' && $this->type->getChartCode() == 'bhs') {
             $this->createBottomAxis();
 
             // This needs improvement - it doesn't make much sense at the moment

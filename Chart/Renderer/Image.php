@@ -28,21 +28,35 @@ class Image
             return '';
         }
 
-        switch ($type->getSlug()) {
-            case 'line_chart':
-                $typeName = 'lc';
-                break;
-            case 'bar_chart':
-                $typeName = 'bhs';
-                break;
-            case 'pie_chart':
-                $typeName = 'p';
-                break;
-            default:
-                $typeName = '';
+        if ($type->getChartCode()) {
+
+            $typeName = $type->getChartCode();
+
+        } else {
+
+            switch ($type->getSlug()) {
+                case 'line_chart':
+                    $typeName = 'lc';
+                    break;
+                case 'bar_chart':
+                    $typeName = 'bhs';
+                    break;
+                case 'pie_chart':
+                    $typeName = 'p';
+                    break;
+                default:
+                    $typeName = '';
+            }
         }
 
-        return 'cht=' . $typeName . '&';
+        $string = 'cht=' . $typeName . '&';
+
+        // this spaces out bar chart grouping
+        if ($type->getChartCode() == 'bvg') {
+            $string .= 'chbh=r,0.1,1&';
+        }
+
+        return $string;
     }
 
     /**
@@ -196,19 +210,19 @@ class Image
                     }
 
                     if (array_filter($labelTexts)) {
-                        
+
                         $filteredLabelTexts = [];
-                        
+
                         foreach ($labelTexts as $text) {
-                            
+
                             // remove any unique indexing
                             if (strpos($text, '.')) {
                                 $text = substr($text, (strpos($text, '.') + 1));
                             }
-                            
+
                             $filteredLabelTexts[] = $text;
                         }
-                        
+
                         $labels[$this->getCurrentKeyFromAxesArray($actualAxes)] = implode('|', $filteredLabelTexts);
                     }
 
@@ -381,18 +395,18 @@ class Image
 
         return $url;
     }
-    
+
     /**
-     * 
+     *
      * @param  Charts\Chart $chart
      * @return string
      */
-    public function renderAsBase64(Charts\Chart $chart) 
+    public function renderAsBase64(Charts\Chart $chart)
     {
         $url = $this->render($chart);
-        
+
         $data = file_get_contents($url);
-        
+
         return 'data:image/png;base64,' . base64_encode($data);
     }
 
