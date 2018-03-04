@@ -266,16 +266,25 @@ class ChartFactory
      */
     public function addPrimaryDataSet(array $data, $colorNames = [], $legend = null)
     {
-        // Bar charts default to bars running left-right
-        if ($this->type->getSlug() == 'bar_chart' && $this->type->getChartCode() == 'bhs') {
-            $this->createBottomAxis();
+        if ($this->type->getSlug() == 'bar_chart') {
 
-            // This needs improvement - it doesn't make much sense at the moment
-            $this->bottomAxis->createTopValuePositionOnly(max($data));
+            // normally bar charts have individual markers
+            $this->type->addDataMarkers(true);
 
-            $this->autoScale = true;
+            // horizontal bar chart settings
+            if ($this->type->getChartCode() == 'bhs') {
 
-            $this->createLeftAxis(array_keys($data), 1);
+                $this->createBottomAxis();
+                $this->type->addDataMarkers(false);
+
+                // This needs improvement - it doesn't make much sense at the moment
+                $this->bottomAxis->createTopValuePositionOnly(max($data));
+
+                $this->autoScale = true;
+
+                $this->createLeftAxis(array_keys($data), 1);
+            }
+
         } else {
             $this->createBottomAxis(array_keys($data), 1);
             $this->createLeftAxis();

@@ -381,6 +381,13 @@ class Image
         // Dataset data
         $url .= 'chd=t:' . implode('|', $data) . '&';
 
+        // add in data dataMarkers
+        if ($chart->getDataMarkers()) {
+
+            $url .= 'chm=N*p0*,000000,0,-1,11&';
+            $url .= 'chd=t:' . implode(',', $data) . '&';
+        }
+
         $url .= $this->renderLineColors($lineColors);
         $url .= $this->renderLegendLabels($legendLabels);
 

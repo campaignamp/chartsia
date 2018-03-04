@@ -20,6 +20,30 @@ abstract class Type
     protected $chartCode;
 
     /**
+     * @var bool
+     */
+    protected $dataMarkers;
+
+    /**
+     * @param bool $dataMarkers
+     * @return self
+     */
+    public function addDataMarkers($dataMarkers)
+    {
+        $this->dataMarkers = $dataMarkers;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDataMarkers()
+    {
+        return $this->dataMarkers;
+    }
+
+    /**
      * @return string
      */
     public function getName()
