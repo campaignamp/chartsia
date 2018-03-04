@@ -268,22 +268,20 @@ class ChartFactory
     {
         if ($this->type->getSlug() == 'bar_chart') {
 
-            // normally bar charts have individual markers
+            // bar charts have individual markers by default
             $this->type->addDataMarkers(true);
+        }
 
-            // horizontal bar chart settings
-            if ($this->type->getChartCode() == 'bhs') {
+        // horizontal bar chart settings
+        if ($this->type->getChartCode() == 'bhs') {
 
-                $this->createBottomAxis();
-                $this->type->addDataMarkers(false);
+            $this->createBottomAxis();
+            $this->type->addDataMarkers(false);
 
-                // This needs improvement - it doesn't make much sense at the moment
-                $this->bottomAxis->createTopValuePositionOnly(max($data));
+            // This needs improvement - it doesn't make much sense at the moment
+            $this->bottomAxis->createTopValuePositionOnly(max($data));
 
-                $this->autoScale = true;
-
-                $this->createLeftAxis(array_keys($data), 1);
-            }
+            $this->autoScale = true;
 
         } else {
             $this->createBottomAxis(array_keys($data), 1);
