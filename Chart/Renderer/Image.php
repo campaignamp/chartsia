@@ -384,7 +384,7 @@ class Image
             $params = [];
 
             foreach ($data as $index => $value) {
-                $params[] = 'N*f0*,000000,' . $index . ',-1,15';
+                $params[] = 'N*f0*,000000,' . $index . ',-1,20,,::5';
             }
 
             $url .= 'chm=' . implode('|', $params) . '&';
