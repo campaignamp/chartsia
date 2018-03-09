@@ -56,6 +56,11 @@ class Image
             $string .= 'chbh=r,0.1,1&';
         }
 
+        // this sets the correct start point for donuts
+        if ($type->getChartCode() == 'pc') {
+            $string .= 'chp=1.56&';
+        }
+
         return $string;
     }
 

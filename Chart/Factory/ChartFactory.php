@@ -98,6 +98,7 @@ class ChartFactory
                 $this->type = new Type\LineChart();
                 break;
             case 'p':
+            case 'pc':
             case 'pie_chart':
                 $this->type = new Type\PieChart();
                 break;
